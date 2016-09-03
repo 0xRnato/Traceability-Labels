@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 namespace Traceability_Labels
 {
-    public partial class DeletarProduto : Form
+    public partial class EditarProduto : Form
     {
         SqlConnection connection;
         SqlCommand command;
@@ -19,7 +19,7 @@ namespace Traceability_Labels
         SqlDataReader reader;
         bool flag;
 
-        public DeletarProduto()
+        public EditarProduto()
         {
             InitializeComponent();
 

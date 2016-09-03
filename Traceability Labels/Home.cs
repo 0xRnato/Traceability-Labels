@@ -23,7 +23,7 @@ namespace Traceability_Labels
 
         private void deletarProdutoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DeletarProduto form = new DeletarProduto();
+            EditarProduto form = new EditarProduto();
             form.ShowDialog();
         }
 

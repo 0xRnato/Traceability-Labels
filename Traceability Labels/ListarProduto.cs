@@ -41,7 +41,7 @@ namespace Traceability_Labels
             try
             {
                 dataGrid.Rows.Clear();
-                command = new SqlCommand("select * from produto", connection);
+                command = new SqlCommand("select id as ID,nome as NOME,gtin as GTIN from produto", connection);
                 adapter = new SqlDataAdapter(command);
                 connection.Open();
                 adapter.Fill(dataSet,"produtos");
@@ -49,8 +49,8 @@ namespace Traceability_Labels
                 dataGrid.DataSource = dataSet;
                 dataGrid.DataMember = "produtos";
                 dataGrid.Columns[0].Width = 50;
-                dataGrid.Columns[1].Width = 100;
-                dataGrid.Columns[2].Width = 270;
+                dataGrid.Columns[1].Width = 270;
+                dataGrid.Columns[2].Width = 100;
             }
             catch (Exception ex)
             {

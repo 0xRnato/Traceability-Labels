@@ -1,6 +1,6 @@
 ﻿namespace Traceability_Labels
 {
-    partial class DeletarProduto
+    partial class EditarProduto
     {
         /// <summary>
         /// Required designer variable.
