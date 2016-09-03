@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace Traceability_Labels
 {
-    public partial class Form1 : Form
+    public partial class EtiquetaCaixa : Form
     {
-        public Form1()
+        public EtiquetaCaixa()
         {
             InitializeComponent();
         }
