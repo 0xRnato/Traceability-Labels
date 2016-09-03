@@ -41,7 +41,7 @@ namespace Traceability_Labels
             try
             {
                 dataGrid.Rows.Clear();
-                command = new SqlCommand("select id as ID, digitoExtencao as Extensão, licencaGS1 as GS1,serial as Serial, digitoVerificador as Verificador, dataExpedicao as Saída from sscc", connection);
+                command = new SqlCommand("select id as ID, digitoExtencao as Extensão, licencaGS1 as GS1,serial as Serial, digitoVerificador as Verificador, tipo as Tipo, dataExpedicao as Saída from sscc", connection);
                 adapter = new SqlDataAdapter(command);
                 connection.Open();
                 adapter.Fill(dataSet,"SSCC");
@@ -53,7 +53,8 @@ namespace Traceability_Labels
                 dataGrid.Columns[2].Width = 80;
                 dataGrid.Columns[3].Width = 70;
                 dataGrid.Columns[4].Width = 70;
-                dataGrid.Columns[5].Width = 70;
+                dataGrid.Columns[5].Width = 80;
+                dataGrid.Columns[6].Width = 70;
             }
             catch (Exception ex)
             {
