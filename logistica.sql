@@ -17,6 +17,7 @@ create table sscc(
     licencaGS1 char(9) not null,
     serial char(7) not null,
     digitoVerificador char(1) not null,
+    tipo varchar(6) not null,
     dataExpedicao date not null
 )
 GO
