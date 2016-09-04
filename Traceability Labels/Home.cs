@@ -172,7 +172,7 @@ namespace Traceability_Labels
         {
             int checkDigit = 0;
             string sscc17 = digitoExtencao + licencaGS1 + serial;
-            sscc17 = "93857444473611110";
+
             char[] tmp;
 
             for (int i = 0; i < sscc17.Length; i++)
@@ -192,6 +192,9 @@ namespace Traceability_Labels
             tmp[tmp.Length - 2] = char.Parse((int.Parse(tmp[tmp.Length - 2].ToString()) + 1).ToString());
             string tmp2 = new string(tmp);
             checkDigit = int.Parse(tmp2) - checkDigit;
+
+            if (checkDigit.ToString().Length > 1)
+                return checkDigit.ToString()[checkDigit.ToString().Length - 1].ToString();
 
             return checkDigit.ToString();
         }
