@@ -41,7 +41,7 @@ namespace Traceability_Labels
             try
             {
                 dataGrid.Rows.Clear();
-                command = new SqlCommand("select id as ID, digitoExtencao as Extensão, licencaGS1 as GS1,serial as Serial, digitoVerificador as Verificador, tipo as Tipo, dataExpedicao as Saída from sscc", connection);
+                command = new SqlCommand("select id as ID, digitoExtencao as Extensão, licencaGS1 as GS1,serial as Serial, digitoVerificador as Verificador, tipo as Tipo, dataExpedicao as Emissão from sscc", connection);
                 adapter = new SqlDataAdapter(command);
                 connection.Open();
                 adapter.Fill(dataSet,"SSCC");
