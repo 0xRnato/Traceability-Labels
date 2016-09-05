@@ -13,7 +13,6 @@ namespace Traceability_Labels
     {
         SqlConnection connection;
         SqlCommand command;
-        SqlDataAdapter adapter;
         DataSet dataSet;
 
         public CadastrarProduto()

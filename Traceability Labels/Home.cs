@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Drawing.Printing;
 
 namespace Traceability_Labels
 {
@@ -14,6 +15,14 @@ namespace Traceability_Labels
         public Home()
         {
             InitializeComponent();
+            PrinterSettings settings = new PrinterSettings();
+            foreach (string printer in PrinterSettings.InstalledPrinters)
+            {
+                settings.PrinterName = printer;
+                if (settings.IsDefaultPrinter)
+                    Global.printerName = printer;
+            }
+            lbl_Printer.Text += Global.printerName;
         }
 
         private void cadastrarProdutoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -40,15 +49,38 @@ namespace Traceability_Labels
             form.ShowDialog();
         }
 
-        private void caixaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void impressorasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Printers form = new Printers();
+            form.ShowDialog(); 
+        }
+
+        private void Home_Activated(object sender, EventArgs e)
+        {
+            lbl_Printer.Text = "IMPRESSORA: " + Global.printerName;
+        }
+
+        private void gerarNovaEtiquetaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             EtiquetaCaixa form = new EtiquetaCaixa();
             form.ShowDialog();
         }
 
-        private void paleteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void listarEtiquetasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListarCaixas form = new ListarCaixas();
+            form.ShowDialog();
+        }
+
+        private void gerarNovaEtiquetaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             EtiquetaPalete form = new EtiquetaPalete();
+            form.ShowDialog();
+        }
+
+        private void listarEtiquetasToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ListarPaletes form = new ListarPaletes();
             form.ShowDialog();
         }
     }
@@ -60,7 +92,8 @@ namespace Traceability_Labels
         private static SqlDataReader reader;
         public static string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=logistica;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         public static string gs1Global = "999999999";
-        internal static string regProcessadorGlobal = "99999999";
+        public static string regProcessadorGlobal = "99999999";
+        public static string printerName;
 
         public static string NextSSCC(string tipo)
         {
