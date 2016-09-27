@@ -7,7 +7,9 @@ GO
 create table produto(
     id int not null identity primary key,
     gtin char(14) not null,
-    nome varchar(100) not null
+    nome varchar(100) not null,
+    embalagem decimal(6,3) not null,
+    caixa decimal(6,3) not null
 )
 GO
 

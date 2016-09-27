@@ -36,10 +36,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txt_Embalagem = new System.Windows.Forms.TextBox();
-            this.txt_Caixa = new System.Windows.Forms.TextBox();
             this.btn_Confirmar = new System.Windows.Forms.Button();
             this.btn_Cancel = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
@@ -49,15 +45,15 @@
             // cbox_Produtos
             // 
             this.cbox_Produtos.FormattingEnabled = true;
-            this.cbox_Produtos.Location = new System.Drawing.Point(79, 12);
+            this.cbox_Produtos.Location = new System.Drawing.Point(90, 12);
             this.cbox_Produtos.Name = "cbox_Produtos";
-            this.cbox_Produtos.Size = new System.Drawing.Size(227, 21);
+            this.cbox_Produtos.Size = new System.Drawing.Size(302, 21);
             this.cbox_Produtos.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 15);
+            this.label1.Location = new System.Drawing.Point(20, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 13);
             this.label1.TabIndex = 1;
@@ -67,7 +63,7 @@
             // 
             this.datePick_Fabricacao.CustomFormat = "dd/MM/yyyy";
             this.datePick_Fabricacao.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.datePick_Fabricacao.Location = new System.Drawing.Point(129, 58);
+            this.datePick_Fabricacao.Location = new System.Drawing.Point(90, 39);
             this.datePick_Fabricacao.Name = "datePick_Fabricacao";
             this.datePick_Fabricacao.Size = new System.Drawing.Size(100, 20);
             this.datePick_Fabricacao.TabIndex = 3;
@@ -76,14 +72,14 @@
             // 
             this.datePick_Validade.CustomFormat = "dd/MM/yyyy";
             this.datePick_Validade.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.datePick_Validade.Location = new System.Drawing.Point(129, 84);
+            this.datePick_Validade.Location = new System.Drawing.Point(90, 65);
             this.datePick_Validade.Name = "datePick_Validade";
             this.datePick_Validade.Size = new System.Drawing.Size(100, 20);
             this.datePick_Validade.TabIndex = 4;
             // 
             // txt_Lote
             // 
-            this.txt_Lote.Location = new System.Drawing.Point(129, 110);
+            this.txt_Lote.Location = new System.Drawing.Point(292, 39);
             this.txt_Lote.MaxLength = 20;
             this.txt_Lote.Name = "txt_Lote";
             this.txt_Lote.Size = new System.Drawing.Size(100, 20);
@@ -92,7 +88,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(46, 64);
+            this.label2.Location = new System.Drawing.Point(7, 45);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 13);
             this.label2.TabIndex = 5;
@@ -101,7 +97,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(63, 90);
+            this.label3.Location = new System.Drawing.Point(24, 71);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(60, 13);
             this.label3.TabIndex = 6;
@@ -110,49 +106,15 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(88, 113);
+            this.label4.Location = new System.Drawing.Point(251, 42);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 7;
             this.label4.Text = "LOTE";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(235, 61);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(127, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "TARA DA EMBALAGEM:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(271, 87);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(91, 13);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "TARA DA CAIXA:";
-            // 
-            // txt_Embalagem
-            // 
-            this.txt_Embalagem.Location = new System.Drawing.Point(368, 58);
-            this.txt_Embalagem.MaxLength = 7;
-            this.txt_Embalagem.Name = "txt_Embalagem";
-            this.txt_Embalagem.Size = new System.Drawing.Size(100, 20);
-            this.txt_Embalagem.TabIndex = 6;
-            // 
-            // txt_Caixa
-            // 
-            this.txt_Caixa.Location = new System.Drawing.Point(368, 84);
-            this.txt_Caixa.MaxLength = 7;
-            this.txt_Caixa.Name = "txt_Caixa";
-            this.txt_Caixa.Size = new System.Drawing.Size(100, 20);
-            this.txt_Caixa.TabIndex = 7;
-            // 
             // btn_Confirmar
             // 
-            this.btn_Confirmar.Location = new System.Drawing.Point(312, 110);
+            this.btn_Confirmar.Location = new System.Drawing.Point(236, 91);
             this.btn_Confirmar.Name = "btn_Confirmar";
             this.btn_Confirmar.Size = new System.Drawing.Size(75, 23);
             this.btn_Confirmar.TabIndex = 8;
@@ -162,7 +124,7 @@
             // 
             // btn_Cancel
             // 
-            this.btn_Cancel.Location = new System.Drawing.Point(393, 110);
+            this.btn_Cancel.Location = new System.Drawing.Point(317, 91);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(75, 23);
             this.btn_Cancel.TabIndex = 9;
@@ -173,7 +135,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(312, 15);
+            this.label7.Location = new System.Drawing.Point(205, 68);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(81, 13);
             this.label7.TabIndex = 10;
@@ -181,7 +143,7 @@
             // 
             // txt_Quantidade
             // 
-            this.txt_Quantidade.Location = new System.Drawing.Point(399, 12);
+            this.txt_Quantidade.Location = new System.Drawing.Point(292, 65);
             this.txt_Quantidade.Name = "txt_Quantidade";
             this.txt_Quantidade.Size = new System.Drawing.Size(100, 20);
             this.txt_Quantidade.TabIndex = 2;
@@ -190,15 +152,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(511, 156);
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.ClientSize = new System.Drawing.Size(413, 126);
             this.Controls.Add(this.txt_Quantidade);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btn_Cancel);
             this.Controls.Add(this.btn_Confirmar);
-            this.Controls.Add(this.txt_Caixa);
-            this.Controls.Add(this.txt_Embalagem);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -227,10 +186,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txt_Embalagem;
-        private System.Windows.Forms.TextBox txt_Caixa;
         private System.Windows.Forms.Button btn_Confirmar;
         private System.Windows.Forms.Button btn_Cancel;
         private System.Windows.Forms.Label label7;

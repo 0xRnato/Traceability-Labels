@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace Traceability_Labels
 {
-    public partial class ListarPaletes : Form
+    public partial class Sobre : Form
     {
-        public ListarPaletes()
+        public Sobre()
         {
             InitializeComponent();
         }

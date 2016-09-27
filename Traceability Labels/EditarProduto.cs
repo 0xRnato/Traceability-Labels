@@ -53,7 +53,7 @@ namespace Traceability_Labels
 
         private void btn_Delete_Click(object sender, EventArgs e)
         {
-            DialogResult confirm = MessageBox.Show("ATENÇÃO", "Confirme se você quer mesmo deletar este produto.", MessageBoxButtons.YesNo);
+            DialogResult confirm = MessageBox.Show(this,"Confirme se você quer mesmo deletar este produto.", "ATENÇÃO", MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
             if(confirm == DialogResult.Yes)
             {
                 try
@@ -108,7 +108,7 @@ namespace Traceability_Labels
             {
                 try
                 {
-                    command = new SqlCommand("select nome,gtin from produto where id=@id", connection);
+                    command = new SqlCommand("select nome,gtin,embalagem,caixa from produto where id=@id", connection);
                     command.Parameters.AddWithValue("@id", Convert.ToInt32(cbox_Produtos.SelectedValue));
                     connection.Open();
                     reader = command.ExecuteReader();
@@ -116,6 +116,8 @@ namespace Traceability_Labels
                     {
                         txt_Nome.Text = reader.GetString(0);
                         txt_Gtin.Text = reader.GetString(1);
+                        txt_Embalagem.Text = reader.GetDecimal(2).ToString();
+                        txt_Caixa.Text = reader.GetDecimal(3).ToString();
                     }
                     reader.Close();
                     connection.Close();
@@ -136,9 +138,19 @@ namespace Traceability_Labels
         {
             try
             {
-                command = new SqlCommand("update produto set nome=@nome,gtin=@gtin where id=@id", connection);
+                double embalagem, caixa;
+                bool testEmbalagem = double.TryParse(txt_Embalagem.Text, out embalagem);
+                if (!testEmbalagem)
+                    throw new Exception("A tara da embalagem esta em um formato incorreto!");
+                bool testCaixa = double.TryParse(txt_Caixa.Text, out caixa);
+                if (!testCaixa)
+                    throw new Exception("A tara da caixa esta em um formato incorreto!");
+
+                command = new SqlCommand("update produto set nome=@nome,gtin=@gtin,embalagem=@embalagem,caixa=@caixa where id=@id", connection);
                 command.Parameters.AddWithValue("@nome", txt_Nome.Text);
                 command.Parameters.AddWithValue("@gtin", txt_Gtin.Text);
+                command.Parameters.AddWithValue("@embalagem", txt_Embalagem.Text);
+                command.Parameters.AddWithValue("@caixa", txt_Caixa.Text);
                 command.Parameters.AddWithValue("@id", Convert.ToInt32(cbox_Produtos.SelectedValue));
                 connection.Open();
                 command.ExecuteNonQuery();

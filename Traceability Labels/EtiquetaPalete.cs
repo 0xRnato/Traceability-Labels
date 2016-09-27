@@ -70,17 +70,28 @@ namespace Traceability_Labels
 
         private void btn_Confirmar_Click(object sender, EventArgs e)
         {
-            string cod1 = "", cod2 = "", cod3 = "";
-            string gtin = "", produto = "", fabricacao, validade, registroProcessador, sscc;
-
-            fabricacao = string.Format("{0:yy/MM/dd}", datePick_Fabricacao.Value);
-            validade = string.Format("{0:yy/MM/dd}", datePick_Validade.Value);
-            registroProcessador = Global.regProcessadorGlobal;
-            sscc = Global.NextSSCC("PALETE");
-
             try
             {
-                command = new SqlCommand("select gtin,nome from produto where id=@id", connection);
+                string cod1 = "", cod2 = "", cod3 = "";
+                string gtin = "", produto = "", fabricacao, validade, registroProcessador, sscc, embalagem = "", caixa = "";
+                double palete, strech, cantoneira;
+
+                bool testPalete = double.TryParse(txt_Palete.Text, out palete);
+                if (!testPalete)
+                    throw new Exception("A tara do palete esta em um formato incorreto!");
+                bool testStrech = double.TryParse(txt_Strech.Text, out strech);
+                if (!testStrech)
+                    throw new Exception("A tara do strech esta em um formato incorreto!");
+                bool testCantoneira = double.TryParse(txt_Cantoneira.Text, out cantoneira);
+                if (!testCantoneira)
+                    throw new Exception("A tara da cantoneira esta em um formato incorreto!");
+                
+                fabricacao = string.Format("{0:yy/MM/dd}", datePick_Fabricacao.Value);
+                validade = string.Format("{0:yy/MM/dd}", datePick_Validade.Value);
+                registroProcessador = Global.regProcessadorGlobal;
+                sscc = Global.NextSSCC("PALETE");
+
+                command = new SqlCommand("select gtin,nome,embalagem,caixa from produto where id=@id", connection);
                 command.Parameters.AddWithValue("@id", cbox_Produtos.SelectedValue);
                 connection.Open();
                 reader = command.ExecuteReader();
@@ -88,9 +99,18 @@ namespace Traceability_Labels
                 {
                     gtin = reader.GetString(0);
                     produto = reader.GetString(1);
+                    embalagem = reader.GetDecimal(2).ToString();
+                    caixa = reader.GetDecimal(3).ToString();
                 }
                 reader.Close();
                 connection.Close();
+
+                cod1 = "02" + gtin + "15" + validade.Replace("/", "") + "11" + fabricacao.Replace("/", "") + "37" + txt_Quantidade.Text;
+                cod2 = "7030" + registroProcessador + "10" + txt_Lote.Text;
+                cod3 = "00" + sscc;
+
+                PrintLabel.Palete(gtin, fabricacao, validade, txt_Lote.Text, produto, registroProcessador, sscc, embalagem, caixa, palete.ToString(), strech.ToString(), cantoneira.ToString(), cod1, cod2, cod3, txt_Quantidade.Text);
+                MessageBox.Show("Processo finalizado!!");
             }
             catch (Exception ex)
             {
@@ -100,18 +120,8 @@ namespace Traceability_Labels
             {
                 if (connection.State == ConnectionState.Open)
                     connection.Close();
+                Hide();
             }
-
-            cod1 += "(01)" + gtin;
-            cod1 += "(15)" + validade.Replace("/", "");
-            cod1 += "(11)" + fabricacao.Replace("/", "");
-            cod2 += "(7030)" + registroProcessador;
-            cod2 += "(10)" + txt_Lote.Text;
-            cod3 += "(00)" + sscc;
-
-            PrintLabel.Palete(gtin, fabricacao, validade, txt_Lote.Text, produto, registroProcessador, sscc, txt_Embalagem.Text, txt_Caixa.Text,txt_Strech.Text,txt_Cantoneira.Text, cod1, cod2, cod3,txt_Quantidade.Text);
-            MessageBox.Show("Processo finalizado!!");
-            Hide();
         }
     }
 }

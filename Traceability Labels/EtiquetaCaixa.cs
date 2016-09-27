@@ -71,51 +71,65 @@ namespace Traceability_Labels
 
         private void btn_Confirmar_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < Convert.ToInt32(txt_Quantidade.Text); i++)
+            try
             {
-                string cod1 = "", cod2 = "", cod3 = "";
-                string gtin = "", produto = "", fabricacao, validade, registroProcessador, sscc;
+                int quantidade, lote;
+                bool testQuantidade = int.TryParse(txt_Quantidade.Text, out quantidade);
+                if (!testQuantidade)
+                    throw new Exception("A quantidade esta em um formato incorreto!");
+                bool testLote = int.TryParse(txt_Lote.Text, out lote);
+                if (!testLote)
+                    throw new Exception("O lote esta em um formato incorreto!");
 
-                fabricacao = string.Format("{0:yy/MM/dd}", datePick_Fabricacao.Value);
-                validade = string.Format("{0:yy/MM/dd}", datePick_Validade.Value);
-                registroProcessador = Global.regProcessadorGlobal;
-                sscc = Global.NextSSCC("CAIXA");
-
-                try
+                for (int i = 0; i < quantidade; i++)
                 {
-                    command = new SqlCommand("select gtin,nome from produto where id=@id", connection);
-                    command.Parameters.AddWithValue("@id", cbox_Produtos.SelectedValue);
-                    connection.Open();
-                    reader = command.ExecuteReader();
-                    while (reader.Read())
+                    string cod1 = "", cod2 = "", cod3 = "";
+                    string gtin = "", produto = "", fabricacao, validade, registroProcessador, sscc, embalagem = "", caixa = "";
+
+                    fabricacao = string.Format("{0:yy/MM/dd}", datePick_Fabricacao.Value);
+                    validade = string.Format("{0:yy/MM/dd}", datePick_Validade.Value);
+                    registroProcessador = Global.regProcessadorGlobal;
+                    sscc = Global.NextSSCC("CAIXA");
+
+                    try
                     {
-                        gtin = reader.GetString(0);
-                        produto = reader.GetString(1);
-                    }
-                    reader.Close();
-                    connection.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro: " + ex.Message);
-                }
-                finally
-                {
-                    if (connection.State == ConnectionState.Open)
+                        command = new SqlCommand("select gtin,nome,embalagem,caixa from produto where id=@id", connection);
+                        command.Parameters.AddWithValue("@id", cbox_Produtos.SelectedValue);
+                        connection.Open();
+                        reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            gtin = reader.GetString(0);
+                            produto = reader.GetString(1);
+                            embalagem = reader.GetDecimal(2).ToString();
+                            caixa = reader.GetDecimal(3).ToString();
+                        }
+                        reader.Close();
                         connection.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro: " + ex.Message);
+                    }
+                    finally
+                    {
+                        if (connection.State == ConnectionState.Open)
+                            connection.Close();
+                    }
+
+                    cod1 = "01" + gtin + "15" + validade.Replace("/", "") + "11" + fabricacao.Replace("/", "");
+                    cod2 = "7030" + registroProcessador + "10" + txt_Lote.Text;
+                    cod3 = "00" + sscc;
+
+                    PrintLabel.Caixa(gtin, fabricacao, validade, lote.ToString(), produto, registroProcessador, sscc, embalagem, caixa, cod1, cod2, cod3);
                 }
-
-                cod1 += "(01)" + gtin;
-                cod1 += "(15)" + validade.Replace("/", "");
-                cod1 += "(11)" + fabricacao.Replace("/", "");
-                cod2 += "(7030)" + registroProcessador;
-                cod2 += "(10)" + txt_Lote.Text;
-                cod3 += "(00)" + sscc;
-
-                PrintLabel.Caixa(gtin, fabricacao, validade, txt_Lote.Text, produto, registroProcessador, sscc, txt_Embalagem.Text, txt_Caixa.Text, cod1, cod2, cod3);
+                MessageBox.Show("Processo finalizado!!");
+                Hide();
             }
-            MessageBox.Show("Processo finalizado!!");
-            Hide();
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro: " + ex.Message);
+            }
         }
     }
 }

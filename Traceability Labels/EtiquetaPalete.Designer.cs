@@ -32,9 +32,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.btn_Cancel = new System.Windows.Forms.Button();
             this.btn_Confirmar = new System.Windows.Forms.Button();
-            this.txt_Caixa = new System.Windows.Forms.TextBox();
-            this.txt_Embalagem = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,6 +45,7 @@
             this.txt_Strech = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.txt_Palete = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txt_Quantidade
@@ -68,7 +66,7 @@
             // 
             // btn_Cancel
             // 
-            this.btn_Cancel.Location = new System.Drawing.Point(394, 168);
+            this.btn_Cancel.Location = new System.Drawing.Point(403, 145);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(75, 23);
             this.btn_Cancel.TabIndex = 11;
@@ -78,7 +76,7 @@
             // 
             // btn_Confirmar
             // 
-            this.btn_Confirmar.Location = new System.Drawing.Point(313, 168);
+            this.btn_Confirmar.Location = new System.Drawing.Point(322, 145);
             this.btn_Confirmar.Name = "btn_Confirmar";
             this.btn_Confirmar.Size = new System.Drawing.Size(75, 23);
             this.btn_Confirmar.TabIndex = 10;
@@ -86,39 +84,14 @@
             this.btn_Confirmar.UseVisualStyleBackColor = true;
             this.btn_Confirmar.Click += new System.EventHandler(this.btn_Confirmar_Click);
             // 
-            // txt_Caixa
-            // 
-            this.txt_Caixa.Location = new System.Drawing.Point(369, 90);
-            this.txt_Caixa.MaxLength = 7;
-            this.txt_Caixa.Name = "txt_Caixa";
-            this.txt_Caixa.Size = new System.Drawing.Size(100, 20);
-            this.txt_Caixa.TabIndex = 7;
-            // 
-            // txt_Embalagem
-            // 
-            this.txt_Embalagem.Location = new System.Drawing.Point(369, 64);
-            this.txt_Embalagem.MaxLength = 7;
-            this.txt_Embalagem.Name = "txt_Embalagem";
-            this.txt_Embalagem.Size = new System.Drawing.Size(100, 20);
-            this.txt_Embalagem.TabIndex = 6;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(272, 93);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(91, 13);
-            this.label6.TabIndex = 25;
-            this.label6.Text = "TARA DA CAIXA:";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(236, 67);
+            this.label5.Location = new System.Drawing.Point(270, 70);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(127, 13);
+            this.label5.Size = new System.Drawing.Size(102, 13);
             this.label5.TabIndex = 23;
-            this.label5.Text = "TARA DA EMBALAGEM:";
+            this.label5.Text = "TARA DO PALETE:";
             // 
             // label4
             // 
@@ -192,7 +165,7 @@
             // 
             // txt_Cantoneira
             // 
-            this.txt_Cantoneira.Location = new System.Drawing.Point(369, 142);
+            this.txt_Cantoneira.Location = new System.Drawing.Point(378, 119);
             this.txt_Cantoneira.MaxLength = 7;
             this.txt_Cantoneira.Name = "txt_Cantoneira";
             this.txt_Cantoneira.Size = new System.Drawing.Size(100, 20);
@@ -200,7 +173,7 @@
             // 
             // txt_Strech
             // 
-            this.txt_Strech.Location = new System.Drawing.Point(369, 116);
+            this.txt_Strech.Location = new System.Drawing.Point(378, 93);
             this.txt_Strech.MaxLength = 7;
             this.txt_Strech.Name = "txt_Strech";
             this.txt_Strech.Size = new System.Drawing.Size(100, 20);
@@ -209,7 +182,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(233, 145);
+            this.label8.Location = new System.Drawing.Point(242, 122);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(130, 13);
             this.label8.TabIndex = 30;
@@ -218,17 +191,26 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(258, 119);
+            this.label9.Location = new System.Drawing.Point(267, 96);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(105, 13);
             this.label9.TabIndex = 29;
             this.label9.Text = "TARA DO STRECH:";
             // 
+            // txt_Palete
+            // 
+            this.txt_Palete.Location = new System.Drawing.Point(378, 67);
+            this.txt_Palete.Name = "txt_Palete";
+            this.txt_Palete.Size = new System.Drawing.Size(100, 20);
+            this.txt_Palete.TabIndex = 31;
+            // 
             // EtiquetaPalete
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(511, 202);
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.ClientSize = new System.Drawing.Size(511, 177);
+            this.Controls.Add(this.txt_Palete);
             this.Controls.Add(this.txt_Cantoneira);
             this.Controls.Add(this.txt_Strech);
             this.Controls.Add(this.label8);
@@ -237,9 +219,6 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btn_Cancel);
             this.Controls.Add(this.btn_Confirmar);
-            this.Controls.Add(this.txt_Caixa);
-            this.Controls.Add(this.txt_Embalagem);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -265,9 +244,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btn_Cancel;
         private System.Windows.Forms.Button btn_Confirmar;
-        private System.Windows.Forms.TextBox txt_Caixa;
-        private System.Windows.Forms.TextBox txt_Embalagem;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -281,5 +257,6 @@
         private System.Windows.Forms.TextBox txt_Strech;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txt_Palete;
     }
 }

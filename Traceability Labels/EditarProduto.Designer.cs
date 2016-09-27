@@ -37,6 +37,10 @@
             this.btn_Save = new System.Windows.Forms.Button();
             this.btn_Delete = new System.Windows.Forms.Button();
             this.btn_Cancel = new System.Windows.Forms.Button();
+            this.txt_Caixa = new System.Windows.Forms.TextBox();
+            this.txt_Embalagem = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cbox_Produtos
@@ -93,7 +97,7 @@
             // 
             // btn_Save
             // 
-            this.btn_Save.Location = new System.Drawing.Point(178, 127);
+            this.btn_Save.Location = new System.Drawing.Point(178, 179);
             this.btn_Save.Name = "btn_Save";
             this.btn_Save.Size = new System.Drawing.Size(75, 23);
             this.btn_Save.TabIndex = 4;
@@ -103,7 +107,7 @@
             // 
             // btn_Delete
             // 
-            this.btn_Delete.Location = new System.Drawing.Point(97, 127);
+            this.btn_Delete.Location = new System.Drawing.Point(97, 179);
             this.btn_Delete.Name = "btn_Delete";
             this.btn_Delete.Size = new System.Drawing.Size(75, 23);
             this.btn_Delete.TabIndex = 5;
@@ -113,7 +117,7 @@
             // 
             // btn_Cancel
             // 
-            this.btn_Cancel.Location = new System.Drawing.Point(259, 127);
+            this.btn_Cancel.Location = new System.Drawing.Point(259, 179);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(75, 23);
             this.btn_Cancel.TabIndex = 6;
@@ -121,11 +125,50 @@
             this.btn_Cancel.UseVisualStyleBackColor = true;
             this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
             // 
-            // DeletarProduto
+            // txt_Caixa
+            // 
+            this.txt_Caixa.Location = new System.Drawing.Point(234, 153);
+            this.txt_Caixa.MaxLength = 6;
+            this.txt_Caixa.Name = "txt_Caixa";
+            this.txt_Caixa.Size = new System.Drawing.Size(100, 20);
+            this.txt_Caixa.TabIndex = 8;
+            // 
+            // txt_Embalagem
+            // 
+            this.txt_Embalagem.Location = new System.Drawing.Point(234, 127);
+            this.txt_Embalagem.MaxLength = 6;
+            this.txt_Embalagem.Name = "txt_Embalagem";
+            this.txt_Embalagem.Size = new System.Drawing.Size(100, 20);
+            this.txt_Embalagem.TabIndex = 7;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(137, 156);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(91, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "TARA DA CAIXA:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(101, 130);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(127, 13);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "TARA DA EMBALAGEM:";
+            // 
+            // EditarProduto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(416, 192);
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.ClientSize = new System.Drawing.Size(416, 233);
+            this.Controls.Add(this.txt_Caixa);
+            this.Controls.Add(this.txt_Embalagem);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.btn_Cancel);
             this.Controls.Add(this.btn_Delete);
             this.Controls.Add(this.btn_Save);
@@ -136,7 +179,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbox_Produtos);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "DeletarProduto";
+            this.Name = "EditarProduto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Editar produto";
             this.Load += new System.EventHandler(this.DeletarProduto_Load);
@@ -156,5 +199,9 @@
         private System.Windows.Forms.Button btn_Save;
         private System.Windows.Forms.Button btn_Delete;
         private System.Windows.Forms.Button btn_Cancel;
+        private System.Windows.Forms.TextBox txt_Caixa;
+        private System.Windows.Forms.TextBox txt_Embalagem;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }

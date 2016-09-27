@@ -8,9 +8,24 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Traceability_Labels</RootNamespace>
-    <AssemblyName>Traceability Labels</AssemblyName>
+    <AssemblyName>Etiquetas de rastreabilidade</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -70,18 +85,6 @@
     <Compile Include="Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
-    <Compile Include="ListarCaixas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ListarCaixas.Designer.cs">
-      <DependentUpon>ListarCaixas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ListarPaletes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ListarPaletes.Designer.cs">
-      <DependentUpon>ListarPaletes.cs</DependentUpon>
-    </Compile>
     <Compile Include="ListarProduto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +106,12 @@
     <Compile Include="PrintLabel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sobre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sobre.Designer.cs">
+      <DependentUpon>Sobre.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="CadastrarProduto.resx">
       <DependentUpon>CadastrarProduto.cs</DependentUpon>
     </EmbeddedResource>
@@ -117,12 +126,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ListarCaixas.resx">
-      <DependentUpon>ListarCaixas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ListarPaletes.resx">
-      <DependentUpon>ListarPaletes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListarProduto.resx">
       <DependentUpon>ListarProduto.cs</DependentUpon>
@@ -143,6 +146,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Sobre.resx">
+      <DependentUpon>Sobre.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -153,6 +159,13 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="Resources\IDAutomationHC39M Code 39 Barcode.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

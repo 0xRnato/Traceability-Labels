@@ -60,27 +60,26 @@ namespace Traceability_Labels
             lbl_Printer.Text = "IMPRESSORA: " + Global.printerName;
         }
 
-        private void gerarNovaEtiquetaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void caixaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             EtiquetaCaixa form = new EtiquetaCaixa();
             form.ShowDialog();
         }
 
-        private void listarEtiquetasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ListarCaixas form = new ListarCaixas();
-            form.ShowDialog();
-        }
-
-        private void gerarNovaEtiquetaToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void paleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             EtiquetaPalete form = new EtiquetaPalete();
             form.ShowDialog();
         }
 
-        private void listarEtiquetasToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListarPaletes form = new ListarPaletes();
+            Application.Exit();
+        }
+
+        private void sobreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Sobre form = new Sobre();
             form.ShowDialog();
         }
     }
@@ -90,8 +89,8 @@ namespace Traceability_Labels
         private static SqlConnection connection;
         private static SqlCommand command;
         private static SqlDataReader reader;
-        public static string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=logistica;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        public static string gs1Global = "999999999";
+        public static string connectionString = @"Data Source=(localdb)\ProjectsV12;Initial Catalog=logistica;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        public static string gs1Global = "78975224";
         public static string regProcessadorGlobal = "99999999";
         public static string printerName;
 
@@ -121,8 +120,8 @@ namespace Traceability_Labels
                     DateTime data = DateTime.Today;
 
                     sscc = digitoExtencao + licencaGS1 + serial + digitoVerificador;
-                    if (sscc.Length < 18)
-                        throw new Exception("O código SSCC esta incompleto.");
+                    //if (sscc.Length < 18)
+                    //    throw new Exception("O código SSCC esta incompleto.");
 
                     command = new SqlCommand("insert into sscc (digitoExtencao,licencaGS1,serial,digitoVerificador, tipo, dataExpedicao) values (@digitoExtencao,@licencaGS1,@serial,@digitoVerificador, @tipo, @dataExpedicao)", connection);
                     command.Parameters.AddWithValue("@digitoExtencao", digitoExtencao);
@@ -174,8 +173,8 @@ namespace Traceability_Labels
                     DateTime data = DateTime.Today;
 
                     sscc = digitoExtencao + licencaGS1 + serial + digitoVerificador;
-                    if (sscc.Length < 18)
-                        throw new Exception("O código SSCC esta incompleto.");
+                    //if (sscc.Length < 18)
+                    //    throw new Exception("O código SSCC esta incompleto.");
 
                     command = new SqlCommand("insert into sscc (digitoExtencao,licencaGS1,serial,digitoVerificador, tipo, dataExpedicao) values (@digitoExtencao,@licencaGS1,@serial,@digitoVerificador, @tipo, @dataExpedicao)", connection);
                     command.Parameters.AddWithValue("@digitoExtencao", digitoExtencao);
