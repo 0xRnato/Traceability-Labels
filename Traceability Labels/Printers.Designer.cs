@@ -45,6 +45,7 @@
             // 
             // cbox_Printers
             // 
+            this.cbox_Printers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbox_Printers.FormattingEnabled = true;
             this.cbox_Printers.Location = new System.Drawing.Point(195, 12);
             this.cbox_Printers.Name = "cbox_Printers";
@@ -63,6 +64,7 @@
             // 
             // btn_Cancel
             // 
+            this.btn_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btn_Cancel.Location = new System.Drawing.Point(395, 39);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(75, 23);
@@ -73,16 +75,22 @@
             // 
             // Printers
             // 
+            this.AcceptButton = this.btn_Save;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.CancelButton = this.btn_Cancel;
             this.ClientSize = new System.Drawing.Size(504, 74);
+            this.ControlBox = false;
             this.Controls.Add(this.btn_Cancel);
             this.Controls.Add(this.btn_Save);
             this.Controls.Add(this.cbox_Printers);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Printers";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Impressoras";
             this.Load += new System.EventHandler(this.Printers_Load);

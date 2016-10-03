@@ -12,7 +12,7 @@ namespace Traceability_Labels
 {
     public partial class Home : Form
     {
-        public Home()
+        public Home(bool adm)
         {
             InitializeComponent();
             PrinterSettings settings = new PrinterSettings();
@@ -23,36 +23,19 @@ namespace Traceability_Labels
                     Global.printerName = printer;
             }
             lbl_Printer.Text += Global.printerName;
-        }
 
-        private void cadastrarProdutoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CadastrarProduto form = new CadastrarProduto();
-            form.ShowDialog();
-        }
-
-        private void deletarProdutoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            EditarProduto form = new EditarProduto();
-            form.ShowDialog();
-        }
-
-        private void listarProdutosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ListarProduto form = new ListarProduto();
-            form.ShowDialog();
-        }
-
-        private void listaDeSSCCToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ListarSSCC form = new ListarSSCC();
-            form.ShowDialog();
-        }
-
-        private void impressorasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Printers form = new Printers();
-            form.ShowDialog(); 
+            if (!adm)
+            {
+                menu_CadastrarProduto.Enabled = false;
+                menu_EditarProduto.Enabled = false;
+                menu_GerarEtiquetas.Enabled = false;
+                menu_Rastrear.Enabled = false;
+                menu_CadastrarUsuario.Enabled = false;
+                menu_EditarUsuario.Enabled = false;
+                Global.adm = false;
+            }
+            else
+                Global.adm = true;
         }
 
         private void Home_Activated(object sender, EventArgs e)
@@ -60,26 +43,79 @@ namespace Traceability_Labels
             lbl_Printer.Text = "IMPRESSORA: " + Global.printerName;
         }
 
-        private void caixaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            EtiquetaCaixa form = new EtiquetaCaixa();
-            form.ShowDialog();
-        }
-
-        private void paleteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            EtiquetaPalete form = new EtiquetaPalete();
-            form.ShowDialog();
-        }
-
-        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Home_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
         }
 
-        private void sobreToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menu_Sair_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void menu_Sobre_Click(object sender, EventArgs e)
         {
             Sobre form = new Sobre();
+            form.ShowDialog();
+        }
+
+        private void menu_Impressoras_Click(object sender, EventArgs e)
+        {
+            Printers form = new Printers();
+            form.ShowDialog();
+        }
+
+        private void menu_CadastrarUsuario_Click(object sender, EventArgs e)
+        {
+            CadastrarUsuario form = new CadastrarUsuario();
+            form.ShowDialog();
+        }
+
+        private void menu_EditarUsuario_Click(object sender, EventArgs e)
+        {
+            EditarUsuario form = new EditarUsuario();
+            form.ShowDialog();
+        }
+
+        private void menu_ImprimirEtiquetas_Click(object sender, EventArgs e)
+        {
+            ImprimirEtiqueta form = new ImprimirEtiqueta();
+            form.ShowDialog();
+        }
+
+        private void menu_Rastrear_Click(object sender, EventArgs e)
+        {
+            Rastrear form = new Rastrear();
+            form.ShowDialog();
+        }
+
+        private void menu_CadastrarProduto_Click(object sender, EventArgs e)
+        {
+            CadastrarProduto form = new CadastrarProduto();
+            form.ShowDialog();
+        }
+
+        private void menu_EditarProduto_Click(object sender, EventArgs e)
+        {
+            EditarProduto form = new EditarProduto();
+            form.ShowDialog();
+        }
+
+        private void menu_ListarProdutos_Click(object sender, EventArgs e)
+        {
+            ListarProduto form = new ListarProduto();
+            form.ShowDialog();
+        }
+
+        private void novoCarregamentoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NovoCarregamento form = new NovoCarregamento();
+            form.ShowDialog();
+        }
+
+        private void editarCarregamentoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EditarCarregamento form = new EditarCarregamento();
             form.ShowDialog();
         }
     }
@@ -89,10 +125,12 @@ namespace Traceability_Labels
         private static SqlConnection connection;
         private static SqlCommand command;
         private static SqlDataReader reader;
-        public static string connectionString = @"Data Source=(localdb)\ProjectsV12;Initial Catalog=logistica;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        public static string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=RastreabilidadeLogistica;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         public static string gs1Global = "78975224";
         public static string regProcessadorGlobal = "99999999";
         public static string printerName;
+        public static string user;
+        public static bool adm;
 
         public static string NextSSCC(string tipo)
         {
@@ -123,13 +161,13 @@ namespace Traceability_Labels
                     //if (sscc.Length < 18)
                     //    throw new Exception("O código SSCC esta incompleto.");
 
-                    command = new SqlCommand("insert into sscc (digitoExtencao,licencaGS1,serial,digitoVerificador, tipo, dataExpedicao) values (@digitoExtencao,@licencaGS1,@serial,@digitoVerificador, @tipo, @dataExpedicao)", connection);
+                    command = new SqlCommand("insert into sscc (digitoExtencao,licencaGS1,serial,digitoVerificador, tipo, dataEmissao) values (@digitoExtencao,@licencaGS1,@serial,@digitoVerificador, @tipo, @dataEmissao)", connection);
                     command.Parameters.AddWithValue("@digitoExtencao", digitoExtencao);
                     command.Parameters.AddWithValue("@licencaGS1", licencaGS1);
                     command.Parameters.AddWithValue("@serial", serial);
                     command.Parameters.AddWithValue("@digitoVerificador", digitoVerificador);
                     command.Parameters.AddWithValue("@tipo", tipo);
-                    command.Parameters.AddWithValue("@dataExpedicao", data);
+                    command.Parameters.AddWithValue("@dataEmissao", data);
                     connection.Open();
                     command.ExecuteNonQuery();
                     connection.Close();
@@ -176,13 +214,13 @@ namespace Traceability_Labels
                     //if (sscc.Length < 18)
                     //    throw new Exception("O código SSCC esta incompleto.");
 
-                    command = new SqlCommand("insert into sscc (digitoExtencao,licencaGS1,serial,digitoVerificador, tipo, dataExpedicao) values (@digitoExtencao,@licencaGS1,@serial,@digitoVerificador, @tipo, @dataExpedicao)", connection);
+                    command = new SqlCommand("insert into sscc (digitoExtencao,licencaGS1,serial,digitoVerificador, tipo, dataEmissao) values (@digitoExtencao,@licencaGS1,@serial,@digitoVerificador, @tipo, @dataEmissao)", connection);
                     command.Parameters.AddWithValue("@digitoExtencao", digitoExtencao);
                     command.Parameters.AddWithValue("@licencaGS1", licencaGS1);
                     command.Parameters.AddWithValue("@serial", serial);
                     command.Parameters.AddWithValue("@digitoVerificador", digitoVerificador);
                     command.Parameters.AddWithValue("@tipo", tipo);
-                    command.Parameters.AddWithValue("@dataExpedicao", data);
+                    command.Parameters.AddWithValue("@dataEmissao", data);
                     connection.Open();
                     command.ExecuteNonQuery();
                     connection.Close();

@@ -27,7 +27,7 @@ namespace Traceability_Labels
 
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
-            Hide();
+            Close();
         }
 
         private void btn_Save_Click(object sender, EventArgs e)

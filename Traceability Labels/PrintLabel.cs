@@ -26,9 +26,11 @@ namespace Traceability_Labels
         private static string cod3;
         private static string quantidade;
 
-        public static void Caixa(string tmp_gtin, string tmp_fabricacao, string tmp_validade, string tmp_lote, string tmp_produto, string tmp_registroProcessador, string tmp_sscc, string tmp_taraEmbalagem, string tmp_taraCaixa, string tmp_cod1, string tmp_cod2, string tmp_cod3)
+        public static void Caixa(string tmp_gtin, string tmp_fabricacao, string tmp_validade, string tmp_lote, string tmp_produto, string tmp_registroProcessador, string tmp_sscc, string tmp_taraEmbalagem, string tmp_taraCaixa, string tmp_cod1, string tmp_cod2, string tmp_cod3, bool rePrint)
         {
             gtin = tmp_gtin;
+            fabricacao = tmp_fabricacao;
+            validade = tmp_validade;
             fabricacao = tmp_fabricacao;
             validade = tmp_validade;
             lote = tmp_lote;
@@ -43,14 +45,19 @@ namespace Traceability_Labels
 
             using (PrintDocument printDoc = new PrintDocument())
             {
-                //PrintPreviewDialog printPreview = new PrintPreviewDialog();
-                //printDoc.PrintPage += Print_PrintPageCaixa;
-                //printPreview.Document = printDoc;
-                //printPreview.ShowDialog();
-                printDoc.PrinterSettings.PrinterName = Global.printerName;
-                printDoc.PrintPage += new PrintPageEventHandler(Print_PrintPageCaixa);
-                printDoc.Print();
-
+                if (rePrint)
+                {
+                    PrintPreviewDialog printPreview = new PrintPreviewDialog();
+                    printDoc.PrintPage += Print_PrintPageCaixa;
+                    printPreview.Document = printDoc;
+                    printPreview.ShowDialog();
+                }
+                else
+                {
+                    printDoc.PrinterSettings.PrinterName = Global.printerName;
+                    printDoc.PrintPage += new PrintPageEventHandler(Print_PrintPageCaixa);
+                    printDoc.Print();
+                }
             }
         }
 
@@ -76,9 +83,9 @@ namespace Traceability_Labels
             g.DrawString("GTIN", verdana8, Brushes.Black, 50, 35);
             g.DrawString(gtin, verdana8, Brushes.Black, 20, 50);
             g.DrawString("SELL BY/Data de Validade", verdana8, Brushes.Black, 165, 75);
-            g.DrawString(validade, verdana8, Brushes.Black, 215, 90);
+            g.DrawString(Convert.ToDateTime(validade).ToString("dd/MM/yy"), verdana8, Brushes.Black, 215, 90);
             g.DrawString("PROD.DATE/Data de Prod.", verdana8, Brushes.Black, 5, 75);
-            g.DrawString(fabricacao, verdana8, Brushes.Black, 50, 90);
+            g.DrawString(Convert.ToDateTime(fabricacao).ToString("dd/MM/yy"), verdana8, Brushes.Black, 50, 90);
             g.DrawString("BATCH/Lote", verdana8, Brushes.Black, 420, 75);
             g.DrawString(lote, verdana8, Brushes.Black, 445, 90);
             g.DrawString("Produto", verdana8, Brushes.Black, 220, 35);
@@ -96,7 +103,7 @@ namespace Traceability_Labels
             g.DrawString(cod3, barcode, Brushes.Black, 20, 280);
         }
 
-        public static void Palete(string tmp_gtin, string tmp_fabricacao, string tmp_validade, string tmp_lote, string tmp_produto, string tmp_registroProcessador, string tmp_sscc, string tmp_taraEmbalagem, string tmp_taraCaixa, string tmp_taraPalete, string tmp_taraStrech, string tmp_TaraCantoneira, string tmp_cod1, string tmp_cod2, string tmp_cod3, string tmp_Quantidade)
+        public static void Palete(string tmp_gtin, string tmp_fabricacao, string tmp_validade, string tmp_lote, string tmp_produto, string tmp_registroProcessador, string tmp_sscc, string tmp_taraEmbalagem, string tmp_taraCaixa, string tmp_taraPalete, string tmp_taraStrech, string tmp_TaraCantoneira, string tmp_cod1, string tmp_cod2, string tmp_cod3, string tmp_Quantidade, bool rePrint)
         {
             gtin = tmp_gtin;
             fabricacao = tmp_fabricacao;
@@ -117,13 +124,19 @@ namespace Traceability_Labels
 
             using (PrintDocument printDoc = new PrintDocument())
             {
-                //PrintPreviewDialog printPreview = new PrintPreviewDialog();
-                //printDoc.PrintPage += Print_PrintPagePalete;
-                //printPreview.Document = printDoc;
-                //printPreview.ShowDialog();
-                printDoc.PrinterSettings.PrinterName = Global.printerName;
-                printDoc.PrintPage += new PrintPageEventHandler(Print_PrintPagePalete);
-                printDoc.Print();
+                if (rePrint)
+                {
+                    PrintPreviewDialog printPreview = new PrintPreviewDialog();
+                    printDoc.PrintPage += Print_PrintPagePalete;
+                    printPreview.Document = printDoc;
+                    printPreview.ShowDialog();
+                }
+                else
+                {
+                    printDoc.PrinterSettings.PrinterName = Global.printerName;
+                    printDoc.PrintPage += new PrintPageEventHandler(Print_PrintPagePalete);
+                    printDoc.Print();
+                }
             }
         }
 
@@ -150,9 +163,9 @@ namespace Traceability_Labels
             g.DrawString("GTIN", verdana8, Brushes.Black, 50, 35);
             g.DrawString(gtin, verdana8, Brushes.Black, 20, 50);
             g.DrawString("SELL BY/Data de Validade", verdana8, Brushes.Black, 165, 75);
-            g.DrawString(validade, verdana8, Brushes.Black, 215, 90);
+            g.DrawString(Convert.ToDateTime(validade).ToString("dd/MM/yy"), verdana8, Brushes.Black, 215, 90);
             g.DrawString("PROD.DATE/Data de Prod.", verdana8, Brushes.Black, 5, 75);
-            g.DrawString(fabricacao, verdana8, Brushes.Black, 50, 90);
+            g.DrawString(Convert.ToDateTime(fabricacao).ToString("dd/MM/yy"), verdana8, Brushes.Black, 50, 90);
             g.DrawString("BATCH/Lote", verdana8, Brushes.Black, 420, 75);
             g.DrawString(lote, verdana8, Brushes.Black, 445, 90);
             g.DrawString("Produto", verdana8, Brushes.Black, 220, 35);

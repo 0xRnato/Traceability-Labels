@@ -29,162 +29,210 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.produtosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cadastrarProdutoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deletarProdutoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listarProdutosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sSCCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listaDeSSCCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.etiquetasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.caixaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.paleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.configuraçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.impressorasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sobreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lbl_Printer = new System.Windows.Forms.Label();
+            this.menu_Produtos = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_CadastrarProduto = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_EditarProduto = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_ListarProdutos = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_Etiquetas = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_ImprimirEtiquetas = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_GerarEtiquetas = new System.Windows.Forms.ToolStripMenuItem();
+            this.novoCarregamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editarCarregamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_Rastrear = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_Configuracoes = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_Impressoras = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_CadastrarUsuario = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_EditarUsuario = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_Sobre = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_Sair = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.lbl_User = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lbl_Printer = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.produtosToolStripMenuItem,
-            this.sSCCToolStripMenuItem,
-            this.etiquetasToolStripMenuItem,
-            this.configuraçõesToolStripMenuItem,
-            this.sobreToolStripMenuItem,
-            this.sairToolStripMenuItem});
+            this.menu_Produtos,
+            this.menu_Etiquetas,
+            this.menu_Configuracoes,
+            this.menu_Sobre,
+            this.menu_Sair});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(613, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(714, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // produtosToolStripMenuItem
+            // menu_Produtos
             // 
-            this.produtosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cadastrarProdutoToolStripMenuItem,
-            this.deletarProdutoToolStripMenuItem,
-            this.listarProdutosToolStripMenuItem});
-            this.produtosToolStripMenuItem.Name = "produtosToolStripMenuItem";
-            this.produtosToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
-            this.produtosToolStripMenuItem.Text = "Produtos";
+            this.menu_Produtos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu_CadastrarProduto,
+            this.menu_EditarProduto,
+            this.menu_ListarProdutos});
+            this.menu_Produtos.Name = "menu_Produtos";
+            this.menu_Produtos.Size = new System.Drawing.Size(67, 20);
+            this.menu_Produtos.Text = "Produtos";
             // 
-            // cadastrarProdutoToolStripMenuItem
+            // menu_CadastrarProduto
             // 
-            this.cadastrarProdutoToolStripMenuItem.Name = "cadastrarProdutoToolStripMenuItem";
-            this.cadastrarProdutoToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.cadastrarProdutoToolStripMenuItem.Text = "Cadastrar produto";
-            this.cadastrarProdutoToolStripMenuItem.Click += new System.EventHandler(this.cadastrarProdutoToolStripMenuItem_Click);
+            this.menu_CadastrarProduto.Name = "menu_CadastrarProduto";
+            this.menu_CadastrarProduto.Size = new System.Drawing.Size(170, 22);
+            this.menu_CadastrarProduto.Text = "Cadastrar produto";
+            this.menu_CadastrarProduto.Click += new System.EventHandler(this.menu_CadastrarProduto_Click);
             // 
-            // deletarProdutoToolStripMenuItem
+            // menu_EditarProduto
             // 
-            this.deletarProdutoToolStripMenuItem.Name = "deletarProdutoToolStripMenuItem";
-            this.deletarProdutoToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.deletarProdutoToolStripMenuItem.Text = "Editar produto";
-            this.deletarProdutoToolStripMenuItem.Click += new System.EventHandler(this.deletarProdutoToolStripMenuItem_Click);
+            this.menu_EditarProduto.Name = "menu_EditarProduto";
+            this.menu_EditarProduto.Size = new System.Drawing.Size(170, 22);
+            this.menu_EditarProduto.Text = "Editar produto";
+            this.menu_EditarProduto.Click += new System.EventHandler(this.menu_EditarProduto_Click);
             // 
-            // listarProdutosToolStripMenuItem
+            // menu_ListarProdutos
             // 
-            this.listarProdutosToolStripMenuItem.Name = "listarProdutosToolStripMenuItem";
-            this.listarProdutosToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.listarProdutosToolStripMenuItem.Text = "Listar produtos";
-            this.listarProdutosToolStripMenuItem.Click += new System.EventHandler(this.listarProdutosToolStripMenuItem_Click);
+            this.menu_ListarProdutos.Name = "menu_ListarProdutos";
+            this.menu_ListarProdutos.Size = new System.Drawing.Size(170, 22);
+            this.menu_ListarProdutos.Text = "Listar produtos";
+            this.menu_ListarProdutos.Click += new System.EventHandler(this.menu_ListarProdutos_Click);
             // 
-            // sSCCToolStripMenuItem
+            // menu_Etiquetas
             // 
-            this.sSCCToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.listaDeSSCCToolStripMenuItem});
-            this.sSCCToolStripMenuItem.Name = "sSCCToolStripMenuItem";
-            this.sSCCToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
-            this.sSCCToolStripMenuItem.Text = "SSCC";
+            this.menu_Etiquetas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu_ImprimirEtiquetas,
+            this.menu_GerarEtiquetas,
+            this.menu_Rastrear});
+            this.menu_Etiquetas.Name = "menu_Etiquetas";
+            this.menu_Etiquetas.Size = new System.Drawing.Size(67, 20);
+            this.menu_Etiquetas.Text = "Etiquetas";
             // 
-            // listaDeSSCCToolStripMenuItem
+            // menu_ImprimirEtiquetas
             // 
-            this.listaDeSSCCToolStripMenuItem.Name = "listaDeSSCCToolStripMenuItem";
-            this.listaDeSSCCToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
-            this.listaDeSSCCToolStripMenuItem.Text = "Lista de SSCC";
-            this.listaDeSSCCToolStripMenuItem.Click += new System.EventHandler(this.listaDeSSCCToolStripMenuItem_Click);
+            this.menu_ImprimirEtiquetas.Name = "menu_ImprimirEtiquetas";
+            this.menu_ImprimirEtiquetas.Size = new System.Drawing.Size(206, 22);
+            this.menu_ImprimirEtiquetas.Text = "Imprimir etiquetas";
+            this.menu_ImprimirEtiquetas.Click += new System.EventHandler(this.menu_ImprimirEtiquetas_Click);
             // 
-            // etiquetasToolStripMenuItem
+            // menu_GerarEtiquetas
             // 
-            this.etiquetasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.caixaToolStripMenuItem,
-            this.paleteToolStripMenuItem});
-            this.etiquetasToolStripMenuItem.Name = "etiquetasToolStripMenuItem";
-            this.etiquetasToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
-            this.etiquetasToolStripMenuItem.Text = "Etiquetas";
+            this.menu_GerarEtiquetas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.novoCarregamentoToolStripMenuItem,
+            this.editarCarregamentoToolStripMenuItem});
+            this.menu_GerarEtiquetas.Name = "menu_GerarEtiquetas";
+            this.menu_GerarEtiquetas.Size = new System.Drawing.Size(206, 22);
+            this.menu_GerarEtiquetas.Text = "Gerenciar carregamentos";
             // 
-            // caixaToolStripMenuItem
+            // novoCarregamentoToolStripMenuItem
             // 
-            this.caixaToolStripMenuItem.Name = "caixaToolStripMenuItem";
-            this.caixaToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
-            this.caixaToolStripMenuItem.Text = "Caixa";
-            this.caixaToolStripMenuItem.Click += new System.EventHandler(this.caixaToolStripMenuItem_Click);
+            this.novoCarregamentoToolStripMenuItem.Name = "novoCarregamentoToolStripMenuItem";
+            this.novoCarregamentoToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.novoCarregamentoToolStripMenuItem.Text = "Novo carregamento";
+            this.novoCarregamentoToolStripMenuItem.Click += new System.EventHandler(this.novoCarregamentoToolStripMenuItem_Click);
             // 
-            // paleteToolStripMenuItem
+            // editarCarregamentoToolStripMenuItem
             // 
-            this.paleteToolStripMenuItem.Name = "paleteToolStripMenuItem";
-            this.paleteToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
-            this.paleteToolStripMenuItem.Text = "Palete";
-            this.paleteToolStripMenuItem.Click += new System.EventHandler(this.paleteToolStripMenuItem_Click);
+            this.editarCarregamentoToolStripMenuItem.Name = "editarCarregamentoToolStripMenuItem";
+            this.editarCarregamentoToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.editarCarregamentoToolStripMenuItem.Text = "Editar carregamento";
+            this.editarCarregamentoToolStripMenuItem.Click += new System.EventHandler(this.editarCarregamentoToolStripMenuItem_Click);
             // 
-            // configuraçõesToolStripMenuItem
+            // menu_Rastrear
             // 
-            this.configuraçõesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.impressorasToolStripMenuItem});
-            this.configuraçõesToolStripMenuItem.Name = "configuraçõesToolStripMenuItem";
-            this.configuraçõesToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
-            this.configuraçõesToolStripMenuItem.Text = "Configurações";
+            this.menu_Rastrear.Name = "menu_Rastrear";
+            this.menu_Rastrear.Size = new System.Drawing.Size(206, 22);
+            this.menu_Rastrear.Text = "Rastrear mercadoria";
+            this.menu_Rastrear.Click += new System.EventHandler(this.menu_Rastrear_Click);
             // 
-            // impressorasToolStripMenuItem
+            // menu_Configuracoes
             // 
-            this.impressorasToolStripMenuItem.Name = "impressorasToolStripMenuItem";
-            this.impressorasToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
-            this.impressorasToolStripMenuItem.Text = "Impressoras";
-            this.impressorasToolStripMenuItem.Click += new System.EventHandler(this.impressorasToolStripMenuItem_Click);
+            this.menu_Configuracoes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu_Impressoras,
+            this.menu_CadastrarUsuario,
+            this.menu_EditarUsuario});
+            this.menu_Configuracoes.Name = "menu_Configuracoes";
+            this.menu_Configuracoes.Size = new System.Drawing.Size(96, 20);
+            this.menu_Configuracoes.Text = "Configurações";
             // 
-            // sobreToolStripMenuItem
+            // menu_Impressoras
             // 
-            this.sobreToolStripMenuItem.Name = "sobreToolStripMenuItem";
-            this.sobreToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
-            this.sobreToolStripMenuItem.Text = "Sobre";
-            this.sobreToolStripMenuItem.Click += new System.EventHandler(this.sobreToolStripMenuItem_Click);
+            this.menu_Impressoras.Name = "menu_Impressoras";
+            this.menu_Impressoras.Size = new System.Drawing.Size(166, 22);
+            this.menu_Impressoras.Text = "Impressoras";
+            this.menu_Impressoras.Click += new System.EventHandler(this.menu_Impressoras_Click);
             // 
-            // sairToolStripMenuItem
+            // menu_CadastrarUsuario
             // 
-            this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
-            this.sairToolStripMenuItem.Text = "Sair";
-            this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
+            this.menu_CadastrarUsuario.Name = "menu_CadastrarUsuario";
+            this.menu_CadastrarUsuario.Size = new System.Drawing.Size(166, 22);
+            this.menu_CadastrarUsuario.Text = "Cadastrar usuário";
+            this.menu_CadastrarUsuario.Click += new System.EventHandler(this.menu_CadastrarUsuario_Click);
+            // 
+            // menu_EditarUsuario
+            // 
+            this.menu_EditarUsuario.Name = "menu_EditarUsuario";
+            this.menu_EditarUsuario.Size = new System.Drawing.Size(166, 22);
+            this.menu_EditarUsuario.Text = "Editar usuário";
+            this.menu_EditarUsuario.Click += new System.EventHandler(this.menu_EditarUsuario_Click);
+            // 
+            // menu_Sobre
+            // 
+            this.menu_Sobre.Name = "menu_Sobre";
+            this.menu_Sobre.Size = new System.Drawing.Size(49, 20);
+            this.menu_Sobre.Text = "Sobre";
+            this.menu_Sobre.Click += new System.EventHandler(this.menu_Sobre_Click);
+            // 
+            // menu_Sair
+            // 
+            this.menu_Sair.Name = "menu_Sair";
+            this.menu_Sair.Size = new System.Drawing.Size(38, 20);
+            this.menu_Sair.Text = "Sair";
+            this.menu_Sair.Click += new System.EventHandler(this.menu_Sair_Click);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lbl_User,
+            this.lbl_Printer});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 389);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(714, 22);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // lbl_User
+            // 
+            this.lbl_User.Name = "lbl_User";
+            this.lbl_User.Size = new System.Drawing.Size(215, 17);
+            this.lbl_User.Text = "Nome: 1111111111 Tipo: Administrador";
             // 
             // lbl_Printer
             // 
-            this.lbl_Printer.AutoSize = true;
-            this.lbl_Printer.Location = new System.Drawing.Point(12, 389);
             this.lbl_Printer.Name = "lbl_Printer";
-            this.lbl_Printer.Size = new System.Drawing.Size(84, 13);
-            this.lbl_Printer.TabIndex = 1;
-            this.lbl_Printer.Text = "IMPRESSORA: ";
+            this.lbl_Printer.Size = new System.Drawing.Size(80, 17);
+            this.lbl_Printer.Text = "IMPRESSORA:";
             // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(613, 411);
-            this.Controls.Add(this.lbl_Printer);
+            this.ClientSize = new System.Drawing.Size(714, 411);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Home";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Etiquetas de Rastreabilidade";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.Home_Activated);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Home_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -193,20 +241,25 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem produtosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cadastrarProdutoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deletarProdutoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem listarProdutosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sSCCToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem listaDeSSCCToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem etiquetasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem caixaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem paleteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem configuraçõesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem impressorasToolStripMenuItem;
-        private System.Windows.Forms.Label lbl_Printer;
-        private System.Windows.Forms.ToolStripMenuItem sobreToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sairToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menu_Produtos;
+        private System.Windows.Forms.ToolStripMenuItem menu_CadastrarProduto;
+        private System.Windows.Forms.ToolStripMenuItem menu_EditarProduto;
+        private System.Windows.Forms.ToolStripMenuItem menu_ListarProdutos;
+        private System.Windows.Forms.ToolStripMenuItem menu_Etiquetas;
+        private System.Windows.Forms.ToolStripMenuItem menu_Configuracoes;
+        private System.Windows.Forms.ToolStripMenuItem menu_Impressoras;
+        private System.Windows.Forms.ToolStripMenuItem menu_Sobre;
+        private System.Windows.Forms.ToolStripMenuItem menu_Sair;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel lbl_Printer;
+        public System.Windows.Forms.ToolStripStatusLabel lbl_User;
+        private System.Windows.Forms.ToolStripMenuItem menu_CadastrarUsuario;
+        private System.Windows.Forms.ToolStripMenuItem menu_EditarUsuario;
+        private System.Windows.Forms.ToolStripMenuItem menu_ImprimirEtiquetas;
+        private System.Windows.Forms.ToolStripMenuItem menu_GerarEtiquetas;
+        private System.Windows.Forms.ToolStripMenuItem menu_Rastrear;
+        private System.Windows.Forms.ToolStripMenuItem novoCarregamentoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editarCarregamentoToolStripMenuItem;
     }
 }
 

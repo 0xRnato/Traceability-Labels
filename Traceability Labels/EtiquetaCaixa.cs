@@ -66,7 +66,7 @@ namespace Traceability_Labels
 
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
-            Hide();
+            Close();
         }
 
         private void btn_Confirmar_Click(object sender, EventArgs e)
@@ -121,7 +121,7 @@ namespace Traceability_Labels
                     cod2 = "7030" + registroProcessador + "10" + txt_Lote.Text;
                     cod3 = "00" + sscc;
 
-                    PrintLabel.Caixa(gtin, fabricacao, validade, lote.ToString(), produto, registroProcessador, sscc, embalagem, caixa, cod1, cod2, cod3);
+                    PrintLabel.Caixa(gtin, fabricacao, validade, lote.ToString(), produto, registroProcessador, sscc, embalagem, caixa, cod1, cod2, cod3,false);
                 }
                 MessageBox.Show("Processo finalizado!!");
                 Hide();

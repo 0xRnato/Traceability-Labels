@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 namespace Traceability_Labels
 {
-    public partial class EditarProduto : Form
+    public partial class EditarUsuario : Form
     {
         SqlConnection connection;
         SqlCommand command;
@@ -19,7 +19,7 @@ namespace Traceability_Labels
         SqlDataReader reader;
         bool flag;
 
-        public EditarProduto()
+        public EditarUsuario()
         {
             InitializeComponent();
 
@@ -45,26 +45,19 @@ namespace Traceability_Labels
             Close();
         }
 
-        private void DeletarProduto_Load(object sender, EventArgs e)
-        {
-            UpdateBox();
-            cbox_Produtos.SelectedIndex = -1;
-            flag = true;
-        }
-
         private void btn_Delete_Click(object sender, EventArgs e)
         {
-            DialogResult confirm = MessageBox.Show(this,"Confirme se você quer mesmo deletar este produto.", "ATENÇÃO", MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
-            if(confirm == DialogResult.Yes)
+            DialogResult confirm = MessageBox.Show(this, "Confirme se você quer mesmo deletar este usuário.", "ATENÇÃO", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (confirm == DialogResult.Yes)
             {
                 try
                 {
-                    command = new SqlCommand("delete from produto where id=@id", connection);
-                    command.Parameters.AddWithValue("@id", Convert.ToInt32(cbox_Produtos.SelectedValue));
+                    command = new SqlCommand("delete from users where id=@id", connection);
+                    command.Parameters.AddWithValue("@id", Convert.ToInt32(cbox_Usuarios.SelectedValue));
                     connection.Open();
                     command.ExecuteNonQuery();
                     connection.Close();
-                    MessageBox.Show("Produto deletado com sucesso!");
+                    MessageBox.Show("Usuário deletado com sucesso!");
                     Hide();
                 }
                 catch (Exception ex)
@@ -79,18 +72,25 @@ namespace Traceability_Labels
             }
         }
 
+        private void EditarUsuario_Load(object sender, EventArgs e)
+        {
+            UpdateBox();
+            flag = true;
+        }
+
         private void UpdateBox()
         {
             try
             {
-                cbox_Produtos.Items.Clear();
-                command = new SqlCommand("select id,nome from produto", connection);
+                cbox_Usuarios.Items.Clear();
+                command = new SqlCommand("select id,usuario from users", connection);
                 adapter = new SqlDataAdapter(command);
                 table = new DataTable();
                 adapter.Fill(table);
-                cbox_Produtos.DataSource = table;
-                cbox_Produtos.DisplayMember = table.Columns[1].ToString();
-                cbox_Produtos.ValueMember = table.Columns[0].ToString();
+                cbox_Usuarios.DataSource = table;
+                cbox_Usuarios.DisplayMember = table.Columns[1].ToString();
+                cbox_Usuarios.ValueMember = table.Columns[0].ToString();
+                cbox_Usuarios.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -103,23 +103,22 @@ namespace Traceability_Labels
             }
         }
 
-        private void cbox_Produtos_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbox_Usuarios_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (flag == true)
             {
                 try
                 {
-                    command = new SqlCommand("select nome,gtin,embalagem,caixa,validade from produto where id=@id", connection);
-                    command.Parameters.AddWithValue("@id", Convert.ToInt32(cbox_Produtos.SelectedValue));
+                    command = new SqlCommand("select usuario,senha,adm from users where id=@id", connection);
+                    command.Parameters.AddWithValue("@id", Convert.ToInt32(cbox_Usuarios.SelectedValue));
                     connection.Open();
                     reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        txt_Nome.Text = reader.GetString(0);
-                        txt_GTIN.Text = reader.GetString(1);
-                        txt_Embalagem.Text = reader.GetDecimal(2).ToString();
-                        txt_Caixa.Text = reader.GetDecimal(3).ToString();
-                        txt_Validade.Text = reader.GetInt32(4).ToString();
+                        txt_User.Text = reader.GetString(0);
+                        txt_Senha.Text = reader.GetInt32(1).ToString();
+                        txt_Confirmar.Text = reader.GetInt32(1).ToString();
+                        cbox_Tipo.SelectedIndex = Convert.ToInt32(reader.GetValue(2));
                     }
                     reader.Close();
                     connection.Close();
@@ -140,34 +139,28 @@ namespace Traceability_Labels
         {
             try
             {
-                double embalagem, caixa;
-                int validade;
+                int senha, confirmar;
 
-                if (txt_Nome.Text == "" || txt_Nome.Text == null)
-                    throw new Exception("O nome não pode ser vazio.");
-                if (txt_GTIN.Text == "" || txt_GTIN.Text == null)
-                    throw new Exception("O GTIN não pode ser vazio.");
-                bool testEmbalagem = double.TryParse(txt_Embalagem.Text, out embalagem);
-                if (!testEmbalagem)
-                    throw new Exception("A tara da embalagem esta em um formato incorreto!");
-                bool testCaixa = double.TryParse(txt_Caixa.Text, out caixa);
-                if (!testCaixa)
-                    throw new Exception("A tara da caixa esta em um formato incorreto!");
-                bool testValidade = int.TryParse(txt_Validade.Text, out validade);
-                if (!testValidade)
-                    throw new Exception("A vida útil esta em um formato incorreto!");
+                if (txt_User.Text == "" || txt_User.Text == null)
+                    throw new Exception("O usuário não pode ser vazio.");
+                bool testSenha = int.TryParse(txt_Senha.Text, out senha);
+                if (!testSenha)
+                    throw new Exception("A senha está em um formato incorreto!");
+                bool testConfirmar = int.TryParse(txt_Confirmar.Text, out confirmar);
+                if (!testConfirmar)
+                    throw new Exception("A confirmação da senha está em um formato incorreto!");
+                if (senha != confirmar)
+                    throw new Exception("As senhas não estão iguais.");
 
-                command = new SqlCommand("update produto set nome=@nome,gtin=@gtin,embalagem=@embalagem,caixa=@caixa,validade=@validade where id=@id", connection);
-                command.Parameters.AddWithValue("@nome", txt_Nome.Text);
-                command.Parameters.AddWithValue("@gtin", txt_GTIN.Text);
-                command.Parameters.AddWithValue("@embalagem", embalagem.ToString());
-                command.Parameters.AddWithValue("@caixa", caixa.ToString());
-                command.Parameters.AddWithValue("@validade", validade.ToString());
-                command.Parameters.AddWithValue("@id", Convert.ToInt32(cbox_Produtos.SelectedValue));
+                command = new SqlCommand("update users set usuario=@usuario,senha=@senha,adm=@adm where id=@id", connection);
+                command.Parameters.AddWithValue("@usuario", txt_User.Text);
+                command.Parameters.AddWithValue("@senha", senha);
+                command.Parameters.AddWithValue("@adm", cbox_Tipo.SelectedIndex);
+                command.Parameters.AddWithValue("@id", Convert.ToInt32(cbox_Usuarios.SelectedValue));
                 connection.Open();
                 command.ExecuteNonQuery();
                 connection.Close();
-                MessageBox.Show("Produto editado com sucesso!");
+                MessageBox.Show("Usuário editado com sucesso!");
                 Hide();
             }
             catch (Exception ex)

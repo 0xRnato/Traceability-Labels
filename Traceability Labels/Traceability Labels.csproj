@@ -61,11 +61,29 @@
     <Compile Include="CadastrarProduto.Designer.cs">
       <DependentUpon>CadastrarProduto.cs</DependentUpon>
     </Compile>
+    <Compile Include="CadastrarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CadastrarUsuario.Designer.cs">
+      <DependentUpon>CadastrarUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditarCarregamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarCarregamento.Designer.cs">
+      <DependentUpon>EditarCarregamento.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditarProduto.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EditarProduto.Designer.cs">
       <DependentUpon>EditarProduto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarUsuario.Designer.cs">
+      <DependentUpon>EditarUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="EtiquetaCaixa.cs">
       <SubType>Form</SubType>
@@ -85,6 +103,12 @@
     <Compile Include="Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImprimirEtiqueta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImprimirEtiqueta.Designer.cs">
+      <DependentUpon>ImprimirEtiqueta.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListarProduto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +121,18 @@
     <Compile Include="ListarSSCC.Designer.cs">
       <DependentUpon>ListarSSCC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NovoCarregamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NovoCarregamento.Designer.cs">
+      <DependentUpon>NovoCarregamento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Printers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +142,12 @@
     <Compile Include="PrintLabel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rastrear.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rastrear.Designer.cs">
+      <DependentUpon>Rastrear.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sobre.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,8 +157,17 @@
     <EmbeddedResource Include="CadastrarProduto.resx">
       <DependentUpon>CadastrarProduto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CadastrarUsuario.resx">
+      <DependentUpon>CadastrarUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarCarregamento.resx">
+      <DependentUpon>EditarCarregamento.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditarProduto.resx">
       <DependentUpon>EditarProduto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarUsuario.resx">
+      <DependentUpon>EditarUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EtiquetaCaixa.resx">
       <DependentUpon>EtiquetaCaixa.cs</DependentUpon>
@@ -127,11 +178,20 @@
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ImprimirEtiqueta.resx">
+      <DependentUpon>ImprimirEtiqueta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ListarProduto.resx">
       <DependentUpon>ListarProduto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListarSSCC.resx">
       <DependentUpon>ListarSSCC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NovoCarregamento.resx">
+      <DependentUpon>NovoCarregamento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Printers.resx">
       <DependentUpon>Printers.cs</DependentUpon>

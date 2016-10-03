@@ -28,7 +28,7 @@ namespace Traceability_Labels
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao conectar com o servidor: " + ex.Message, "ERRO!!!");
+                MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -41,7 +41,7 @@ namespace Traceability_Labels
             try
             {
                 dataGrid.Rows.Clear();
-                command = new SqlCommand("select id as ID,nome as NOME,gtin as GTIN, embalagem as 'TARA EMB', caixa as 'TARA CX' from produto", connection);
+                command = new SqlCommand("select id as ID,nome as NOME,gtin as GTIN, embalagem as 'TARA EMB', caixa as 'TARA CX', validade as 'VIDA ÚTIL' from produto", connection);
                 adapter = new SqlDataAdapter(command);
                 connection.Open();
                 adapter.Fill(dataSet,"produtos");
@@ -53,10 +53,11 @@ namespace Traceability_Labels
                 dataGrid.Columns[2].Width = 100;
                 dataGrid.Columns[3].Width = 70;
                 dataGrid.Columns[4].Width = 70;
+                dataGrid.Columns[5].Width = 50;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro: " + ex.Message, "ERRO!");
+                MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {

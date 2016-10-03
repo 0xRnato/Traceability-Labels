@@ -42,7 +42,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(236, 23);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Traceability Labels v1.0";
+            this.label1.Text = "Traceability Labels v1.5";
             // 
             // label2
             // 
@@ -85,7 +85,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Sobre";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sobre";
             this.ResumeLayout(false);
