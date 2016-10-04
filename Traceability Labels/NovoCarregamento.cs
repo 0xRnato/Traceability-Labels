@@ -306,6 +306,7 @@ namespace Traceability_Labels
                 }
             }
             MessageBox.Show("O carregamento foi gerado com sucesso e está pronto para ser impresso.", "Fim", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Close();
         }
     }
 }

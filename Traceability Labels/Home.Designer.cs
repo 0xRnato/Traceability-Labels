@@ -127,15 +127,15 @@
             // novoCarregamentoToolStripMenuItem
             // 
             this.novoCarregamentoToolStripMenuItem.Name = "novoCarregamentoToolStripMenuItem";
-            this.novoCarregamentoToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.novoCarregamentoToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.novoCarregamentoToolStripMenuItem.Text = "Novo carregamento";
             this.novoCarregamentoToolStripMenuItem.Click += new System.EventHandler(this.novoCarregamentoToolStripMenuItem_Click);
             // 
             // editarCarregamentoToolStripMenuItem
             // 
             this.editarCarregamentoToolStripMenuItem.Name = "editarCarregamentoToolStripMenuItem";
-            this.editarCarregamentoToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.editarCarregamentoToolStripMenuItem.Text = "Editar carregamento";
+            this.editarCarregamentoToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.editarCarregamentoToolStripMenuItem.Text = "Deletar carregamento";
             this.editarCarregamentoToolStripMenuItem.Click += new System.EventHandler(this.editarCarregamentoToolStripMenuItem_Click);
             // 
             // menu_Rastrear

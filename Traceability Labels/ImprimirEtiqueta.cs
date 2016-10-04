@@ -13,6 +13,8 @@ namespace Traceability_Labels
     {
         SqlConnection connection;
         SqlCommand command;
+        SqlConnection connection2;
+        SqlCommand command2;
         SqlDataAdapter adapter;
         DataSet dataSet;
         DataTable table;
@@ -25,6 +27,7 @@ namespace Traceability_Labels
 
             dataSet = new DataSet();
             connection = new SqlConnection(Global.connectionString);
+            connection2 = new SqlConnection(Global.connectionString);
             try
             {
                 connection.Open();
@@ -49,24 +52,11 @@ namespace Traceability_Labels
         {
             if (!Global.adm)
                 btn_2Via.Enabled = false;
-
-            cbox_Carregamentos.Items.Clear();
-            command = new SqlCommand("select id,codigo from carregamento", connection);
-            adapter = new SqlDataAdapter(command);
-            table = new DataTable();
-            adapter.Fill(table);
-            cbox_Carregamentos.DataSource = table;
-            cbox_Carregamentos.DisplayMember = table.Columns[1].ToString();
-            cbox_Carregamentos.ValueMember = table.Columns[0].ToString();
-            cbox_Carregamentos.SelectedIndex = -1;
-            if (connection.State == ConnectionState.Open)
-                connection.Close();
-            flag = true;
         }
 
         private void cbox_Carregamentos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (flag)
+            if (flag && cbox_Carregamentos.SelectedIndex >= 0)
             {
                 command = new SqlCommand("select palete.id,produto.nome from palete join caixasPalete on palete.id = caixasPalete.palete_id join caixa on caixa.id = caixasPalete.caixa_id join produto on produto.id = caixa.produto_id where palete.carregamento_id=@carregamento_id group by palete.id, produto.nome", connection);
                 command.Parameters.AddWithValue("@carregamento_id", cbox_Carregamentos.SelectedValue);
@@ -83,6 +73,11 @@ namespace Traceability_Labels
                 connection.Close();
                 if (cbox_Carregamentos.SelectedIndex != -1)
                     btn_Done.Enabled = true;
+
+                if (lbox_Paletes.Items.Count > 0)
+                    btn_Done.Enabled = true;
+                else
+                    btn_Done.Enabled = false;
             }
         }
 
@@ -148,6 +143,12 @@ namespace Traceability_Labels
                     reader.Close();
                     connection.Close();
 
+                    command = new SqlCommand("update palete set estagio=1 where id=@id", connection);
+                    command.Parameters.AddWithValue("@id", palete_id);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+
                     PrintLabel.Palete(gtin, fabricacao, validade, lote, nome, registroProcessador, sscc, (embalagem * quantidade).ToString(), (caixa * quantidade).ToString(), palete.ToString(), stretch.ToString(), cantoneira.ToString(), cod1.ToString(), cod2.ToString(), cod3.ToString(), quantidade.ToString(), true);
                 }
                 else if (result == DialogResult.No)
@@ -189,20 +190,28 @@ namespace Traceability_Labels
                     cod2 = "";
                     cod3 = "";
                     sscc = "";
+                    int caixa_id = 0;
 
-                    command = new SqlCommand("select cx.cod1, cx.cod2, cx.cod3, cx.sscc from caixa cx join caixasPalete cp on cx.id=cp.caixa_id join palete p on p.id=cp.palete_id where p.id=@palete_id", connection);
+                    command = new SqlCommand("select cx.id, cx.cod1, cx.cod2, cx.cod3, cx.sscc from caixa cx join caixasPalete cp on cx.id=cp.caixa_id join palete p on p.id=cp.palete_id where p.id=@palete_id", connection);
                     command.Parameters.AddWithValue("@palete_id", palete_id);
 
                     connection.Open();
                     reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        cod1 = reader.GetValue(0).ToString();
-                        cod2 = reader.GetValue(1).ToString();
-                        cod3 = reader.GetValue(2).ToString();
-                        sscc = reader.GetValue(3).ToString();
+                        caixa_id = reader.GetInt32(0);
+                        cod1 = reader.GetValue(1).ToString();
+                        cod2 = reader.GetValue(2).ToString();
+                        cod3 = reader.GetValue(3).ToString();
+                        sscc = reader.GetValue(4).ToString();
                     }
                     reader.Close();
+                    connection.Close();
+
+                    command = new SqlCommand("update cx set cx.estagio=1 from caixa cx join caixasPalete cp on cp.caixa_id=cx.id where cx.id=@id", connection);
+                    command.Parameters.AddWithValue("@id", caixa_id);
+                    connection.Open();
+                    command.ExecuteNonQuery();
                     connection.Close();
 
                     PrintLabel.Caixa(gtin, fabricacao, validade, lote.ToString(), nome, registroProcessador, sscc, embalagem.ToString(), caixa.ToString(), cod1, cod2, cod3, true);
@@ -253,40 +262,118 @@ namespace Traceability_Labels
                         embalagem = Convert.ToDecimal(reader.GetValue(14));
                         caixa = Convert.ToDecimal(reader.GetValue(15));
                         palete_id = Convert.ToInt32(reader.GetValue(16));
+
+                        PrintLabel.Palete(gtin, fabricacao, validade, lote, nome, registroProcessador, sscc, (embalagem * quantidade).ToString(), (caixa * quantidade).ToString(), palete.ToString(), stretch.ToString(), cantoneira.ToString(), cod1.ToString(), cod2.ToString(), cod3.ToString(), quantidade.ToString(), false);
                     }
                     reader.Close();
                     connection.Close();
 
-                    PrintLabel.Palete(gtin, fabricacao, validade, lote, nome, registroProcessador, sscc, (embalagem * quantidade).ToString(), (caixa * quantidade).ToString(), palete.ToString(), stretch.ToString(), cantoneira.ToString(), cod1.ToString(), cod2.ToString(), cod3.ToString(), quantidade.ToString(), false);
+                    command = new SqlCommand("update palete set estagio=1 where id=@id", connection);
+                    command.Parameters.AddWithValue("@id", palete_id);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
 
                     //CAIXAS
-                    for (int j = 0; j < quantidade; j++)
+
+                    cod1 = "";
+                    cod2 = "";
+                    cod3 = "";
+                    sscc = "";
+                    int caixa_id = 0;
+
+                    command = new SqlCommand("select cx.id, cx.cod1, cx.cod2, cx.cod3, cx.sscc from caixa cx join caixasPalete cp on cx.id=cp.caixa_id join palete p on p.id=cp.palete_id where p.id=@palete_id", connection);
+                    command.Parameters.AddWithValue("@palete_id", palete_id);
+
+                    connection.Open();
+                    reader = command.ExecuteReader();
+                    while (reader.Read())
                     {
-                        cod1 = "";
-                        cod2 = "";
-                        cod3 = "";
-                        sscc = "";
-
-                        command = new SqlCommand("select cx.cod1, cx.cod2, cx.cod3, cx.sscc from caixa cx join caixasPalete cp on cx.id=cp.caixa_id join palete p on p.id=cp.palete_id where p.id=@palete_id", connection);
-                        command.Parameters.AddWithValue("@palete_id", palete_id);
-
-                        connection.Open();
-                        reader = command.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            cod1 = reader.GetValue(0).ToString();
-                            cod2 = reader.GetValue(1).ToString();
-                            cod3 = reader.GetValue(2).ToString();
-                            sscc = reader.GetValue(3).ToString();
-                        }
-                        reader.Close();
-                        connection.Close();
+                        caixa_id = reader.GetInt32(0);
+                        cod1 = reader.GetValue(1).ToString();
+                        cod2 = reader.GetValue(2).ToString();
+                        cod3 = reader.GetValue(3).ToString();
+                        sscc = reader.GetValue(4).ToString();
 
                         PrintLabel.Caixa(gtin, fabricacao, validade, lote.ToString(), nome, registroProcessador, sscc, embalagem.ToString(), caixa.ToString(), cod1, cod2, cod3, false);
+
+                        command2 = new SqlCommand("update cx set cx.estagio=1 from caixa cx join caixasPalete cp on cp.caixa_id=cx.id where cx.id=@id", connection2);
+                        command2.Parameters.AddWithValue("@id", caixa_id);
+                        connection2.Open();
+                        command2.ExecuteNonQuery();
+                        connection2.Close();
                     }
+                    reader.Close();
+                    connection.Close();
                 }
+                command = new SqlCommand("update carregamento set estagio=1 where id=@id", connection);
+                command.Parameters.AddWithValue("@id", cbox_Carregamentos.SelectedValue);
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
                 MessageBox.Show("Fim do processo!!");
+                Close();
             }
+        }
+
+        private void rbtn_Gerado_CheckedChanged(object sender, EventArgs e)
+        {
+            cbox_Carregamentos.DataSource = null;
+            cbox_Carregamentos.Items.Clear();
+            command = new SqlCommand("select id,codigo from carregamento where estagio=0", connection);
+            adapter = new SqlDataAdapter(command);
+            table = new DataTable();
+            adapter.Fill(table);
+            cbox_Carregamentos.DataSource = table;
+            cbox_Carregamentos.DisplayMember = table.Columns[1].ToString();
+            cbox_Carregamentos.ValueMember = table.Columns[0].ToString();
+            cbox_Carregamentos.SelectedIndex = -1;
+            if (connection.State == ConnectionState.Open)
+                connection.Close();
+            flag = true;
+            lbox_Paletes.Items.Clear();
+            lbox_Caixas.Items.Clear();
+            btn_Done.Enabled = false;
+        }
+
+        private void rbtn_Impresso_CheckedChanged(object sender, EventArgs e)
+        {
+            cbox_Carregamentos.DataSource = null;
+            cbox_Carregamentos.Items.Clear();
+            command = new SqlCommand("select id,codigo from carregamento where estagio=1", connection);
+            adapter = new SqlDataAdapter(command);
+            table = new DataTable();
+            adapter.Fill(table);
+            cbox_Carregamentos.DataSource = table;
+            cbox_Carregamentos.DisplayMember = table.Columns[1].ToString();
+            cbox_Carregamentos.ValueMember = table.Columns[0].ToString();
+            cbox_Carregamentos.SelectedIndex = -1;
+            if (connection.State == ConnectionState.Open)
+                connection.Close();
+            flag = true;
+            lbox_Paletes.Items.Clear();
+            lbox_Caixas.Items.Clear();
+            btn_Done.Enabled = false;
+        }
+
+        private void rbtn_Conferido_CheckedChanged(object sender, EventArgs e)
+        {
+            cbox_Carregamentos.DataSource = null;
+            cbox_Carregamentos.Items.Clear();
+            command = new SqlCommand("select id,codigo from carregamento where estagio=2", connection);
+            adapter = new SqlDataAdapter(command);
+            table = new DataTable();
+            adapter.Fill(table);
+            cbox_Carregamentos.DataSource = table;
+            cbox_Carregamentos.DisplayMember = table.Columns[1].ToString();
+            cbox_Carregamentos.ValueMember = table.Columns[0].ToString();
+            cbox_Carregamentos.SelectedIndex = -1;
+            if (connection.State == ConnectionState.Open)
+                connection.Close();
+            flag = true;
+            lbox_Paletes.Items.Clear();
+            lbox_Caixas.Items.Clear();
+            btn_Done.Enabled = false;
         }
     }
 }

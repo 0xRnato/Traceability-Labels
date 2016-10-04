@@ -206,6 +206,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Rastrear.resx">
+      <DependentUpon>Rastrear.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sobre.resx">
       <DependentUpon>Sobre.cs</DependentUpon>
     </EmbeddedResource>
