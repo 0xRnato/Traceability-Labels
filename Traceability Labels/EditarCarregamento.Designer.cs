@@ -124,6 +124,7 @@
             this.AcceptButton = this.btn_Deletar;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.CancelButton = this.btn_Cancel;
             this.ControlBox = false;
             this.Controls.Add(this.btn_Cancel);

@@ -48,6 +48,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lbl_User = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbl_Printer = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sincronizarLeitorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -149,6 +150,7 @@
             // 
             this.menu_Configuracoes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menu_Impressoras,
+            this.sincronizarLeitorToolStripMenuItem,
             this.menu_CadastrarUsuario,
             this.menu_EditarUsuario});
             this.menu_Configuracoes.Name = "menu_Configuracoes";
@@ -197,6 +199,7 @@
             this.lbl_Printer});
             this.statusStrip1.Location = new System.Drawing.Point(0, 389);
             this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.statusStrip1.Size = new System.Drawing.Size(714, 22);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
@@ -213,11 +216,19 @@
             this.lbl_Printer.Size = new System.Drawing.Size(80, 17);
             this.lbl_Printer.Text = "IMPRESSORA:";
             // 
+            // sincronizarLeitorToolStripMenuItem
+            // 
+            this.sincronizarLeitorToolStripMenuItem.Name = "sincronizarLeitorToolStripMenuItem";
+            this.sincronizarLeitorToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.sincronizarLeitorToolStripMenuItem.Text = "Sincronizar leitor";
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.BackgroundImage = global::Traceability_Labels.Properties.Resources.logo;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(714, 411);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
@@ -225,7 +236,7 @@
             this.Name = "Home";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Etiquetas de Rastreabilidade";
+            this.Text = "Rastreabilidade logística";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.Home_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Home_FormClosing);
@@ -260,6 +271,7 @@
         private System.Windows.Forms.ToolStripMenuItem menu_Rastrear;
         private System.Windows.Forms.ToolStripMenuItem novoCarregamentoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editarCarregamentoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sincronizarLeitorToolStripMenuItem;
     }
 }
 

@@ -28,236 +28,419 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dg1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gbox_Carregamento = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.rbtn_Conferido = new System.Windows.Forms.RadioButton();
-            this.rbtn_Impresso = new System.Windows.Forms.RadioButton();
-            this.cbox_Carregamentos = new System.Windows.Forms.ComboBox();
-            this.rbtn_Gerado = new System.Windows.Forms.RadioButton();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lbox_Caixas = new System.Windows.Forms.ListBox();
-            this.lbox_Paletes = new System.Windows.Forms.ListBox();
-            this.btn_Palete = new System.Windows.Forms.Button();
-            this.btn_Cancel = new System.Windows.Forms.Button();
-            this.btn_Done = new System.Windows.Forms.Button();
-            this.btn_Caixa = new System.Windows.Forms.Button();
-            this.btn_Carregamento = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dg1)).BeginInit();
-            this.gbox_Carregamento.SuspendLayout();
+            this.rbtn_Produto = new System.Windows.Forms.RadioButton();
+            this.rbtn_Gtin = new System.Windows.Forms.RadioButton();
+            this.rbtn_SSCC = new System.Windows.Forms.RadioButton();
+            this.rbtn_Usuario = new System.Windows.Forms.RadioButton();
+            this.rbtn_Carregamento = new System.Windows.Forms.RadioButton();
+            this.rbtn_DataConferido = new System.Windows.Forms.RadioButton();
+            this.rbtn_DataImpresso = new System.Windows.Forms.RadioButton();
+            this.rbtn_DataGerado = new System.Windows.Forms.RadioButton();
+            this.txt_Carregamento = new System.Windows.Forms.TextBox();
+            this.txt_Gtin = new System.Windows.Forms.TextBox();
+            this.txt_SSCC = new System.Windows.Forms.TextBox();
+            this.cbox_Produtos = new System.Windows.Forms.ComboBox();
+            this.date_Gerado = new System.Windows.Forms.DateTimePicker();
+            this.date_Impresso = new System.Windows.Forms.DateTimePicker();
+            this.date_Conferido = new System.Windows.Forms.DateTimePicker();
+            this.gbox_Pesquisa = new System.Windows.Forms.GroupBox();
+            this.cbox_Usuario = new System.Windows.Forms.ComboBox();
+            this.btn_Pesqusiar = new System.Windows.Forms.Button();
+            this.tab_Resultado = new System.Windows.Forms.TabControl();
+            this.page_Carregamentos = new System.Windows.Forms.TabPage();
+            this.grid_Carregamentos = new System.Windows.Forms.DataGridView();
+            this.page_Paletes = new System.Windows.Forms.TabPage();
+            this.grid_Paletes = new System.Windows.Forms.DataGridView();
+            this.tab_Caixas = new System.Windows.Forms.TabPage();
+            this.grid_Caixas = new System.Windows.Forms.DataGridView();
+            this.btn_Imprimir = new System.Windows.Forms.Button();
+            this.btn_Cancelar = new System.Windows.Forms.Button();
+            this.gbox_Resultado = new System.Windows.Forms.GroupBox();
+            this.gbox_Pesquisa.SuspendLayout();
+            this.tab_Resultado.SuspendLayout();
+            this.page_Carregamentos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grid_Carregamentos)).BeginInit();
+            this.page_Paletes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grid_Paletes)).BeginInit();
+            this.tab_Caixas.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grid_Caixas)).BeginInit();
+            this.gbox_Resultado.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dg1
+            // rbtn_Produto
             // 
-            this.dg1.AllowUserToAddRows = false;
-            this.dg1.AllowUserToDeleteRows = false;
-            this.dg1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dg1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2});
-            this.dg1.Location = new System.Drawing.Point(410, 12);
-            this.dg1.Name = "dg1";
-            this.dg1.ReadOnly = true;
-            this.dg1.Size = new System.Drawing.Size(369, 494);
-            this.dg1.TabIndex = 6;
+            this.rbtn_Produto.AutoSize = true;
+            this.rbtn_Produto.Location = new System.Drawing.Point(69, 63);
+            this.rbtn_Produto.Margin = new System.Windows.Forms.Padding(2);
+            this.rbtn_Produto.Name = "rbtn_Produto";
+            this.rbtn_Produto.Size = new System.Drawing.Size(82, 17);
+            this.rbtn_Produto.TabIndex = 2;
+            this.rbtn_Produto.TabStop = true;
+            this.rbtn_Produto.Text = "PRODUTO:";
+            this.rbtn_Produto.UseVisualStyleBackColor = true;
+            this.rbtn_Produto.CheckedChanged += new System.EventHandler(this.rbtn_Produto_CheckedChanged);
             // 
-            // Column1
+            // rbtn_Gtin
             // 
-            this.Column1.HeaderText = "";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
+            this.rbtn_Gtin.AutoSize = true;
+            this.rbtn_Gtin.Location = new System.Drawing.Point(69, 88);
+            this.rbtn_Gtin.Margin = new System.Windows.Forms.Padding(2);
+            this.rbtn_Gtin.Name = "rbtn_Gtin";
+            this.rbtn_Gtin.Size = new System.Drawing.Size(54, 17);
+            this.rbtn_Gtin.TabIndex = 3;
+            this.rbtn_Gtin.TabStop = true;
+            this.rbtn_Gtin.Text = "GTIN:";
+            this.rbtn_Gtin.UseVisualStyleBackColor = true;
+            this.rbtn_Gtin.CheckedChanged += new System.EventHandler(this.rbtn_Gtin_CheckedChanged);
             // 
-            // Column2
+            // rbtn_SSCC
             // 
-            this.Column2.HeaderText = "RESULTADO";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
+            this.rbtn_SSCC.AutoSize = true;
+            this.rbtn_SSCC.Location = new System.Drawing.Point(68, 110);
+            this.rbtn_SSCC.Margin = new System.Windows.Forms.Padding(2);
+            this.rbtn_SSCC.Name = "rbtn_SSCC";
+            this.rbtn_SSCC.Size = new System.Drawing.Size(56, 17);
+            this.rbtn_SSCC.TabIndex = 4;
+            this.rbtn_SSCC.TabStop = true;
+            this.rbtn_SSCC.Text = "SSCC:";
+            this.rbtn_SSCC.UseVisualStyleBackColor = true;
+            this.rbtn_SSCC.CheckedChanged += new System.EventHandler(this.rbtn_SSCC_CheckedChanged);
             // 
-            // gbox_Carregamento
+            // rbtn_Usuario
             // 
-            this.gbox_Carregamento.Controls.Add(this.label2);
-            this.gbox_Carregamento.Controls.Add(this.rbtn_Conferido);
-            this.gbox_Carregamento.Controls.Add(this.rbtn_Impresso);
-            this.gbox_Carregamento.Controls.Add(this.cbox_Carregamentos);
-            this.gbox_Carregamento.Controls.Add(this.rbtn_Gerado);
-            this.gbox_Carregamento.Location = new System.Drawing.Point(12, 12);
-            this.gbox_Carregamento.Name = "gbox_Carregamento";
-            this.gbox_Carregamento.Size = new System.Drawing.Size(392, 108);
-            this.gbox_Carregamento.TabIndex = 9;
-            this.gbox_Carregamento.TabStop = false;
-            this.gbox_Carregamento.Text = "CARREGAMENTO";
+            this.rbtn_Usuario.AutoSize = true;
+            this.rbtn_Usuario.Location = new System.Drawing.Point(375, 40);
+            this.rbtn_Usuario.Margin = new System.Windows.Forms.Padding(2);
+            this.rbtn_Usuario.Name = "rbtn_Usuario";
+            this.rbtn_Usuario.Size = new System.Drawing.Size(77, 17);
+            this.rbtn_Usuario.TabIndex = 5;
+            this.rbtn_Usuario.TabStop = true;
+            this.rbtn_Usuario.Text = "USUÁRIO:";
+            this.rbtn_Usuario.UseVisualStyleBackColor = true;
+            this.rbtn_Usuario.CheckedChanged += new System.EventHandler(this.rbtn_Usuario_CheckedChanged);
             // 
-            // label2
+            // rbtn_Carregamento
             // 
-            this.label2.AutoSize = true;
-            this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label2.Location = new System.Drawing.Point(54, 63);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "CARREGAMENTOS:";
+            this.rbtn_Carregamento.AutoSize = true;
+            this.rbtn_Carregamento.Location = new System.Drawing.Point(69, 40);
+            this.rbtn_Carregamento.Margin = new System.Windows.Forms.Padding(2);
+            this.rbtn_Carregamento.Name = "rbtn_Carregamento";
+            this.rbtn_Carregamento.Size = new System.Drawing.Size(119, 17);
+            this.rbtn_Carregamento.TabIndex = 1;
+            this.rbtn_Carregamento.TabStop = true;
+            this.rbtn_Carregamento.Text = "CARREGAMENTO:";
+            this.rbtn_Carregamento.UseVisualStyleBackColor = true;
+            this.rbtn_Carregamento.CheckedChanged += new System.EventHandler(this.rbtn_Carregamento_CheckedChanged);
             // 
-            // rbtn_Conferido
+            // rbtn_DataConferido
             // 
-            this.rbtn_Conferido.AutoSize = true;
-            this.rbtn_Conferido.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.rbtn_Conferido.Location = new System.Drawing.Point(220, 32);
-            this.rbtn_Conferido.Name = "rbtn_Conferido";
-            this.rbtn_Conferido.Size = new System.Drawing.Size(88, 17);
-            this.rbtn_Conferido.TabIndex = 4;
-            this.rbtn_Conferido.TabStop = true;
-            this.rbtn_Conferido.Text = "CONFERIDO";
-            this.rbtn_Conferido.UseVisualStyleBackColor = true;
-            this.rbtn_Conferido.CheckedChanged += new System.EventHandler(this.rbtn_Conferido_CheckedChanged);
+            this.rbtn_DataConferido.AutoSize = true;
+            this.rbtn_DataConferido.Location = new System.Drawing.Point(375, 108);
+            this.rbtn_DataConferido.Margin = new System.Windows.Forms.Padding(2);
+            this.rbtn_DataConferido.Name = "rbtn_DataConferido";
+            this.rbtn_DataConferido.Size = new System.Drawing.Size(123, 17);
+            this.rbtn_DataConferido.TabIndex = 8;
+            this.rbtn_DataConferido.TabStop = true;
+            this.rbtn_DataConferido.Text = "DATA CONFERIDO:";
+            this.rbtn_DataConferido.UseVisualStyleBackColor = true;
+            this.rbtn_DataConferido.CheckedChanged += new System.EventHandler(this.rbtn_DataConferido_CheckedChanged);
             // 
-            // rbtn_Impresso
+            // rbtn_DataImpresso
             // 
-            this.rbtn_Impresso.AutoSize = true;
-            this.rbtn_Impresso.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.rbtn_Impresso.Location = new System.Drawing.Point(133, 32);
-            this.rbtn_Impresso.Name = "rbtn_Impresso";
-            this.rbtn_Impresso.Size = new System.Drawing.Size(81, 17);
-            this.rbtn_Impresso.TabIndex = 3;
-            this.rbtn_Impresso.TabStop = true;
-            this.rbtn_Impresso.Text = "IMPRESSO";
-            this.rbtn_Impresso.UseVisualStyleBackColor = true;
-            this.rbtn_Impresso.CheckedChanged += new System.EventHandler(this.rbtn_Impresso_CheckedChanged);
+            this.rbtn_DataImpresso.AutoSize = true;
+            this.rbtn_DataImpresso.Location = new System.Drawing.Point(375, 87);
+            this.rbtn_DataImpresso.Margin = new System.Windows.Forms.Padding(2);
+            this.rbtn_DataImpresso.Name = "rbtn_DataImpresso";
+            this.rbtn_DataImpresso.Size = new System.Drawing.Size(116, 17);
+            this.rbtn_DataImpresso.TabIndex = 7;
+            this.rbtn_DataImpresso.TabStop = true;
+            this.rbtn_DataImpresso.Text = "DATA IMPRESSO:";
+            this.rbtn_DataImpresso.UseVisualStyleBackColor = true;
+            this.rbtn_DataImpresso.CheckedChanged += new System.EventHandler(this.rbtn_DataImpresso_CheckedChanged);
             // 
-            // cbox_Carregamentos
+            // rbtn_DataGerado
             // 
-            this.cbox_Carregamentos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbox_Carregamentos.FormattingEnabled = true;
-            this.cbox_Carregamentos.Location = new System.Drawing.Point(170, 60);
-            this.cbox_Carregamentos.Name = "cbox_Carregamentos";
-            this.cbox_Carregamentos.Size = new System.Drawing.Size(138, 21);
-            this.cbox_Carregamentos.TabIndex = 1;
-            this.cbox_Carregamentos.SelectedIndexChanged += new System.EventHandler(this.cbox_Carregamentos_SelectedIndexChanged);
+            this.rbtn_DataGerado.AutoSize = true;
+            this.rbtn_DataGerado.Location = new System.Drawing.Point(375, 64);
+            this.rbtn_DataGerado.Margin = new System.Windows.Forms.Padding(2);
+            this.rbtn_DataGerado.Name = "rbtn_DataGerado";
+            this.rbtn_DataGerado.Size = new System.Drawing.Size(106, 17);
+            this.rbtn_DataGerado.TabIndex = 6;
+            this.rbtn_DataGerado.TabStop = true;
+            this.rbtn_DataGerado.Text = "DATA GERADO:";
+            this.rbtn_DataGerado.UseVisualStyleBackColor = true;
+            this.rbtn_DataGerado.CheckedChanged += new System.EventHandler(this.rbtn_DataGerado_CheckedChanged);
             // 
-            // rbtn_Gerado
+            // txt_Carregamento
             // 
-            this.rbtn_Gerado.AutoSize = true;
-            this.rbtn_Gerado.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.rbtn_Gerado.Location = new System.Drawing.Point(56, 32);
-            this.rbtn_Gerado.Name = "rbtn_Gerado";
-            this.rbtn_Gerado.Size = new System.Drawing.Size(71, 17);
-            this.rbtn_Gerado.TabIndex = 2;
-            this.rbtn_Gerado.TabStop = true;
-            this.rbtn_Gerado.Text = "GERADO";
-            this.rbtn_Gerado.UseVisualStyleBackColor = true;
-            this.rbtn_Gerado.CheckedChanged += new System.EventHandler(this.rbtn_Gerado_CheckedChanged);
+            this.txt_Carregamento.Enabled = false;
+            this.txt_Carregamento.Location = new System.Drawing.Point(190, 40);
+            this.txt_Carregamento.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_Carregamento.Name = "txt_Carregamento";
+            this.txt_Carregamento.Size = new System.Drawing.Size(140, 20);
+            this.txt_Carregamento.TabIndex = 8;
             // 
-            // label3
+            // txt_Gtin
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(201, 148);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(48, 13);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "CAIXAS:";
+            this.txt_Gtin.Enabled = false;
+            this.txt_Gtin.Location = new System.Drawing.Point(190, 87);
+            this.txt_Gtin.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_Gtin.Name = "txt_Gtin";
+            this.txt_Gtin.Size = new System.Drawing.Size(140, 20);
+            this.txt_Gtin.TabIndex = 10;
             // 
-            // label1
+            // txt_SSCC
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 148);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 13);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "PALETES:";
+            this.txt_SSCC.Enabled = false;
+            this.txt_SSCC.Location = new System.Drawing.Point(190, 110);
+            this.txt_SSCC.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_SSCC.Name = "txt_SSCC";
+            this.txt_SSCC.Size = new System.Drawing.Size(140, 20);
+            this.txt_SSCC.TabIndex = 11;
             // 
-            // lbox_Caixas
+            // cbox_Produtos
             // 
-            this.lbox_Caixas.FormattingEnabled = true;
-            this.lbox_Caixas.Location = new System.Drawing.Point(201, 165);
-            this.lbox_Caixas.Name = "lbox_Caixas";
-            this.lbox_Caixas.Size = new System.Drawing.Size(203, 342);
-            this.lbox_Caixas.TabIndex = 11;
-            this.lbox_Caixas.SelectedIndexChanged += new System.EventHandler(this.lbox_Caixas_SelectedIndexChanged);
+            this.cbox_Produtos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbox_Produtos.Enabled = false;
+            this.cbox_Produtos.FormattingEnabled = true;
+            this.cbox_Produtos.Location = new System.Drawing.Point(190, 63);
+            this.cbox_Produtos.Margin = new System.Windows.Forms.Padding(2);
+            this.cbox_Produtos.Name = "cbox_Produtos";
+            this.cbox_Produtos.Size = new System.Drawing.Size(140, 21);
+            this.cbox_Produtos.TabIndex = 13;
             // 
-            // lbox_Paletes
+            // date_Gerado
             // 
-            this.lbox_Paletes.FormattingEnabled = true;
-            this.lbox_Paletes.Location = new System.Drawing.Point(15, 165);
-            this.lbox_Paletes.Name = "lbox_Paletes";
-            this.lbox_Paletes.Size = new System.Drawing.Size(180, 342);
-            this.lbox_Paletes.TabIndex = 10;
-            this.lbox_Paletes.SelectedIndexChanged += new System.EventHandler(this.lbox_Paletes_SelectedIndexChanged);
+            this.date_Gerado.CustomFormat = "dd/MM/yy";
+            this.date_Gerado.Enabled = false;
+            this.date_Gerado.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.date_Gerado.Location = new System.Drawing.Point(496, 62);
+            this.date_Gerado.Margin = new System.Windows.Forms.Padding(2);
+            this.date_Gerado.Name = "date_Gerado";
+            this.date_Gerado.Size = new System.Drawing.Size(116, 20);
+            this.date_Gerado.TabIndex = 14;
             // 
-            // btn_Palete
+            // date_Impresso
             // 
-            this.btn_Palete.Enabled = false;
-            this.btn_Palete.Location = new System.Drawing.Point(188, 512);
-            this.btn_Palete.Name = "btn_Palete";
-            this.btn_Palete.Size = new System.Drawing.Size(105, 23);
-            this.btn_Palete.TabIndex = 15;
-            this.btn_Palete.Text = "PALETE";
-            this.btn_Palete.UseVisualStyleBackColor = true;
-            this.btn_Palete.Click += new System.EventHandler(this.btn_Palete_Click);
+            this.date_Impresso.CustomFormat = "dd/MM/yy";
+            this.date_Impresso.Enabled = false;
+            this.date_Impresso.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.date_Impresso.Location = new System.Drawing.Point(496, 84);
+            this.date_Impresso.Margin = new System.Windows.Forms.Padding(2);
+            this.date_Impresso.Name = "date_Impresso";
+            this.date_Impresso.Size = new System.Drawing.Size(116, 20);
+            this.date_Impresso.TabIndex = 15;
             // 
-            // btn_Cancel
+            // date_Conferido
             // 
-            this.btn_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btn_Cancel.Location = new System.Drawing.Point(677, 512);
-            this.btn_Cancel.Name = "btn_Cancel";
-            this.btn_Cancel.Size = new System.Drawing.Size(102, 23);
-            this.btn_Cancel.TabIndex = 27;
-            this.btn_Cancel.Text = "CANCELAR";
-            this.btn_Cancel.UseVisualStyleBackColor = true;
-            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
+            this.date_Conferido.CustomFormat = "dd/MM/yy";
+            this.date_Conferido.Enabled = false;
+            this.date_Conferido.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.date_Conferido.Location = new System.Drawing.Point(496, 107);
+            this.date_Conferido.Margin = new System.Windows.Forms.Padding(2);
+            this.date_Conferido.Name = "date_Conferido";
+            this.date_Conferido.Size = new System.Drawing.Size(116, 20);
+            this.date_Conferido.TabIndex = 16;
             // 
-            // btn_Done
+            // gbox_Pesquisa
             // 
-            this.btn_Done.Enabled = false;
-            this.btn_Done.Location = new System.Drawing.Point(569, 512);
-            this.btn_Done.Name = "btn_Done";
-            this.btn_Done.Size = new System.Drawing.Size(102, 23);
-            this.btn_Done.TabIndex = 26;
-            this.btn_Done.Text = "IMPRIMIR";
-            this.btn_Done.UseVisualStyleBackColor = true;
+            this.gbox_Pesquisa.Controls.Add(this.cbox_Usuario);
+            this.gbox_Pesquisa.Controls.Add(this.btn_Pesqusiar);
+            this.gbox_Pesquisa.Controls.Add(this.rbtn_Usuario);
+            this.gbox_Pesquisa.Controls.Add(this.date_Conferido);
+            this.gbox_Pesquisa.Controls.Add(this.rbtn_Produto);
+            this.gbox_Pesquisa.Controls.Add(this.date_Impresso);
+            this.gbox_Pesquisa.Controls.Add(this.rbtn_Gtin);
+            this.gbox_Pesquisa.Controls.Add(this.date_Gerado);
+            this.gbox_Pesquisa.Controls.Add(this.rbtn_SSCC);
+            this.gbox_Pesquisa.Controls.Add(this.cbox_Produtos);
+            this.gbox_Pesquisa.Controls.Add(this.rbtn_DataGerado);
+            this.gbox_Pesquisa.Controls.Add(this.rbtn_DataImpresso);
+            this.gbox_Pesquisa.Controls.Add(this.txt_SSCC);
+            this.gbox_Pesquisa.Controls.Add(this.rbtn_DataConferido);
+            this.gbox_Pesquisa.Controls.Add(this.txt_Gtin);
+            this.gbox_Pesquisa.Controls.Add(this.rbtn_Carregamento);
+            this.gbox_Pesquisa.Controls.Add(this.txt_Carregamento);
+            this.gbox_Pesquisa.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gbox_Pesquisa.Location = new System.Drawing.Point(0, 0);
+            this.gbox_Pesquisa.Margin = new System.Windows.Forms.Padding(2);
+            this.gbox_Pesquisa.Name = "gbox_Pesquisa";
+            this.gbox_Pesquisa.Padding = new System.Windows.Forms.Padding(2);
+            this.gbox_Pesquisa.Size = new System.Drawing.Size(701, 189);
+            this.gbox_Pesquisa.TabIndex = 17;
+            this.gbox_Pesquisa.TabStop = false;
+            this.gbox_Pesquisa.Text = "PESQUISAR POR:";
             // 
-            // btn_Caixa
+            // cbox_Usuario
             // 
-            this.btn_Caixa.Enabled = false;
-            this.btn_Caixa.Location = new System.Drawing.Point(299, 512);
-            this.btn_Caixa.Name = "btn_Caixa";
-            this.btn_Caixa.Size = new System.Drawing.Size(105, 23);
-            this.btn_Caixa.TabIndex = 14;
-            this.btn_Caixa.Text = "CAIXA";
-            this.btn_Caixa.UseVisualStyleBackColor = true;
-            this.btn_Caixa.Click += new System.EventHandler(this.btn_Caixa_Click);
+            this.cbox_Usuario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbox_Usuario.Enabled = false;
+            this.cbox_Usuario.FormattingEnabled = true;
+            this.cbox_Usuario.Location = new System.Drawing.Point(496, 37);
+            this.cbox_Usuario.Margin = new System.Windows.Forms.Padding(2);
+            this.cbox_Usuario.Name = "cbox_Usuario";
+            this.cbox_Usuario.Size = new System.Drawing.Size(116, 21);
+            this.cbox_Usuario.TabIndex = 18;
             // 
-            // btn_Carregamento
+            // btn_Pesqusiar
             // 
-            this.btn_Carregamento.Enabled = false;
-            this.btn_Carregamento.Location = new System.Drawing.Point(69, 513);
-            this.btn_Carregamento.Name = "btn_Carregamento";
-            this.btn_Carregamento.Size = new System.Drawing.Size(113, 23);
-            this.btn_Carregamento.TabIndex = 28;
-            this.btn_Carregamento.Text = "CARREGAMENTO";
-            this.btn_Carregamento.UseVisualStyleBackColor = true;
-            this.btn_Carregamento.Click += new System.EventHandler(this.btn_Carregamento_Click);
+            this.btn_Pesqusiar.Enabled = false;
+            this.btn_Pesqusiar.Location = new System.Drawing.Point(509, 142);
+            this.btn_Pesqusiar.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_Pesqusiar.Name = "btn_Pesqusiar";
+            this.btn_Pesqusiar.Size = new System.Drawing.Size(101, 27);
+            this.btn_Pesqusiar.TabIndex = 9;
+            this.btn_Pesqusiar.Text = "PESQUISAR";
+            this.btn_Pesqusiar.UseVisualStyleBackColor = true;
+            this.btn_Pesqusiar.Click += new System.EventHandler(this.btn_Pesqusiar_Click);
+            // 
+            // tab_Resultado
+            // 
+            this.tab_Resultado.Controls.Add(this.page_Carregamentos);
+            this.tab_Resultado.Controls.Add(this.page_Paletes);
+            this.tab_Resultado.Controls.Add(this.tab_Caixas);
+            this.tab_Resultado.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tab_Resultado.Location = new System.Drawing.Point(2, 15);
+            this.tab_Resultado.Margin = new System.Windows.Forms.Padding(2);
+            this.tab_Resultado.Name = "tab_Resultado";
+            this.tab_Resultado.SelectedIndex = 0;
+            this.tab_Resultado.Size = new System.Drawing.Size(697, 371);
+            this.tab_Resultado.TabIndex = 11;
+            // 
+            // page_Carregamentos
+            // 
+            this.page_Carregamentos.Controls.Add(this.grid_Carregamentos);
+            this.page_Carregamentos.Location = new System.Drawing.Point(4, 22);
+            this.page_Carregamentos.Margin = new System.Windows.Forms.Padding(2);
+            this.page_Carregamentos.Name = "page_Carregamentos";
+            this.page_Carregamentos.Padding = new System.Windows.Forms.Padding(2);
+            this.page_Carregamentos.Size = new System.Drawing.Size(689, 345);
+            this.page_Carregamentos.TabIndex = 0;
+            this.page_Carregamentos.Text = "CARREGAMENTOS";
+            this.page_Carregamentos.UseVisualStyleBackColor = true;
+            // 
+            // grid_Carregamentos
+            // 
+            this.grid_Carregamentos.AllowUserToAddRows = false;
+            this.grid_Carregamentos.AllowUserToDeleteRows = false;
+            this.grid_Carregamentos.AllowUserToOrderColumns = true;
+            this.grid_Carregamentos.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.grid_Carregamentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid_Carregamentos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grid_Carregamentos.Location = new System.Drawing.Point(2, 2);
+            this.grid_Carregamentos.Margin = new System.Windows.Forms.Padding(2);
+            this.grid_Carregamentos.Name = "grid_Carregamentos";
+            this.grid_Carregamentos.ReadOnly = true;
+            this.grid_Carregamentos.RowTemplate.Height = 24;
+            this.grid_Carregamentos.Size = new System.Drawing.Size(685, 341);
+            this.grid_Carregamentos.TabIndex = 12;
+            // 
+            // page_Paletes
+            // 
+            this.page_Paletes.Controls.Add(this.grid_Paletes);
+            this.page_Paletes.Location = new System.Drawing.Point(4, 22);
+            this.page_Paletes.Margin = new System.Windows.Forms.Padding(2);
+            this.page_Paletes.Name = "page_Paletes";
+            this.page_Paletes.Padding = new System.Windows.Forms.Padding(2);
+            this.page_Paletes.Size = new System.Drawing.Size(689, 345);
+            this.page_Paletes.TabIndex = 1;
+            this.page_Paletes.Text = "PALETES";
+            this.page_Paletes.UseVisualStyleBackColor = true;
+            // 
+            // grid_Paletes
+            // 
+            this.grid_Paletes.AllowUserToAddRows = false;
+            this.grid_Paletes.AllowUserToDeleteRows = false;
+            this.grid_Paletes.AllowUserToOrderColumns = true;
+            this.grid_Paletes.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.grid_Paletes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid_Paletes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grid_Paletes.Location = new System.Drawing.Point(2, 2);
+            this.grid_Paletes.Margin = new System.Windows.Forms.Padding(2);
+            this.grid_Paletes.Name = "grid_Paletes";
+            this.grid_Paletes.ReadOnly = true;
+            this.grid_Paletes.RowTemplate.Height = 24;
+            this.grid_Paletes.Size = new System.Drawing.Size(685, 341);
+            this.grid_Paletes.TabIndex = 13;
+            // 
+            // tab_Caixas
+            // 
+            this.tab_Caixas.Controls.Add(this.grid_Caixas);
+            this.tab_Caixas.Location = new System.Drawing.Point(4, 22);
+            this.tab_Caixas.Margin = new System.Windows.Forms.Padding(2);
+            this.tab_Caixas.Name = "tab_Caixas";
+            this.tab_Caixas.Padding = new System.Windows.Forms.Padding(2);
+            this.tab_Caixas.Size = new System.Drawing.Size(689, 345);
+            this.tab_Caixas.TabIndex = 2;
+            this.tab_Caixas.Text = "CAIXAS";
+            this.tab_Caixas.UseVisualStyleBackColor = true;
+            // 
+            // grid_Caixas
+            // 
+            this.grid_Caixas.AllowUserToAddRows = false;
+            this.grid_Caixas.AllowUserToDeleteRows = false;
+            this.grid_Caixas.AllowUserToOrderColumns = true;
+            this.grid_Caixas.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.grid_Caixas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid_Caixas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grid_Caixas.Location = new System.Drawing.Point(2, 2);
+            this.grid_Caixas.Margin = new System.Windows.Forms.Padding(2);
+            this.grid_Caixas.Name = "grid_Caixas";
+            this.grid_Caixas.ReadOnly = true;
+            this.grid_Caixas.RowTemplate.Height = 24;
+            this.grid_Caixas.Size = new System.Drawing.Size(685, 341);
+            this.grid_Caixas.TabIndex = 14;
+            // 
+            // btn_Imprimir
+            // 
+            this.btn_Imprimir.Enabled = false;
+            this.btn_Imprimir.Location = new System.Drawing.Point(472, 587);
+            this.btn_Imprimir.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_Imprimir.Name = "btn_Imprimir";
+            this.btn_Imprimir.Size = new System.Drawing.Size(101, 27);
+            this.btn_Imprimir.TabIndex = 15;
+            this.btn_Imprimir.Text = "IMPRIMIR";
+            this.btn_Imprimir.UseVisualStyleBackColor = true;
+            this.btn_Imprimir.Click += new System.EventHandler(this.btn_Imprimir_Click);
+            // 
+            // btn_Cancelar
+            // 
+            this.btn_Cancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btn_Cancelar.Location = new System.Drawing.Point(578, 587);
+            this.btn_Cancelar.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_Cancelar.Name = "btn_Cancelar";
+            this.btn_Cancelar.Size = new System.Drawing.Size(101, 27);
+            this.btn_Cancelar.TabIndex = 16;
+            this.btn_Cancelar.Text = "CANCELAR";
+            this.btn_Cancelar.UseVisualStyleBackColor = true;
+            // 
+            // gbox_Resultado
+            // 
+            this.gbox_Resultado.Controls.Add(this.tab_Resultado);
+            this.gbox_Resultado.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gbox_Resultado.Enabled = false;
+            this.gbox_Resultado.Location = new System.Drawing.Point(0, 189);
+            this.gbox_Resultado.Margin = new System.Windows.Forms.Padding(2);
+            this.gbox_Resultado.Name = "gbox_Resultado";
+            this.gbox_Resultado.Padding = new System.Windows.Forms.Padding(2);
+            this.gbox_Resultado.Size = new System.Drawing.Size(701, 388);
+            this.gbox_Resultado.TabIndex = 1;
+            this.gbox_Resultado.TabStop = false;
+            this.gbox_Resultado.Text = "RESULTADO:";
             // 
             // Rastrear
             // 
-            this.AcceptButton = this.btn_Done;
+            this.AcceptButton = this.btn_Pesqusiar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btn_Cancel;
-            this.ClientSize = new System.Drawing.Size(791, 543);
+            this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.CancelButton = this.btn_Cancelar;
+            this.ClientSize = new System.Drawing.Size(701, 627);
             this.ControlBox = false;
-            this.Controls.Add(this.btn_Carregamento);
-            this.Controls.Add(this.btn_Cancel);
-            this.Controls.Add(this.btn_Done);
-            this.Controls.Add(this.btn_Palete);
-            this.Controls.Add(this.btn_Caixa);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.lbox_Caixas);
-            this.Controls.Add(this.lbox_Paletes);
-            this.Controls.Add(this.gbox_Carregamento);
-            this.Controls.Add(this.dg1);
+            this.Controls.Add(this.gbox_Resultado);
+            this.Controls.Add(this.btn_Imprimir);
+            this.Controls.Add(this.btn_Cancelar);
+            this.Controls.Add(this.gbox_Pesquisa);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -265,32 +448,50 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rastrear";
-            ((System.ComponentModel.ISupportInitialize)(this.dg1)).EndInit();
-            this.gbox_Carregamento.ResumeLayout(false);
-            this.gbox_Carregamento.PerformLayout();
+            this.Load += new System.EventHandler(this.Rastrear_Load);
+            this.gbox_Pesquisa.ResumeLayout(false);
+            this.gbox_Pesquisa.PerformLayout();
+            this.tab_Resultado.ResumeLayout(false);
+            this.page_Carregamentos.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grid_Carregamentos)).EndInit();
+            this.page_Paletes.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grid_Paletes)).EndInit();
+            this.tab_Caixas.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grid_Caixas)).EndInit();
+            this.gbox_Resultado.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView dg1;
-        private System.Windows.Forms.GroupBox gbox_Carregamento;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.RadioButton rbtn_Conferido;
-        private System.Windows.Forms.RadioButton rbtn_Impresso;
-        private System.Windows.Forms.ComboBox cbox_Carregamentos;
-        private System.Windows.Forms.RadioButton rbtn_Gerado;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox lbox_Caixas;
-        private System.Windows.Forms.ListBox lbox_Paletes;
-        private System.Windows.Forms.Button btn_Palete;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.Button btn_Cancel;
-        private System.Windows.Forms.Button btn_Done;
-        private System.Windows.Forms.Button btn_Caixa;
-        private System.Windows.Forms.Button btn_Carregamento;
+
+        private System.Windows.Forms.RadioButton rbtn_Produto;
+        private System.Windows.Forms.RadioButton rbtn_Gtin;
+        private System.Windows.Forms.RadioButton rbtn_SSCC;
+        private System.Windows.Forms.RadioButton rbtn_Usuario;
+        private System.Windows.Forms.RadioButton rbtn_Carregamento;
+        private System.Windows.Forms.RadioButton rbtn_DataConferido;
+        private System.Windows.Forms.RadioButton rbtn_DataImpresso;
+        private System.Windows.Forms.RadioButton rbtn_DataGerado;
+        private System.Windows.Forms.TextBox txt_Carregamento;
+        private System.Windows.Forms.TextBox txt_Gtin;
+        private System.Windows.Forms.TextBox txt_SSCC;
+        private System.Windows.Forms.ComboBox cbox_Produtos;
+        private System.Windows.Forms.DateTimePicker date_Gerado;
+        private System.Windows.Forms.DateTimePicker date_Impresso;
+        private System.Windows.Forms.DateTimePicker date_Conferido;
+        private System.Windows.Forms.GroupBox gbox_Pesquisa;
+        private System.Windows.Forms.Button btn_Pesqusiar;
+        private System.Windows.Forms.ComboBox cbox_Usuario;
+        private System.Windows.Forms.TabControl tab_Resultado;
+        private System.Windows.Forms.TabPage page_Carregamentos;
+        private System.Windows.Forms.TabPage page_Paletes;
+        private System.Windows.Forms.Button btn_Imprimir;
+        private System.Windows.Forms.Button btn_Cancelar;
+        private System.Windows.Forms.TabPage tab_Caixas;
+        private System.Windows.Forms.DataGridView grid_Carregamentos;
+        private System.Windows.Forms.DataGridView grid_Paletes;
+        private System.Windows.Forms.DataGridView grid_Caixas;
+        private System.Windows.Forms.GroupBox gbox_Resultado;
     }
 }

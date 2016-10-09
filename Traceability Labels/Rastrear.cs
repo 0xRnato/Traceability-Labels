@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using pre_pesagem;
 
 namespace Traceability_Labels
 {
@@ -13,13 +14,10 @@ namespace Traceability_Labels
     {
         SqlConnection connection;
         SqlCommand command;
-        SqlConnection connection2;
-        SqlCommand command2;
         SqlDataAdapter adapter;
         DataSet dataSet;
         DataTable table;
         SqlDataReader reader;
-        bool flag;
 
         public Rastrear()
         {
@@ -27,7 +25,6 @@ namespace Traceability_Labels
 
             dataSet = new DataSet();
             connection = new SqlConnection(Global.connectionString);
-            connection2 = new SqlConnection(Global.connectionString);
             try
             {
                 connection.Open();
@@ -39,210 +36,433 @@ namespace Traceability_Labels
             finally
             {
                 connection.Close();
-                flag = false;
             }
         }
 
-        private void rbtn_Gerado_CheckedChanged(object sender, EventArgs e)
+        private void Lock()
         {
-            cbox_Carregamentos.DataSource = null;
-            cbox_Carregamentos.Items.Clear();
-            command = new SqlCommand("select id,codigo from carregamento where estagio=0", connection);
-            adapter = new SqlDataAdapter(command);
-            table = new DataTable();
-            adapter.Fill(table);
-            cbox_Carregamentos.DataSource = table;
-            cbox_Carregamentos.DisplayMember = table.Columns[1].ToString();
-            cbox_Carregamentos.ValueMember = table.Columns[0].ToString();
-            cbox_Carregamentos.SelectedIndex = -1;
-            if (connection.State == ConnectionState.Open)
-                connection.Close();
-            flag = true;
-            lbox_Paletes.Items.Clear();
-            lbox_Caixas.Items.Clear();
+            txt_Carregamento.Enabled = false;
+            txt_Gtin.Enabled = false;
+            txt_SSCC.Enabled = false;
+            cbox_Produtos.Enabled = false;
+            cbox_Usuario.Enabled = false;
+            date_Conferido.Enabled = false;
+            date_Gerado.Enabled = false;
+            date_Impresso.Enabled = false;
+            btn_Pesqusiar.Enabled = false;
         }
 
-        private void rbtn_Impresso_CheckedChanged(object sender, EventArgs e)
+        private void rbtn_Carregamento_CheckedChanged(object sender, EventArgs e)
         {
-            cbox_Carregamentos.DataSource = null;
-            cbox_Carregamentos.Items.Clear();
-            command = new SqlCommand("select id,codigo from carregamento where estagio=1", connection);
-            adapter = new SqlDataAdapter(command);
-            table = new DataTable();
-            adapter.Fill(table);
-            cbox_Carregamentos.DataSource = table;
-            cbox_Carregamentos.DisplayMember = table.Columns[1].ToString();
-            cbox_Carregamentos.ValueMember = table.Columns[0].ToString();
-            cbox_Carregamentos.SelectedIndex = -1;
-            if (connection.State == ConnectionState.Open)
-                connection.Close();
-            flag = true;
-            lbox_Paletes.Items.Clear();
-            lbox_Caixas.Items.Clear();
+            Lock();
+            txt_Carregamento.Enabled = true;
+            txt_Carregamento.Focus();
+            btn_Pesqusiar.Enabled = true;
         }
 
-        private void rbtn_Conferido_CheckedChanged(object sender, EventArgs e)
+
+
+        private void rbtn_Produto_CheckedChanged(object sender, EventArgs e)
         {
-            cbox_Carregamentos.DataSource = null;
-            cbox_Carregamentos.Items.Clear();
-            command = new SqlCommand("select id,codigo from carregamento where estagio=2", connection);
-            adapter = new SqlDataAdapter(command);
-            table = new DataTable();
-            adapter.Fill(table);
-            cbox_Carregamentos.DataSource = table;
-            cbox_Carregamentos.DisplayMember = table.Columns[1].ToString();
-            cbox_Carregamentos.ValueMember = table.Columns[0].ToString();
-            cbox_Carregamentos.SelectedIndex = -1;
-            if (connection.State == ConnectionState.Open)
-                connection.Close();
-            flag = true;
-            lbox_Paletes.Items.Clear();
-            lbox_Caixas.Items.Clear();
+            Lock();
+            cbox_Produtos.Enabled = true;
+            cbox_Produtos.Focus();
+            btn_Pesqusiar.Enabled = true;
         }
 
-        private void cbox_Carregamentos_SelectedIndexChanged(object sender, EventArgs e)
+        private void rbtn_Gtin_CheckedChanged(object sender, EventArgs e)
         {
-            if (flag && cbox_Carregamentos.SelectedIndex >= 0)
+            Lock();
+            txt_Gtin.Enabled = true;
+            txt_Gtin.Focus();
+            btn_Pesqusiar.Enabled = true;
+        }
+
+        private void rbtn_SSCC_CheckedChanged(object sender, EventArgs e)
+        {
+            Lock();
+            txt_SSCC.Enabled = true;
+            txt_SSCC.Focus();
+            btn_Pesqusiar.Enabled = true;
+        }
+
+        private void rbtn_Usuario_CheckedChanged(object sender, EventArgs e)
+        {
+            Lock();
+            cbox_Usuario.Enabled = true;
+            cbox_Usuario.Focus();
+            btn_Pesqusiar.Enabled = true;
+        }
+
+        private void rbtn_DataGerado_CheckedChanged(object sender, EventArgs e)
+        {
+            Lock();
+            date_Gerado.Enabled = true;
+            date_Gerado.Focus();
+            btn_Pesqusiar.Enabled = true;
+        }
+
+        private void rbtn_DataImpresso_CheckedChanged(object sender, EventArgs e)
+        {
+            Lock();
+            date_Impresso.Enabled = true;
+            date_Impresso.Focus();
+            btn_Pesqusiar.Enabled = true;
+        }
+
+        private void rbtn_DataConferido_CheckedChanged(object sender, EventArgs e)
+        {
+            Lock();
+            date_Conferido.Enabled = true;
+            date_Conferido.Focus();
+            btn_Pesqusiar.Enabled = true;
+        }
+
+        private void btn_Pesqusiar_Click(object sender, EventArgs e)
+        {
+            try
             {
-                command = new SqlCommand("select palete.id,produto.nome from palete join caixasPalete on palete.id = caixasPalete.palete_id join caixa on caixa.id = caixasPalete.caixa_id join produto on produto.id = caixa.produto_id where palete.carregamento_id=@carregamento_id group by palete.id, produto.nome", connection);
-                command.Parameters.AddWithValue("@carregamento_id", cbox_Carregamentos.SelectedValue);
+                if (rbtn_Carregamento.Checked && txt_Carregamento.Text != "")
+                {
+                    //CARREGAMENTO
+                    command = new SqlCommand("select codigo as 'Código',expedicao as 'Data Expedição',userGerado as 'Gerado por',dataGerado as 'Data Gerado',userImpresso as 'Impresso por',dataImpresso as 'Data Impresso',userConferido as 'Conferido por',dataConferido as 'Data Conferência' from carregamento where codigo=@codigo group by id,codigo,expedicao,userGerado,dataGerado,userImpresso,dataImpresso,userConferido,dataConferido", connection);
+                    command.Parameters.AddWithValue("@codigo", txt_Carregamento.Text);
+                    adapter = new SqlDataAdapter(command);
+                    connection.Open();
+                    adapter.Fill(dataSet, "carregamento");
+                    connection.Close();
+                    grid_Carregamentos.DataSource = dataSet;
+                    grid_Carregamentos.DataMember = "carregamento";
 
-                connection.Open();
-                reader = command.ExecuteReader();
-                lbox_Paletes.Items.Clear();
-                while (reader.Read())
-                {
-                    var item = reader.GetValue(0).ToString() + " - " + reader.GetValue(1).ToString();
-                    lbox_Paletes.Items.Add(item);
+                    //PALETE
+                    command = new SqlCommand("select pr.nome as 'Produto', pl.sscc as 'SSCC', pl.palete as 'Tara do Palete', pl.quantidade as 'Quantidade',pl.userGerado as 'Gerado por',pl.dataGerado as 'Data Gerado',pl.userImpresso as 'Impresso por',pl.dataImpresso as 'Data Impresso',pl.userConferido as 'Conferido por',pl.dataConferido as 'Data Conferência' from palete pl join caixasPalete cp on pl.id = cp.palete_id join carregamento cr on cr.id = pl.carregamento_id join caixa cx on cx.id = cp.caixa_id join produto pr on pr.id = cx.produto_id where cr.codigo=@codigo group by pl.id,pl.sscc, pr.nome, pl.palete, pl.quantidade,pl.userGerado,pl.dataGerado,pl.userImpresso,pl.dataImpresso,pl.userConferido,pl.dataConferido", connection);
+                    command.Parameters.AddWithValue("@codigo", txt_Carregamento.Text);
+                    adapter = new SqlDataAdapter(command);
+                    dataSet = new DataSet();
+                    connection.Open();
+                    adapter.Fill(dataSet, "palete");
+                    connection.Close();
+                    grid_Paletes.DataSource = dataSet;
+                    grid_Paletes.DataMember = "palete";
+
+                    //CAIXA
+                    command = new SqlCommand("select pr.nome as 'Produto', cx.sscc as 'SSCC', cx.fabricacao as 'Fabricação', cx.validade as 'Vailidade', cx.lote as 'Lote', cx.userGerado as 'Gerado por',cx.dataGerado as 'Data Gerado',cx.userImpresso as 'Impresso por',cx.dataImpresso as 'Data Impresso',cx.userConferido as 'Conferido por',cx.dataConferido as 'Data Conferência' from palete pl join caixasPalete cp on pl.id = cp.palete_id join carregamento cr on cr.id = pl.carregamento_id join caixa cx on cx.id = cp.caixa_id join produto pr on pr.id = cx.produto_id where cr.codigo = @codigo group by cx.id, cx.sscc, pr.nome, cx.fabricacao, cx.validade, cx.lote, cx.userGerado, cx.dataGerado, cx.userImpresso, cx.dataImpresso, cx.userConferido, cx.dataConferido", connection);
+                    command.Parameters.AddWithValue("@codigo", txt_Carregamento.Text);
+                    adapter = new SqlDataAdapter(command);
+                    dataSet = new DataSet();
+                    connection.Open();
+                    adapter.Fill(dataSet, "caixa");
+                    connection.Close();
+                    grid_Caixas.DataSource = dataSet;
+                    grid_Caixas.DataMember = "caixa";
                 }
-                reader.Close();
-                connection.Close();
-                if (cbox_Carregamentos.SelectedIndex != -1)
+                else if (rbtn_DataConferido.Checked && date_Conferido.Value != null)
                 {
-                    btn_Done.Enabled = true;
-                    btn_Carregamento.Enabled = true;
+                    //CARREGAMENTO
+                    command = new SqlCommand("select cr.codigo as 'Código',cr.expedicao as 'Data Expedição',cr.userGerado as 'Gerado por',cr.dataGerado as 'Data Gerado',cr.userImpresso as 'Impresso por',cr.dataImpresso as 'Data Impresso',cr.userConferido as 'Conferido por',cr.dataConferido as 'Data Conferência' from carregamento cr join palete pl on pl.carregamento_id=cr.id join caixasPalete cp on cp.palete_id=pl.id join caixa cx on cx.id=cp.caixa_id join produto pr on pr.id=cx.produto_id where cr.dataConferido=@data group by cr.id,cr.codigo,cr.expedicao,cr.userGerado,cr.dataGerado,cr.userImpresso,cr.dataImpresso,cr.userConferido,cr.dataConferido", connection);
+                    command.Parameters.AddWithValue("@data", date_Conferido.Value.ToString("dd/MM/yyyy"));
+                    adapter = new SqlDataAdapter(command);
+                    connection.Open();
+                    adapter.Fill(dataSet, "carregamento");
+                    connection.Close();
+                    grid_Carregamentos.DataSource = dataSet;
+                    grid_Carregamentos.DataMember = "carregamento";
+
+                    //PALETE
+                    command = new SqlCommand("select pr.nome as 'Produto', pl.sscc as 'SSCC', pl.palete as 'Tara do Palete', pl.quantidade as 'Quantidade',pl.userGerado as 'Gerado por',pl.dataGerado as 'Data Gerado',pl.userImpresso as 'Impresso por',pl.dataImpresso as 'Data Impresso',pl.userConferido as 'Conferido por',pl.dataConferido as 'Data Conferência' from palete pl join caixasPalete cp on pl.id = cp.palete_id join carregamento cr on cr.id = pl.carregamento_id join caixa cx on cx.id = cp.caixa_id join produto pr on pr.id = cx.produto_id where pl.dataConferido=@data group by pl.id ,pl.sscc, pr.nome, pl.palete, pl.quantidade,pl.userGerado,pl.dataGerado,pl.userImpresso,pl.dataImpresso,pl.userConferido,pl.dataConferido", connection);
+                    command.Parameters.AddWithValue("@data", date_Conferido.Value.ToString("dd/MM/yyyy"));
+                    adapter = new SqlDataAdapter(command);
+                    dataSet = new DataSet();
+                    connection.Open();
+                    adapter.Fill(dataSet, "palete");
+                    connection.Close();
+                    grid_Paletes.DataSource = dataSet;
+                    grid_Paletes.DataMember = "palete";
+
+                    //CAIXA
+                    command = new SqlCommand("select pr.nome as 'Produto', cx.sscc as 'SSCC', cx.fabricacao as 'Fabricação', cx.validade as 'Vailidade', cx.lote as 'Lote', cx.userGerado as 'Gerado por',cx.dataGerado as 'Data Gerado',cx.userImpresso as 'Impresso por',cx.dataImpresso as 'Data Impresso',cx.userConferido as 'Conferido por',cx.dataConferido as 'Data Conferência' from palete pl join caixasPalete cp on pl.id = cp.palete_id join carregamento cr on cr.id = pl.carregamento_id join caixa cx on cx.id = cp.caixa_id join produto pr on pr.id = cx.produto_id where cx.dataConferido = @data group by cx.id ,cx.sscc, pr.nome, cx.fabricacao, cx.validade, cx.lote, cx.userGerado, cx.dataGerado, cx.userImpresso, cx.dataImpresso, cx.userConferido, cx.dataConferido", connection);
+                    command.Parameters.AddWithValue("@data", date_Conferido.Value.ToString("dd/MM/yyyy"));
+                    adapter = new SqlDataAdapter(command);
+                    dataSet = new DataSet();
+                    connection.Open();
+                    adapter.Fill(dataSet, "caixa");
+                    connection.Close();
+                    grid_Caixas.DataSource = dataSet;
+                    grid_Caixas.DataMember = "caixa";
+                }
+                else if (rbtn_DataGerado.Checked && date_Gerado.Value != null)
+                {
+                    //CARREGAMENTO
+                    command = new SqlCommand("select cr.codigo as 'Código',cr.expedicao as 'Data Expedição',cr.userGerado as 'Gerado por',cr.dataGerado as 'Data Gerado',cr.userImpresso as 'Impresso por',cr.dataImpresso as 'Data Impresso',cr.userConferido as 'Conferido por',cr.dataConferido as 'Data Conferência' from carregamento cr join palete pl on pl.carregamento_id=cr.id join caixasPalete cp on cp.palete_id=pl.id join caixa cx on cx.id=cp.caixa_id join produto pr on pr.id=cx.produto_id where cr.dataGerado=@data group by cr.id,cr.codigo,cr.expedicao,cr.userGerado,cr.dataGerado,cr.userImpresso,cr.dataImpresso,cr.userConferido,cr.dataConferido", connection);
+                    command.Parameters.AddWithValue("@data", date_Gerado.Value.ToString("dd/MM/yyyy"));
+                    adapter = new SqlDataAdapter(command);
+                    connection.Open();
+                    adapter.Fill(dataSet, "carregamento");
+                    connection.Close();
+                    grid_Carregamentos.DataSource = dataSet;
+                    grid_Carregamentos.DataMember = "carregamento";
+
+                    //PALETE
+                    command = new SqlCommand("select pr.nome as 'Produto', pl.sscc as 'SSCC', pl.palete as 'Tara do Palete', pl.quantidade as 'Quantidade',pl.userGerado as 'Gerado por',pl.dataGerado as 'Data Gerado',pl.userImpresso as 'Impresso por',pl.dataImpresso as 'Data Impresso',pl.userConferido as 'Conferido por',pl.dataConferido as 'Data Conferência' from palete pl join caixasPalete cp on pl.id = cp.palete_id join carregamento cr on cr.id = pl.carregamento_id join caixa cx on cx.id = cp.caixa_id join produto pr on pr.id = cx.produto_id where pl.dataGerado=@data group by pl.id ,pl.sscc, pr.nome, pl.palete, pl.quantidade,pl.userGerado,pl.dataGerado,pl.userImpresso,pl.dataImpresso,pl.userConferido,pl.dataConferido", connection);
+                    command.Parameters.AddWithValue("@data", date_Gerado.Value.ToString("dd/MM/yyyy"));
+                    adapter = new SqlDataAdapter(command);
+                    dataSet = new DataSet();
+                    connection.Open();
+                    adapter.Fill(dataSet, "palete");
+                    connection.Close();
+                    grid_Paletes.DataSource = dataSet;
+                    grid_Paletes.DataMember = "palete";
+
+                    //CAIXA
+                    command = new SqlCommand("select pr.nome as 'Produto', cx.sscc as 'SSCC', cx.fabricacao as 'Fabricação', cx.validade as 'Vailidade', cx.lote as 'Lote', cx.userGerado as 'Gerado por',cx.dataGerado as 'Data Gerado',cx.userImpresso as 'Impresso por',cx.dataImpresso as 'Data Impresso',cx.userConferido as 'Conferido por',cx.dataConferido as 'Data Conferência' from palete pl join caixasPalete cp on pl.id = cp.palete_id join carregamento cr on cr.id = pl.carregamento_id join caixa cx on cx.id = cp.caixa_id join produto pr on pr.id = cx.produto_id where cx.dataGerado = @data group by cx.id ,cx.sscc, pr.nome, cx.fabricacao, cx.validade, cx.lote, cx.userGerado, cx.dataGerado, cx.userImpresso, cx.dataImpresso, cx.userConferido, cx.dataConferido", connection);
+                    command.Parameters.AddWithValue("@data", date_Gerado.Value.ToString("dd/MM/yyyy"));
+                    adapter = new SqlDataAdapter(command);
+                    dataSet = new DataSet();
+                    connection.Open();
+                    adapter.Fill(dataSet, "caixa");
+                    connection.Close();
+                    grid_Caixas.DataSource = dataSet;
+                    grid_Caixas.DataMember = "caixa";
+                }
+                else if (rbtn_DataImpresso.Checked && date_Impresso.Value != null)
+                {
+                    //CARREGAMENTO
+                    command = new SqlCommand("select cr.codigo as 'Código',cr.expedicao as 'Data Expedição',cr.userGerado as 'Gerado por',cr.dataGerado as 'Data Gerado',cr.userImpresso as 'Impresso por',cr.dataImpresso as 'Data Impresso',cr.userConferido as 'Conferido por',cr.dataConferido as 'Data Conferência' from carregamento cr join palete pl on pl.carregamento_id=cr.id join caixasPalete cp on cp.palete_id=pl.id join caixa cx on cx.id=cp.caixa_id join produto pr on pr.id=cx.produto_id where cr.dataImpresso=@data group by cr.id,cr.codigo,cr.expedicao,cr.userGerado,cr.dataGerado,cr.userImpresso,cr.dataImpresso,cr.userConferido,cr.dataConferido", connection);
+                    command.Parameters.AddWithValue("@data", date_Impresso.Value.ToString("dd/MM/yyyy"));
+                    adapter = new SqlDataAdapter(command);
+                    connection.Open();
+                    adapter.Fill(dataSet, "carregamento");
+                    connection.Close();
+                    grid_Carregamentos.DataSource = dataSet;
+                    grid_Carregamentos.DataMember = "carregamento";
+
+                    //PALETE
+                    command = new SqlCommand("select pr.nome as 'Produto', pl.sscc as 'SSCC', pl.palete as 'Tara do Palete', pl.quantidade as 'Quantidade',pl.userGerado as 'Gerado por',pl.dataGerado as 'Data Gerado',pl.userImpresso as 'Impresso por',pl.dataImpresso as 'Data Impresso',pl.userConferido as 'Conferido por',pl.dataConferido as 'Data Conferência' from palete pl join caixasPalete cp on pl.id = cp.palete_id join carregamento cr on cr.id = pl.carregamento_id join caixa cx on cx.id = cp.caixa_id join produto pr on pr.id = cx.produto_id where pl.dataImpresso=@data group by pl.id ,pl.sscc, pr.nome, pl.palete, pl.quantidade,pl.userGerado,pl.dataGerado,pl.userImpresso,pl.dataImpresso,pl.userConferido,pl.dataConferido", connection);
+                    command.Parameters.AddWithValue("@data", date_Impresso.Value.ToString("dd/MM/yyyy"));
+                    adapter = new SqlDataAdapter(command);
+                    dataSet = new DataSet();
+                    connection.Open();
+                    adapter.Fill(dataSet, "palete");
+                    connection.Close();
+                    grid_Paletes.DataSource = dataSet;
+                    grid_Paletes.DataMember = "palete";
+
+                    //CAIXA
+                    command = new SqlCommand("select pr.nome as 'Produto', cx.sscc as 'SSCC', cx.fabricacao as 'Fabricação', cx.validade as 'Vailidade', cx.lote as 'Lote', cx.userGerado as 'Gerado por',cx.dataGerado as 'Data Gerado',cx.userImpresso as 'Impresso por',cx.dataImpresso as 'Data Impresso',cx.userConferido as 'Conferido por',cx.dataConferido as 'Data Conferência' from palete pl join caixasPalete cp on pl.id = cp.palete_id join carregamento cr on cr.id = pl.carregamento_id join caixa cx on cx.id = cp.caixa_id join produto pr on pr.id = cx.produto_id where cx.dataImpresso = @data group by cx.id ,cx.sscc, pr.nome, cx.fabricacao, cx.validade, cx.lote, cx.userGerado, cx.dataGerado, cx.userImpresso, cx.dataImpresso, cx.userConferido, cx.dataConferido", connection);
+                    command.Parameters.AddWithValue("@data", date_Impresso.Value.ToString("dd/MM/yyyy"));
+                    adapter = new SqlDataAdapter(command);
+                    dataSet = new DataSet();
+                    connection.Open();
+                    adapter.Fill(dataSet, "caixa");
+                    connection.Close();
+                    grid_Caixas.DataSource = dataSet;
+                    grid_Caixas.DataMember = "caixa";
+                }
+                else if (rbtn_Gtin.Checked && txt_Gtin.Text != "")
+                {
+                    //CARREGAMENTO
+                    command = new SqlCommand("select cr.codigo as 'Código',cr.expedicao as 'Data Expedição',cr.userGerado as 'Gerado por',cr.dataGerado as 'Data Gerado',cr.userImpresso as 'Impresso por',cr.dataImpresso as 'Data Impresso',cr.userConferido as 'Conferido por',cr.dataConferido as 'Data Conferência' from carregamento cr join palete pl on pl.carregamento_id=cr.id join caixasPalete cp on cp.palete_id=pl.id join caixa cx on cx.id=cp.caixa_id join produto pr on pr.id=cx.produto_id where pr.gtin=@gtin group by cr.id,cr.codigo,cr.expedicao,cr.userGerado,cr.dataGerado,cr.userImpresso,cr.dataImpresso,cr.userConferido,cr.dataConferido", connection);
+                    command.Parameters.AddWithValue("@gtin", txt_Gtin.Text);
+                    adapter = new SqlDataAdapter(command);
+                    connection.Open();
+                    adapter.Fill(dataSet, "carregamento");
+                    connection.Close();
+                    grid_Carregamentos.DataSource = dataSet;
+                    grid_Carregamentos.DataMember = "carregamento";
+
+                    //PALETE
+                    command = new SqlCommand("select pr.nome as 'Produto', pl.sscc as 'SSCC', pl.palete as 'Tara do Palete', pl.quantidade as 'Quantidade',pl.userGerado as 'Gerado por',pl.dataGerado as 'Data Gerado',pl.userImpresso as 'Impresso por',pl.dataImpresso as 'Data Impresso',pl.userConferido as 'Conferido por',pl.dataConferido as 'Data Conferência' from palete pl join caixasPalete cp on pl.id = cp.palete_id join carregamento cr on cr.id = pl.carregamento_id join caixa cx on cx.id = cp.caixa_id join produto pr on pr.id = cx.produto_id where pr.gtin=@gtin group by pl.id ,pl.sscc, pr.nome, pl.palete, pl.quantidade,pl.userGerado,pl.dataGerado,pl.userImpresso,pl.dataImpresso,pl.userConferido,pl.dataConferido", connection);
+                    command.Parameters.AddWithValue("@gtin", txt_Gtin.Text);
+                    adapter = new SqlDataAdapter(command);
+                    dataSet = new DataSet();
+                    connection.Open();
+                    adapter.Fill(dataSet, "palete");
+                    connection.Close();
+                    grid_Paletes.DataSource = dataSet;
+                    grid_Paletes.DataMember = "palete";
+
+                    //CAIXA
+                    command = new SqlCommand("select pr.nome as 'Produto', cx.sscc as 'SSCC', cx.fabricacao as 'Fabricação', cx.validade as 'Vailidade', cx.lote as 'Lote', cx.userGerado as 'Gerado por',cx.dataGerado as 'Data Gerado',cx.userImpresso as 'Impresso por',cx.dataImpresso as 'Data Impresso',cx.userConferido as 'Conferido por',cx.dataConferido as 'Data Conferência' from palete pl join caixasPalete cp on pl.id = cp.palete_id join carregamento cr on cr.id = pl.carregamento_id join caixa cx on cx.id = cp.caixa_id join produto pr on pr.id = cx.produto_id where pr.gtin=@gtin by cx.id ,cx.sscc, pr.nome, cx.fabricacao, cx.validade, cx.lote, cx.userGerado, cx.dataGerado, cx.userImpresso, cx.dataImpresso, cx.userConferido, cx.dataConferido", connection);
+                    command.Parameters.AddWithValue("@gtin", txt_Gtin.Text);
+                    adapter = new SqlDataAdapter(command);
+                    dataSet = new DataSet();
+                    connection.Open();
+                    adapter.Fill(dataSet, "caixa");
+                    connection.Close();
+                    grid_Caixas.DataSource = dataSet;
+                    grid_Caixas.DataMember = "caixa";
+                }
+                else if (rbtn_Produto.Checked && cbox_Produtos.SelectedIndex >= 0)
+                {
+                    //CARREGAMENTO
+                    command = new SqlCommand("select cr.codigo as 'Código',cr.expedicao as 'Data Expedição',cr.userGerado as 'Gerado por',cr.dataGerado as 'Data Gerado',cr.userImpresso as 'Impresso por',cr.dataImpresso as 'Data Impresso',cr.userConferido as 'Conferido por',cr.dataConferido as 'Data Conferência' from carregamento cr join palete pl on pl.carregamento_id=cr.id join caixasPalete cp on cp.palete_id=pl.id join caixa cx on cx.id=cp.caixa_id join produto pr on pr.id=cx.produto_id where pr.id=@id group by cr.id,cr.codigo,cr.expedicao,cr.userGerado,cr.dataGerado,cr.userImpresso,cr.dataImpresso,cr.userConferido,cr.dataConferido", connection);
+                    command.Parameters.AddWithValue("@id", cbox_Produtos.SelectedValue);
+                    adapter = new SqlDataAdapter(command);
+                    connection.Open();
+                    adapter.Fill(dataSet, "carregamento");
+                    connection.Close();
+                    grid_Carregamentos.DataSource = dataSet;
+                    grid_Carregamentos.DataMember = "carregamento";
+
+                    //PALETE
+                    command = new SqlCommand("select pr.nome as 'Produto', pl.sscc as 'SSCC', pl.palete as 'Tara do Palete', pl.quantidade as 'Quantidade',pl.userGerado as 'Gerado por',pl.dataGerado as 'Data Gerado',pl.userImpresso as 'Impresso por',pl.dataImpresso as 'Data Impresso',pl.userConferido as 'Conferido por',pl.dataConferido as 'Data Conferência' from palete pl join caixasPalete cp on pl.id = cp.palete_id join carregamento cr on cr.id = pl.carregamento_id join caixa cx on cx.id = cp.caixa_id join produto pr on pr.id = cx.produto_id where pr.id=@id group by pl.id ,pl.sscc, pr.nome, pl.palete, pl.quantidade,pl.userGerado,pl.dataGerado,pl.userImpresso,pl.dataImpresso,pl.userConferido,pl.dataConferido", connection);
+                    command.Parameters.AddWithValue("@id", cbox_Produtos.SelectedValue);
+                    adapter = new SqlDataAdapter(command);
+                    dataSet = new DataSet();
+                    connection.Open();
+                    adapter.Fill(dataSet, "palete");
+                    connection.Close();
+                    grid_Paletes.DataSource = dataSet;
+                    grid_Paletes.DataMember = "palete";
+
+                    //CAIXA
+                    command = new SqlCommand("select pr.nome as 'Produto', cx.sscc as 'SSCC', cx.fabricacao as 'Fabricação', cx.validade as 'Vailidade', cx.lote as 'Lote', cx.userGerado as 'Gerado por',cx.dataGerado as 'Data Gerado',cx.userImpresso as 'Impresso por',cx.dataImpresso as 'Data Impresso',cx.userConferido as 'Conferido por',cx.dataConferido as 'Data Conferência' from palete pl join caixasPalete cp on pl.id = cp.palete_id join carregamento cr on cr.id = pl.carregamento_id join caixa cx on cx.id = cp.caixa_id join produto pr on pr.id = cx.produto_id where pr.id = @id group by cx.id ,cx.sscc, pr.nome, cx.fabricacao, cx.validade, cx.lote, cx.userGerado, cx.dataGerado, cx.userImpresso, cx.dataImpresso, cx.userConferido, cx.dataConferido", connection);
+                    command.Parameters.AddWithValue("@id", cbox_Produtos.SelectedValue);
+                    adapter = new SqlDataAdapter(command);
+                    dataSet = new DataSet();
+                    connection.Open();
+                    adapter.Fill(dataSet, "caixa");
+                    connection.Close();
+                    grid_Caixas.DataSource = dataSet;
+                    grid_Caixas.DataMember = "caixa";
+                }
+                else if (rbtn_SSCC.Checked && txt_SSCC.Text != "")
+                {
+                    //CARREGAMENTO
+                    command = new SqlCommand("select cr.codigo as 'Código',cr.expedicao as 'Data Expedição',cr.userGerado as 'Gerado por',cr.dataGerado as 'Data Gerado',cr.userImpresso as 'Impresso por',cr.dataImpresso as 'Data Impresso',cr.userConferido as 'Conferido por',cr.dataConferido as 'Data Conferência' from carregamento cr join palete pl on pl.carregamento_id=cr.id join caixasPalete cp on cp.palete_id=pl.id join caixa cx on cx.id=cp.caixa_id join produto pr on pr.id=cx.produto_id where pl.sscc=@sscc or cx.sscc=@sscc group by cr.id,cr.codigo,cr.expedicao,cr.userGerado,cr.dataGerado,cr.userImpresso,cr.dataImpresso,cr.userConferido,cr.dataConferido", connection);
+                    command.Parameters.AddWithValue("@sscc", txt_SSCC.Text);
+                    adapter = new SqlDataAdapter(command);
+                    connection.Open();
+                    adapter.Fill(dataSet, "carregamento");
+                    connection.Close();
+                    grid_Carregamentos.DataSource = dataSet;
+                    grid_Carregamentos.DataMember = "carregamento";
+
+                    //PALETE
+                    command = new SqlCommand("select pr.nome as 'Produto', pl.sscc as 'SSCC', pl.palete as 'Tara do Palete', pl.quantidade as 'Quantidade',pl.userGerado as 'Gerado por',pl.dataGerado as 'Data Gerado',pl.userImpresso as 'Impresso por',pl.dataImpresso as 'Data Impresso',pl.userConferido as 'Conferido por',pl.dataConferido as 'Data Conferência' from palete pl join caixasPalete cp on pl.id = cp.palete_id join carregamento cr on cr.id = pl.carregamento_id join caixa cx on cx.id = cp.caixa_id join produto pr on pr.id = cx.produto_id where pl.sscc=@sscc or cx.sscc=@sscc group by pl.id ,pl.sscc, pr.nome, pl.palete, pl.quantidade,pl.userGerado,pl.dataGerado,pl.userImpresso,pl.dataImpresso,pl.userConferido,pl.dataConferido", connection);
+                    command.Parameters.AddWithValue("@sscc", txt_SSCC.Text);
+                    adapter = new SqlDataAdapter(command);
+                    dataSet = new DataSet();
+                    connection.Open();
+                    adapter.Fill(dataSet, "palete");
+                    connection.Close();
+                    grid_Paletes.DataSource = dataSet;
+                    grid_Paletes.DataMember = "palete";
+
+                    //CAIXA
+                    command = new SqlCommand("select pr.nome as 'Produto', cx.sscc as 'SSCC', cx.fabricacao as 'Fabricação', cx.validade as 'Vailidade', cx.lote as 'Lote', cx.userGerado as 'Gerado por',cx.dataGerado as 'Data Gerado',cx.userImpresso as 'Impresso por',cx.dataImpresso as 'Data Impresso',cx.userConferido as 'Conferido por',cx.dataConferido as 'Data Conferência' from palete pl join caixasPalete cp on pl.id = cp.palete_id join carregamento cr on cr.id = pl.carregamento_id join caixa cx on cx.id = cp.caixa_id join produto pr on pr.id = cx.produto_id where pl.sscc=@sscc or cx.sscc=@sscc group by cx.id ,cx.sscc, pr.nome, cx.fabricacao, cx.validade, cx.lote, cx.userGerado, cx.dataGerado, cx.userImpresso, cx.dataImpresso, cx.userConferido, cx.dataConferido", connection);
+                    command.Parameters.AddWithValue("@sscc", txt_SSCC.Text);
+                    adapter = new SqlDataAdapter(command);
+                    dataSet = new DataSet();
+                    connection.Open();
+                    adapter.Fill(dataSet, "caixa");
+                    connection.Close();
+                    grid_Caixas.DataSource = dataSet;
+                    grid_Caixas.DataMember = "caixa";
+                }
+                else if (rbtn_Usuario.Checked && cbox_Usuario.SelectedIndex >= 0)
+                {
+                    //CARREGAMENTO
+                    command = new SqlCommand("select cr.codigo as 'Código',cr.expedicao as 'Data Expedição',cr.userGerado as 'Gerado por',cr.dataGerado as 'Data Gerado',cr.userImpresso as 'Impresso por',cr.dataImpresso as 'Data Impresso',cr.userConferido as 'Conferido por',cr.dataConferido as 'Data Conferência' from carregamento cr join palete pl on pl.carregamento_id=cr.id join caixasPalete cp on cp.palete_id=pl.id join caixa cx on cx.id=cp.caixa_id join produto pr on pr.id=cx.produto_id where cr.userGerado=@user or cr.userImpresso=@user or cr.userConferido=@user group by cr.id,cr.codigo,cr.expedicao,cr.userGerado,cr.dataGerado,cr.userImpresso,cr.dataImpresso,cr.userConferido,cr.dataConferido", connection);
+                    command.Parameters.AddWithValue("@user", cbox_Usuario.Text);
+                    adapter = new SqlDataAdapter(command);
+                    connection.Open();
+                    adapter.Fill(dataSet, "carregamento");
+                    connection.Close();
+                    grid_Carregamentos.DataSource = dataSet;
+                    grid_Carregamentos.DataMember = "carregamento";
+
+                    //PALETE
+                    command = new SqlCommand("select pr.nome as 'Produto', pl.sscc as 'SSCC', pl.palete as 'Tara do Palete', pl.quantidade as 'Quantidade',pl.userGerado as 'Gerado por',pl.dataGerado as 'Data Gerado',pl.userImpresso as 'Impresso por',pl.dataImpresso as 'Data Impresso',pl.userConferido as 'Conferido por',pl.dataConferido as 'Data Conferência' from palete pl join caixasPalete cp on pl.id = cp.palete_id join carregamento cr on cr.id = pl.carregamento_id join caixa cx on cx.id = cp.caixa_id join produto pr on pr.id = cx.produto_id where pl.userGerado=@user or pl.userImpresso=@user or pl.userConferido=@user group by pl.id ,pl.sscc, pr.nome, pl.palete, pl.quantidade,pl.userGerado,pl.dataGerado,pl.userImpresso,pl.dataImpresso,pl.userConferido,pl.dataConferido", connection);
+                    command.Parameters.AddWithValue("@user", cbox_Usuario.Text);
+                    adapter = new SqlDataAdapter(command);
+                    dataSet = new DataSet();
+                    connection.Open();
+                    adapter.Fill(dataSet, "palete");
+                    connection.Close();
+                    grid_Paletes.DataSource = dataSet;
+                    grid_Paletes.DataMember = "palete";
+
+                    //CAIXA
+                    command = new SqlCommand("select pr.nome as 'Produto', cx.sscc as 'SSCC', cx.fabricacao as 'Fabricação', cx.validade as 'Vailidade', cx.lote as 'Lote', cx.userGerado as 'Gerado por',cx.dataGerado as 'Data Gerado',cx.userImpresso as 'Impresso por',cx.dataImpresso as 'Data Impresso',cx.userConferido as 'Conferido por',cx.dataConferido as 'Data Conferência' from palete pl join caixasPalete cp on pl.id = cp.palete_id join carregamento cr on cr.id = pl.carregamento_id join caixa cx on cx.id = cp.caixa_id join produto pr on pr.id = cx.produto_id where cx.userGerado=@user or cx.userImpresso=@user or cx.userConferido=@user group by cx.id ,cx.sscc, pr.nome, cx.fabricacao, cx.validade, cx.lote, cx.userGerado, cx.dataGerado, cx.userImpresso, cx.dataImpresso, cx.userConferido, cx.dataConferido", connection);
+                    command.Parameters.AddWithValue("@user", cbox_Usuario.Text);
+                    adapter = new SqlDataAdapter(command);
+                    dataSet = new DataSet();
+                    connection.Open();
+                    adapter.Fill(dataSet, "caixa");
+                    connection.Close();
+                    grid_Caixas.DataSource = dataSet;
+                    grid_Caixas.DataMember = "caixa";
                 }
                 else
                 {
-                    btn_Done.Enabled = false;
-                    btn_Carregamento.Enabled = false;
+                    throw new Exception("Não foi possível fazer a pesquisa, algum campo ficou em branco.");
                 }
+                gbox_Resultado.Enabled = true;
+                btn_Imprimir.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (connection.State == ConnectionState.Open)
+                    connection.Close();
             }
         }
 
-        private void lbox_Paletes_SelectedIndexChanged(object sender, EventArgs e)
+        private void btn_Imprimir_Click(object sender, EventArgs e)
         {
-            if (flag && lbox_Paletes.SelectedItem != null)
-            {
-                string[] tmp = lbox_Paletes.SelectedItem.ToString().Split('-');
-                lbox_Caixas.Items.Clear();
-
-                command = new SqlCommand("select c.id,c.sscc from caixa c join caixasPalete cp on cp.caixa_id=c.id where cp.palete_id=@palete_id", connection);
-                command.Parameters.AddWithValue("@palete_id", tmp[0].ToString());
-
-                connection.Open();
-                reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    var item = reader.GetValue(0).ToString() + " - " + reader.GetValue(1).ToString();
-                    lbox_Caixas.Items.Add(item);
-                }
-                reader.Close();
-                connection.Close();
-                btn_Palete.Enabled = true;
-            }
+            SelectDataGrid form = new SelectDataGrid();
+            DialogResult result = form.ShowDialog();
+            if (result == DialogResult.OK)
+                printRelatorio.Print(grid_Carregamentos);
+            else if (result == DialogResult.Yes)
+                printRelatorio.Print(grid_Paletes);
+            else if (result == DialogResult.Retry)
+                printRelatorio.Print(grid_Caixas);
             else
-            {
-                btn_Palete.Enabled = false;
-            }
+                MessageBox.Show("Erro desconhecido, favor contatar o desenvolvedor do software.", "ERRO!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void lbox_Caixas_SelectedIndexChanged(object sender, EventArgs e)
+        private void Rastrear_Load(object sender, EventArgs e)
         {
-            if (flag && lbox_Caixas.SelectedItem != null)
-            {
-                btn_Caixa.Enabled = true;
-            }
-            else
-            {
-                btn_Caixa.Enabled = false;
-            }
+            UpdateBox();
         }
 
-        private void btn_Cancel_Click(object sender, EventArgs e)
+        private void UpdateBox()
         {
-            Close();
-        }
-
-        private void btn_Carregamento_Click(object sender, EventArgs e)
-        {
-            if (cbox_Carregamentos.SelectedIndex >= 0)
+            try
             {
-                string codigo = "", expedicao = "", userGerado = "", dataGerado = "", userImpressao = "", dataImpressao = "", userConferido = "", dataConferido = "";
+                cbox_Produtos.Items.Clear();
+                command = new SqlCommand("select id,nome from produto", connection);
+                adapter = new SqlDataAdapter(command);
+                table = new DataTable();
+                adapter.Fill(table);
+                cbox_Produtos.DataSource = table;
+                cbox_Produtos.DisplayMember = table.Columns[1].ToString();
+                cbox_Produtos.ValueMember = table.Columns[0].ToString();
+                cbox_Produtos.SelectedIndex = -1;
 
-                command = new SqlCommand("select codigo, expedicao, userGerado, dataGerado, userImpresso, dataImpresso, userConferido, dataConferido from carregamento where id=@id", connection);
-                command.Parameters.AddWithValue("@id", cbox_Carregamentos.SelectedValue);
-                connection.Open();
-                reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    codigo = reader.GetValue(0).ToString();
-                    expedicao = reader.GetDateTime(1).ToString("dd/MM/yy");
-                    userGerado = reader.GetValue(2).ToString();
-                    if (!reader.IsDBNull(3))
-                        dataGerado = reader.GetDateTime(3).ToString("dd/MM/yy");
-                    userImpressao = reader.GetValue(4).ToString();
-                    if (!reader.IsDBNull(5))
-                        dataImpressao = reader.GetDateTime(5).ToString("dd/MM/yy");
-                    userConferido = reader.GetValue(6).ToString();
-                    if (!reader.IsDBNull(7))
-                        dataConferido = reader.GetDateTime(7).ToString("dd/MM/yy");
-                }
-                reader.Close();
-                connection.Close();
-
-                dg1.Rows.Add();
-                dg1.Rows[0].Cells[0].Value = "Código:";
-                dg1.Rows[0].Cells[1].Value = codigo;
-                dg1.Rows.Add();
-                dg1.Rows[1].Cells[0].Value = "Expedição:";
-                dg1.Rows[1].Cells[1].Value = expedicao;
-                dg1.Rows.Add();
-                dg1.Rows[2].Cells[0].Value = "Gerado por:";
-                dg1.Rows[2].Cells[1].Value = userGerado;
-                dg1.Rows.Add();
-                dg1.Rows[3].Cells[0].Value = "Data:";
-                dg1.Rows[3].Cells[1].Value = dataGerado;
-                dg1.Rows.Add();
-                dg1.Rows[4].Cells[0].Value = "Impresso por:";
-                dg1.Rows[4].Cells[1].Value = userImpressao;
-                dg1.Rows.Add();
-                dg1.Rows[5].Cells[0].Value = "Data:";
-                dg1.Rows[5].Cells[1].Value = dataImpressao;
-                dg1.Rows.Add();
-                dg1.Rows[6].Cells[0].Value = "Conferido por:";
-                dg1.Rows[6].Cells[1].Value = userConferido;
-                dg1.Rows.Add();
-                dg1.Rows[7].Cells[0].Value = "Data:";
-                dg1.Rows[7].Cells[1].Value = dataConferido;
-
-                dg1.Columns[0].Width = 100;
+                cbox_Usuario.Items.Clear();
+                command = new SqlCommand("select id,usuario from users", connection);
+                adapter = new SqlDataAdapter(command);
+                table = new DataTable();
+                adapter.Fill(table);
+                cbox_Usuario.DataSource = table;
+                cbox_Usuario.DisplayMember = table.Columns[1].ToString();
+                cbox_Usuario.ValueMember = table.Columns[0].ToString();
+                cbox_Usuario.SelectedIndex = -1;
             }
-        }
-
-        private void btn_Palete_Click(object sender, EventArgs e)
-        {
-            if (lbox_Paletes.SelectedIndex >= 0 && lbox_Paletes.SelectedItem != null)
+            catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void btn_Caixa_Click(object sender, EventArgs e)
-        {
-            if (lbox_Caixas.SelectedIndex >= 0 && lbox_Caixas.SelectedItem != null)
+            finally
             {
-
+                if (connection.State == ConnectionState.Open)
+                    connection.Close();
             }
         }
     }

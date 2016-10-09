@@ -225,7 +225,7 @@ namespace Traceability_Labels
                 string cod1, cod2, cod3, sscc, processador, gtin, nome, lote;
                 decimal embalagem, caixa, palete, stretch, cantoneira;
                 string fabricacao, validade, fabricacaoCod, validadeCod;
-                
+
                 id_Produto = Convert.ToInt32(dataGrid.Rows[i].Cells[0].Value);
                 nome = dataGrid.Rows[i].Cells[1].Value.ToString();
                 gtin = dataGrid.Rows[i].Cells[2].Value.ToString();
@@ -247,23 +247,23 @@ namespace Traceability_Labels
                 processador = Global.regProcessadorGlobal;
                 sscc = Global.NextSSCC("PALETE");
 
-                cod1 = "02" + gtin + "15" + validadeCod.Replace("/", "") + "11" + fabricacaoCod.Replace("/", "") + "37" + quantidade;
-                cod2 = "7030" + processador + "10" + lote;
-                cod3 = "00" + sscc;
-                
+                cod1 = "*02" + gtin + "15" + validadeCod.Replace("/", "") + "11" + fabricacaoCod.Replace("/", "") + "37" + quantidade + "*";
+                cod2 = "*7030" + processador + "10" + lote + "*";
+                cod3 = "*00" + sscc + "*";
+
                 command = new SqlCommand("insert into palete (carregamento_id,sscc,palete,stretch,cantoneira,cod1,cod2,cod3,quantidade,userGerado,dataGerado,estagio) values(@carregamento_id,@sscc,@palete,@stretch,@cantoneira,@cod1,@cod2,@cod3,@quantidade,@userGerado,@dataGerado,@estagio) select scope_identity()", connection);
-                command.Parameters.AddWithValue("@carregamento_id",id_Carregamento);
-                command.Parameters.AddWithValue("@sscc",sscc);
-                command.Parameters.AddWithValue("@palete",palete);
-                command.Parameters.AddWithValue("@stretch",stretch);
-                command.Parameters.AddWithValue("@cantoneira",cantoneira);
-                command.Parameters.AddWithValue("@cod1",cod1);
-                command.Parameters.AddWithValue("@cod2",cod2);
-                command.Parameters.AddWithValue("@cod3",cod3);
+                command.Parameters.AddWithValue("@carregamento_id", id_Carregamento);
+                command.Parameters.AddWithValue("@sscc", sscc);
+                command.Parameters.AddWithValue("@palete", palete);
+                command.Parameters.AddWithValue("@stretch", stretch);
+                command.Parameters.AddWithValue("@cantoneira", cantoneira);
+                command.Parameters.AddWithValue("@cod1", cod1);
+                command.Parameters.AddWithValue("@cod2", cod2);
+                command.Parameters.AddWithValue("@cod3", cod3);
                 command.Parameters.AddWithValue("@quantidade", quantidade);
                 command.Parameters.AddWithValue("@userGerado", Global.user);
                 command.Parameters.AddWithValue("@dataGerado", DateTime.Today.ToString("dd/MM/yy"));
-                command.Parameters.AddWithValue("@estagio",estagio);
+                command.Parameters.AddWithValue("@estagio", estagio);
 
                 connection.Open();
                 id_Palete = Convert.ToInt32(command.ExecuteScalar());
@@ -273,11 +273,11 @@ namespace Traceability_Labels
                 for (int j = 0; j < quantidade; j++)
                 {
                     sscc = Global.NextSSCC("CAIXA");
-                    cod1 = "01" + gtin + "15" + validadeCod.Replace("/", "") + "11" + fabricacaoCod.Replace("/", "");
-                    cod2 = "7030" + processador + "10" + lote;
-                    cod3 = "00" + sscc;
+                    cod1 = "*01" + gtin + "15" + validadeCod.Replace("/", "") + "11" + fabricacaoCod.Replace("/", "") + "*";
+                    cod2 = "*7030" + processador + "10" + lote+"*";
+                    cod3 = "*00" + sscc+"*";
 
-                    command = new SqlCommand("insert into caixa (produto_id,fabricacao,validade,lote,registroProcessador,sscc,cod1,cod2,cod3,userGerado,dataGerado,estagio) values (@produto_id,@fabricacao,@validade,@lote,@registroProcessador,@sscc,@cod1,@cod2,@cod3,@userGerado,@dataGerado,@estagio) select scope_identity()",connection);
+                    command = new SqlCommand("insert into caixa (produto_id,fabricacao,validade,lote,registroProcessador,sscc,cod1,cod2,cod3,userGerado,dataGerado,estagio) values (@produto_id,@fabricacao,@validade,@lote,@registroProcessador,@sscc,@cod1,@cod2,@cod3,@userGerado,@dataGerado,@estagio) select scope_identity()", connection);
                     command.Parameters.AddWithValue("@produto_id", id_Produto);
                     command.Parameters.AddWithValue("@fabricacao", fabricacao);
                     command.Parameters.AddWithValue("@validade", validade);

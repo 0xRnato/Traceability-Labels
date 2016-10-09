@@ -143,6 +143,7 @@
             this.AcceptButton = this.btn_Enter;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.CancelButton = this.btn_Cancel;
             this.ClientSize = new System.Drawing.Size(383, 153);
             this.ControlBox = false;
