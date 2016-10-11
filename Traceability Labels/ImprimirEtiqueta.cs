@@ -51,7 +51,11 @@ namespace Traceability_Labels
         private void ImprimirEtiqueta_Load(object sender, EventArgs e)
         {
             if (!Global.adm)
+            {
+                rbtn_Conferido.Enabled = false;
+                rbtn_Impresso.Enabled = false;
                 btn_2Via.Enabled = false;
+            }
         }
 
         private void cbox_Carregamentos_SelectedIndexChanged(object sender, EventArgs e)
@@ -143,8 +147,10 @@ namespace Traceability_Labels
                     reader.Close();
                     connection.Close();
 
-                    command = new SqlCommand("update palete set estagio=1 where id=@id", connection);
+                    command = new SqlCommand("update palete set estagio=1, userImpresso=@user,dataImpresso=@data where id=@id", connection);
                     command.Parameters.AddWithValue("@id", palete_id);
+                    command.Parameters.AddWithValue("@user", Global.user);
+                    command.Parameters.AddWithValue("@data", DateTime.Today);
                     connection.Open();
                     command.ExecuteNonQuery();
                     connection.Close();
@@ -208,8 +214,10 @@ namespace Traceability_Labels
                     reader.Close();
                     connection.Close();
 
-                    command = new SqlCommand("update cx set cx.estagio=1 from caixa cx join caixasPalete cp on cp.caixa_id=cx.id where cx.id=@id", connection);
+                    command = new SqlCommand("update cx set cx.estagio=1 ,cx.dataImpresso=@data, cx.userImpresso=@user from caixa cx join caixasPalete cp on cp.caixa_id=cx.id where cx.id=@id", connection);
                     command.Parameters.AddWithValue("@id", caixa_id);
+                    command.Parameters.AddWithValue("@user", Global.user);
+                    command.Parameters.AddWithValue("@data", DateTime.Today);
                     connection.Open();
                     command.ExecuteNonQuery();
                     connection.Close();
@@ -268,8 +276,10 @@ namespace Traceability_Labels
                     reader.Close();
                     connection.Close();
 
-                    command = new SqlCommand("update palete set estagio=1 where id=@id", connection);
+                    command = new SqlCommand("update palete set estagio=1, dataImpresso=@data,userImpresso=@user where id=@id", connection);
                     command.Parameters.AddWithValue("@id", palete_id);
+                    command.Parameters.AddWithValue("@user", Global.user);
+                    command.Parameters.AddWithValue("@data", DateTime.Today);
                     connection.Open();
                     command.ExecuteNonQuery();
                     connection.Close();
@@ -297,8 +307,10 @@ namespace Traceability_Labels
 
                         PrintLabel.Caixa(gtin, fabricacao, validade, lote.ToString(), nome, registroProcessador, sscc, embalagem.ToString(), caixa.ToString(), cod1, cod2, cod3, false);
 
-                        command2 = new SqlCommand("update cx set cx.estagio=1 from caixa cx join caixasPalete cp on cp.caixa_id=cx.id where cx.id=@id", connection2);
+                        command2 = new SqlCommand("update cx set cx.estagio=1,cx.dataImpresso=@data,cx.userImpresso=@user from caixa cx join caixasPalete cp on cp.caixa_id=cx.id where cx.id=@id", connection2);
                         command2.Parameters.AddWithValue("@id", caixa_id);
+                        command.Parameters.AddWithValue("@user", Global.user);
+                        command.Parameters.AddWithValue("@data", DateTime.Today);
                         connection2.Open();
                         command2.ExecuteNonQuery();
                         connection2.Close();
@@ -306,8 +318,10 @@ namespace Traceability_Labels
                     reader.Close();
                     connection.Close();
                 }
-                command = new SqlCommand("update carregamento set estagio=1 where id=@id", connection);
+                command = new SqlCommand("update carregamento set estagio=1,userImpresso=@user,dataImpresso=@data where id=@id", connection);
                 command.Parameters.AddWithValue("@id", cbox_Carregamentos.SelectedValue);
+                command.Parameters.AddWithValue("@user", Global.user);
+                command.Parameters.AddWithValue("@data", DateTime.Today);
                 connection.Open();
                 command.ExecuteNonQuery();
                 connection.Close();

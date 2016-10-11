@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Rastrear));
             this.rbtn_Produto = new System.Windows.Forms.RadioButton();
             this.rbtn_Gtin = new System.Windows.Forms.RadioButton();
             this.rbtn_SSCC = new System.Windows.Forms.RadioButton();
@@ -442,10 +443,10 @@
             this.Controls.Add(this.btn_Cancelar);
             this.Controls.Add(this.gbox_Pesquisa);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Rastrear";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rastrear";
             this.Load += new System.EventHandler(this.Rastrear_Load);

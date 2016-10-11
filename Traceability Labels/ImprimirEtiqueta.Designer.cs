@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImprimirEtiqueta));
             this.label1 = new System.Windows.Forms.Label();
             this.cbox_Carregamentos = new System.Windows.Forms.ComboBox();
             this.lbox_Paletes = new System.Windows.Forms.ListBox();
@@ -187,10 +188,10 @@
             this.Controls.Add(this.cbox_Carregamentos);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ImprimirEtiqueta";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Imprimi etiqueta";
             this.Load += new System.EventHandler(this.ImprimirEtiqueta_Load);

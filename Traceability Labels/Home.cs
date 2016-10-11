@@ -32,6 +32,7 @@ namespace Traceability_Labels
                 menu_Rastrear.Enabled = false;
                 menu_CadastrarUsuario.Enabled = false;
                 menu_EditarUsuario.Enabled = false;
+                menu_Leitor.Enabled = false;
                 Global.adm = false;
             }
             else
@@ -50,7 +51,9 @@ namespace Traceability_Labels
 
         private void menu_Sair_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult result = MessageBox.Show("Deseja mesmo sair?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+                Application.Exit();
         }
 
         private void menu_Sobre_Click(object sender, EventArgs e)
@@ -116,6 +119,18 @@ namespace Traceability_Labels
         private void editarCarregamentoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             EditarCarregamento form = new EditarCarregamento();
+            form.ShowDialog();
+        }
+
+        private void gerarChaveDeUsuárioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GerarUser form = new GerarUser();
+            form.ShowDialog();
+        }
+
+        private void salvarCarregamentoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SalvarCarregamento form = new SalvarCarregamento();
             form.ShowDialog();
         }
     }

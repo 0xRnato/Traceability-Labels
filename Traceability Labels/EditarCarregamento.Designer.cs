@@ -134,7 +134,6 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "EditarCarregamento";
-            this.ShowIcon = false;
             this.gbox_ProdutosAdd.ResumeLayout(false);
             this.gbox_Carregamento.ResumeLayout(false);
             this.gbox_Carregamento.PerformLayout();

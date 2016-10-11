@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NovoCarregamento));
             this.gbox_Carregamento = new System.Windows.Forms.GroupBox();
             this.btn_Avancar = new System.Windows.Forms.Button();
             this.date_Expedicao = new System.Windows.Forms.DateTimePicker();
@@ -568,10 +569,10 @@
             this.Controls.Add(this.gbox_AddProduto);
             this.Controls.Add(this.gbox_Carregamento);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "NovoCarregamento";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Novo Carregamento";
             this.gbox_Carregamento.ResumeLayout(false);

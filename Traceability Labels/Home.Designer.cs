@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menu_Produtos = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_CadastrarProduto = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,6 +42,9 @@
             this.menu_Rastrear = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_Configuracoes = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_Impressoras = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_Leitor = new System.Windows.Forms.ToolStripMenuItem();
+            this.salvarCarregamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gerarChaveDeUsuárioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_CadastrarUsuario = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_EditarUsuario = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_Sobre = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,7 +52,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lbl_User = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbl_Printer = new System.Windows.Forms.ToolStripStatusLabel();
-            this.sincronizarLeitorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -150,7 +153,7 @@
             // 
             this.menu_Configuracoes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menu_Impressoras,
-            this.sincronizarLeitorToolStripMenuItem,
+            this.menu_Leitor,
             this.menu_CadastrarUsuario,
             this.menu_EditarUsuario});
             this.menu_Configuracoes.Name = "menu_Configuracoes";
@@ -163,6 +166,29 @@
             this.menu_Impressoras.Size = new System.Drawing.Size(166, 22);
             this.menu_Impressoras.Text = "Impressoras";
             this.menu_Impressoras.Click += new System.EventHandler(this.menu_Impressoras_Click);
+            // 
+            // menu_Leitor
+            // 
+            this.menu_Leitor.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.salvarCarregamentoToolStripMenuItem,
+            this.gerarChaveDeUsuárioToolStripMenuItem});
+            this.menu_Leitor.Name = "menu_Leitor";
+            this.menu_Leitor.Size = new System.Drawing.Size(166, 22);
+            this.menu_Leitor.Text = "Leitor";
+            // 
+            // salvarCarregamentoToolStripMenuItem
+            // 
+            this.salvarCarregamentoToolStripMenuItem.Name = "salvarCarregamentoToolStripMenuItem";
+            this.salvarCarregamentoToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.salvarCarregamentoToolStripMenuItem.Text = "Salvar carregamento";
+            this.salvarCarregamentoToolStripMenuItem.Click += new System.EventHandler(this.salvarCarregamentoToolStripMenuItem_Click);
+            // 
+            // gerarChaveDeUsuárioToolStripMenuItem
+            // 
+            this.gerarChaveDeUsuárioToolStripMenuItem.Name = "gerarChaveDeUsuárioToolStripMenuItem";
+            this.gerarChaveDeUsuárioToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.gerarChaveDeUsuárioToolStripMenuItem.Text = "Gerar chave de usuário";
+            this.gerarChaveDeUsuárioToolStripMenuItem.Click += new System.EventHandler(this.gerarChaveDeUsuárioToolStripMenuItem_Click);
             // 
             // menu_CadastrarUsuario
             // 
@@ -216,12 +242,6 @@
             this.lbl_Printer.Size = new System.Drawing.Size(80, 17);
             this.lbl_Printer.Text = "IMPRESSORA:";
             // 
-            // sincronizarLeitorToolStripMenuItem
-            // 
-            this.sincronizarLeitorToolStripMenuItem.Name = "sincronizarLeitorToolStripMenuItem";
-            this.sincronizarLeitorToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.sincronizarLeitorToolStripMenuItem.Text = "Sincronizar leitor";
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -232,9 +252,10 @@
             this.ClientSize = new System.Drawing.Size(714, 411);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "Home";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rastreabilidade logística";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -271,7 +292,9 @@
         private System.Windows.Forms.ToolStripMenuItem menu_Rastrear;
         private System.Windows.Forms.ToolStripMenuItem novoCarregamentoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editarCarregamentoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sincronizarLeitorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menu_Leitor;
+        private System.Windows.Forms.ToolStripMenuItem salvarCarregamentoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gerarChaveDeUsuárioToolStripMenuItem;
     }
 }
 

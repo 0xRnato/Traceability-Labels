@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="Rastreabilidade logística.exe" version="1.0.0.1" publicKeyToken="472eda55a78d7b30" language="neutral" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="faleiro_logo_1MP_icon.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="Rastreabilidade logística" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="Rastreabilidade logística.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the 
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward 
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="4" minorVersion="10" buildNumber="0" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="2.0.50727.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Rastreabilidade logística.exe" size="1384384">
+      <assemblyIdentity name="Rastreabilidade logística" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>04xL78eqtSRkMKkbxRP4Fi1mUg8=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="aa-DJ\Rastreabilidade logística.resources.dll" size="45056">
+      <assemblyIdentity name="Rastreabilidade logística.resources" version="1.0.0.0" language="aa-DJ" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>zR/7YymMuGSJpwBgk0efmyx7D38=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="faleiro_logo_1MP_icon.ico" size="29223">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>2+e9CK4o7yYvAl0FyOpJgY+fQeo=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=DESKTOP-BP2I1RI\rnato" issuerKeyHash="6c60707e0edbde45693ab6f202369046521a00f4" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>Bkl7FGMOaVYASy3oeggr+t58hN0=</DigestValue></Reference></SignedInfo><SignatureValue>HW1Or4QzrUdADb2/v48zrZKz2kCs/bca3oFgOK/v7Ecmb4hEw7Xei/eXPWpphnd7r+3js7wPDaxSmCeM8SmNOJ3K95aT0X2f2xuBpym5hKPqbADmKyL/jO3dz77vbq/+H2vCeqCXgNrx6Gzxb4ujL6iiNEgYAMNjM4efajpFWz4=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>shPo6YWOhlhHwmxVWQbj9jwUxkUpUXtwKcmhNGE6j5HQKst2l2K416k2PoheZi8Sb5fASvo+hjKyytofrrL8ZJrR11RE1Ao1WItSaFDHxK9e2HI+XpedH5GPD+X8WxXSLvmOurEiE0qMv+lS5tWd0CuRB0tiW01B4NNzBqyN0cc=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="dd847cdefa2b087ae82d4b0056690e63147b4906" Description="" Url=""><as:assemblyIdentity name="Rastreabilidade logística.exe" version="1.0.0.1" publicKeyToken="472eda55a78d7b30" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=DESKTOP-BP2I1RI\rnato</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>WzPeVamAr/ss0u/UL0is6eYHHj4=</DigestValue></Reference></SignedInfo><SignatureValue>eBDYDLkCAX91wcbrcPdsL/4gj1zUrg56o2k5j0p9WfSHZUE4fHaA7IAmZ/fogR1dRenAFgibhDMbALUsBHguAZkDdHqhVOH/tQRuzEM6ou0Mhdtk6nyImJ+hoIWQoCYXiN5EjFT0+u9lbLmLawK+rR95S6Dy6GS2QR2LwltO8Rw=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>shPo6YWOhlhHwmxVWQbj9jwUxkUpUXtwKcmhNGE6j5HQKst2l2K416k2PoheZi8Sb5fASvo+hjKyytofrrL8ZJrR11RE1Ao1WItSaFDHxK9e2HI+XpedH5GPD+X8WxXSLvmOurEiE0qMv+lS5tWd0CuRB0tiW01B4NNzBqyN0cc=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB7TCCAVagAwIBAgIQFZXm2mEHCZxHuv1VMMmM/TANBgkqhkiG9w0BAQUFADA1MTMwMQYDVQQDHioARABFAFMASwBUAE8AUAAtAEIAUAAyAEkAMQBSAEkAXAByAG4AYQB0AG8wHhcNMTYxMDExMDEzOTI5WhcNMTcxMDExMDczOTI5WjA1MTMwMQYDVQQDHioARABFAFMASwBUAE8AUAAtAEIAUAAyAEkAMQBSAEkAXAByAG4AYQB0AG8wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBALIT6OmFjoZYR8JsVVkG4/Y8FMZFKVF7cCnJoTRhOo+R0CrLdpdiuNepNj6IXmYvEm+XwEr6PoYyssraH66y/GSa0ddURNQKNViLUmhQx8SvXthyPl6XnR+Rjw/l/FsV0i75jrqxIhNKjL/pUubVndArkQdLYltNQeDTcwasjdHHAgMBAAEwDQYJKoZIhvcNAQEFBQADgYEAA5LjsltXgpK+XKX/LLOH/Wf4dyGaeqhuy7U1V+MN9LwXBEMoE7gHYxx9v7H+LzHJCmY9Ci9ouGlxcZmo8wJ987soGnhmgS3MxSBeY/ktUei0EdjE7TXIBEo+6fUyZMLsDzlWt9J0B/VUB0EY6G66e/b/BbIV6WniNXkefvVD5nM=</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

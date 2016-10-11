@@ -61,6 +61,16 @@ namespace Traceability_Labels.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FALEIRO_logo {
+            get {
+                object obj = ResourceManager.GetObject("FALEIRO_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] IDAutomationHC39M_Code_39_Barcode {
@@ -76,26 +86,6 @@ namespace Traceability_Labels.Properties {
         internal static System.Drawing.Bitmap logo {
             get {
                 object obj = ResourceManager.GetObject("logo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Logomarcaantonio {
-            get {
-                object obj = ResourceManager.GetObject("Logomarcaantonio", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Logomarcaantonio1 {
-            get {
-                object obj = ResourceManager.GetObject("Logomarcaantonio1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -65,7 +65,7 @@ namespace Traceability_Labels
                 connection.Close();
                 if (flag)
                 {
-                    MessageBox.Show("Login realizado com sucesso.");
+                    MessageBox.Show("Login realizado com sucesso.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Home form = new Home(serverAdm);
 
                     if (serverAdm)
