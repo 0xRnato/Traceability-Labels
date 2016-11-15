@@ -179,14 +179,14 @@
             // salvarCarregamentoToolStripMenuItem
             // 
             this.salvarCarregamentoToolStripMenuItem.Name = "salvarCarregamentoToolStripMenuItem";
-            this.salvarCarregamentoToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.salvarCarregamentoToolStripMenuItem.Text = "Salvar carregamento";
+            this.salvarCarregamentoToolStripMenuItem.Size = new System.Drawing.Size(261, 22);
+            this.salvarCarregamentoToolStripMenuItem.Text = "Sincronizar dados do carregamento";
             this.salvarCarregamentoToolStripMenuItem.Click += new System.EventHandler(this.salvarCarregamentoToolStripMenuItem_Click);
             // 
             // gerarChaveDeUsuárioToolStripMenuItem
             // 
             this.gerarChaveDeUsuárioToolStripMenuItem.Name = "gerarChaveDeUsuárioToolStripMenuItem";
-            this.gerarChaveDeUsuárioToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.gerarChaveDeUsuárioToolStripMenuItem.Size = new System.Drawing.Size(261, 22);
             this.gerarChaveDeUsuárioToolStripMenuItem.Text = "Gerar chave de usuário";
             this.gerarChaveDeUsuárioToolStripMenuItem.Click += new System.EventHandler(this.gerarChaveDeUsuárioToolStripMenuItem_Click);
             // 
@@ -254,7 +254,6 @@
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximizeBox = false;
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rastreabilidade logística";

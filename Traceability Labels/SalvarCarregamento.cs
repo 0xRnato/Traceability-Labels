@@ -15,10 +15,7 @@ namespace Traceability_Labels
         List<string[]> items;
         SqlConnection connection;
         SqlCommand command;
-        SqlDataAdapter adapter;
         DataSet dataSet;
-        DataTable table;
-        SqlDataReader reader;
 
         public SalvarCarregamento()
         {
@@ -76,6 +73,11 @@ namespace Traceability_Labels
             {
                 MessageBox.Show(ex.Message, "ERRO!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            {
+                if (connection.State == ConnectionState.Open)
+                    connection.Close();
+            }
         }
 
         private void UpdateGrid()
@@ -124,20 +126,22 @@ namespace Traceability_Labels
                 {
                     if (item[3] == "caixa")
                     {
+                        string[] data = item[5].Split('/');
                         command = new SqlCommand("update caixa set dataConferido=@data, userConferido=@user where cod3=@cod3", connection);
-                        command.Parameters.AddWithValue("@cod3", item[2]);
+                        command.Parameters.AddWithValue("@cod3", item[2].Insert(0, "*").Insert(item[2].Length + 1, "*"));
                         command.Parameters.AddWithValue("@user", item[4]);
-                        command.Parameters.AddWithValue("@data", item[5]);
+                        command.Parameters.AddWithValue("@data", new DateTime(Convert.ToInt32(data[2]), Convert.ToInt32(data[1]), Convert.ToInt32(data[0])));
                         connection.Open();
                         command.ExecuteNonQuery();
                         connection.Close();
                     }
                     else if (item[3] == "palete")
                     {
+                        string[] data = item[5].Split('/');
                         command = new SqlCommand("update palete set dataConferido=@data, userConferido=@user where cod3=@cod3", connection);
-                        command.Parameters.AddWithValue("@cod3", item[2]);
+                        command.Parameters.AddWithValue("@cod3", item[2].Insert(0, "*").Insert(item[2].Length + 1, "*"));
                         command.Parameters.AddWithValue("@user", item[4]);
-                        command.Parameters.AddWithValue("@data", item[5]);
+                        command.Parameters.AddWithValue("@data", new DateTime(Convert.ToInt32(data[2]),Convert.ToInt32(data[1]),Convert.ToInt32(data[0])));
                         connection.Open();
                         command.ExecuteNonQuery();
                         connection.Close();
@@ -151,6 +155,11 @@ namespace Traceability_Labels
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "ERRO!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (connection.State == ConnectionState.Open)
+                    connection.Close();
             }
         }
     }

@@ -140,7 +140,7 @@ namespace Traceability_Labels
         private static SqlConnection connection;
         private static SqlCommand command;
         private static SqlDataReader reader;
-        public static string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=RastreabilidadeLogistica;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        public static string connectionString = @"Server=SRVOF\SQLEXPRESS;Database=RastreabilidadeLogistica;User Id=SYSDBA;Password=masterkey;";
         public static string gs1Global = "78975224";
         public static string regProcessadorGlobal = "99999999";
         public static string printerName;

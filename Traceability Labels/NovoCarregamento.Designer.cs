@@ -111,7 +111,7 @@
             // 
             // date_Expedicao
             // 
-            this.date_Expedicao.CustomFormat = "dd/MM/yy";
+            this.date_Expedicao.CustomFormat = "dd/MM/yyyy";
             this.date_Expedicao.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.date_Expedicao.Location = new System.Drawing.Point(147, 45);
             this.date_Expedicao.Name = "date_Expedicao";
@@ -294,7 +294,7 @@
             // 
             // date_Validade
             // 
-            this.date_Validade.CustomFormat = "dd/MM/yy";
+            this.date_Validade.CustomFormat = "dd/MM/yyyy";
             this.date_Validade.Enabled = false;
             this.date_Validade.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.date_Validade.Location = new System.Drawing.Point(164, 159);
@@ -313,7 +313,7 @@
             // 
             // date_Fabricacao
             // 
-            this.date_Fabricacao.CustomFormat = "dd/MM/yy";
+            this.date_Fabricacao.CustomFormat = "dd/MM/yyyy";
             this.date_Fabricacao.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.date_Fabricacao.Location = new System.Drawing.Point(164, 133);
             this.date_Fabricacao.Name = "date_Fabricacao";

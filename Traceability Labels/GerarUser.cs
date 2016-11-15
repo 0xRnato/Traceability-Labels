@@ -15,9 +15,7 @@ namespace Traceability_Labels
         SqlConnection connection;
         SqlCommand command;
         SqlDataAdapter adapter;
-        DataSet dataSet;
         DataTable table;
-        SqlDataReader reader;
 
         public GerarUser()
         {
@@ -39,37 +37,61 @@ namespace Traceability_Labels
 
         private void GerarUser_Load(object sender, EventArgs e)
         {
-            cbox_Usuarios.Items.Clear();
-            command = new SqlCommand("select usuario,senha from users", connection);
-            adapter = new SqlDataAdapter(command);
-            table = new DataTable();
-            adapter.Fill(table);
-            cbox_Usuarios.DataSource = table;
-            cbox_Usuarios.DisplayMember = table.Columns[0].ToString();
-            cbox_Usuarios.ValueMember = table.Columns[1].ToString();
-            cbox_Usuarios.SelectedIndex = -1;
+            try
+            {
+                cbox_Usuarios.Items.Clear();
+                command = new SqlCommand("select usuario,senha from users", connection);
+                adapter = new SqlDataAdapter(command);
+                table = new DataTable();
+                adapter.Fill(table);
+                cbox_Usuarios.DataSource = table;
+                cbox_Usuarios.DisplayMember = table.Columns[0].ToString();
+                cbox_Usuarios.ValueMember = table.Columns[1].ToString();
+                cbox_Usuarios.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (connection.State == ConnectionState.Open)
+                    connection.Close();
+            }
         }
 
         private void btn_Gerar_Click(object sender, EventArgs e)
         {
-            Stream stream;
-            saveDialog.Filter = "All files (*.*)|*.*";
-            saveDialog.FilterIndex = 1;
-            saveDialog.RestoreDirectory = true;
-            saveDialog.FileName = "user.file";
-
-            if(saveDialog.ShowDialog() == DialogResult.OK)
+            try
             {
-                if((stream = saveDialog.OpenFile()) != null)
+                Stream stream;
+                saveDialog.Filter = "All files (*.*)|*.*";
+                saveDialog.FilterIndex = 1;
+                saveDialog.RestoreDirectory = true;
+                saveDialog.FileName = "user.file";
+
+                if (saveDialog.ShowDialog() == DialogResult.OK)
                 {
-                    StreamWriter writer = new StreamWriter(stream);
-                    writer.WriteLine(cbox_Usuarios.Text);
-                    writer.Write(cbox_Usuarios.SelectedValue);
-                    writer.Close();
-                    stream.Close();
-                    MessageBox.Show("Chave gerado com sucesso.", "Ateção", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Close();
+                    if ((stream = saveDialog.OpenFile()) != null)
+                    {
+                        StreamWriter writer = new StreamWriter(stream);
+                        writer.WriteLine(cbox_Usuarios.Text);
+                        writer.Write(cbox_Usuarios.SelectedValue);
+                        writer.Close();
+                        stream.Close();
+                        MessageBox.Show("Chave gerado com sucesso.", "Ateção", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Close();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERRO!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (connection.State == ConnectionState.Open)
+                    connection.Close();
             }
         }
 

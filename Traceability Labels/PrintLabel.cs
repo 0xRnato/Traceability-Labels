@@ -68,32 +68,33 @@ namespace Traceability_Labels
             Font verdana11 = new Font("Verdana", 11);
             Font verdana13 = new Font("Verdana", 13);
             Font verdana8 = new Font("Verdana", 8);
+            Font verdana5 = new Font("Verdana", 5.5F);
             Pen blackPen = new Pen(Color.Black, 2);
 
-            g.DrawRectangle(blackPen, 0, 0, 600, 342);
+            g.DrawRectangle(blackPen, 0, 30, 600, 342);
 
-            g.DrawLine(blackPen, 0, 30, 600, 30);
-            g.DrawLine(blackPen, 0, 70, 600, 70);
-            g.DrawLine(blackPen, 0, 110, 600, 110);
-            g.DrawLine(blackPen, 0, 150, 600, 150);
-            g.DrawLine(blackPen, 160, 110, 160, 30);
-            g.DrawLine(blackPen, 325, 110, 325, 30);
+            g.DrawLine(blackPen, 0, 60, 600, 60);//Horizontal 1
+            g.DrawLine(blackPen, 0, 90, 600, 90);//Horizontal 2
+            g.DrawLine(blackPen, 0, 120, 600, 120);//Horizontal 3
+            g.DrawLine(blackPen, 0, 150, 600, 150);//Horizontal 4
+            g.DrawLine(blackPen, 160, 120, 160, 60);//Vertical 1
+            g.DrawLine(blackPen, 325, 120, 325, 60);//vertical 2
 
-            g.DrawString("OF COMÉRCIO DE PRODUTOS ALIMENTÍCIOS LTDA", verdana8, Brushes.Black, 150, 10);
-            g.DrawString("GTIN", verdana8, Brushes.Black, 50, 35);
-            g.DrawString(gtin, verdana8, Brushes.Black, 20, 50);
-            g.DrawString("SELL BY/Data de Validade", verdana8, Brushes.Black, 165, 75);
-            g.DrawString(Convert.ToDateTime(validade).ToString("dd/MM/yy"), verdana8, Brushes.Black, 215, 90);
-            g.DrawString("PROD.DATE/Data de Prod.", verdana8, Brushes.Black, 5, 75);
-            g.DrawString(Convert.ToDateTime(fabricacao).ToString("dd/MM/yy"), verdana8, Brushes.Black, 50, 90);
-            g.DrawString("BATCH/Lote", verdana8, Brushes.Black, 420, 75);
-            g.DrawString(lote, verdana8, Brushes.Black, 445, 90);
-            g.DrawString("Produto", verdana8, Brushes.Black, 220, 35);
-            g.DrawString(produto, verdana8, Brushes.Black, 180, 50);
-            g.DrawString("PROCESSADOR #/Nº Registro Processador", verdana8, Brushes.Black, 330, 35);
-            g.DrawString(registroProcessador, verdana8, Brushes.Black, 425, 50);
-            g.DrawString("SSCC - Código de Série da Unidade Logística", verdana8, Brushes.Black, 175, 115);
-            g.DrawString(sscc, verdana8, Brushes.Black, 235, 130);
+            g.DrawString("OF COMÉRCIO DE PRODUTOS ALIMENTÍCIOS LTDA", verdana8, Brushes.Black, 150, 40);
+            g.DrawString("GTIN", verdana5, Brushes.Black, 75, 65);
+            g.DrawString(gtin, verdana5, Brushes.Black, 50, 75);
+            g.DrawString("SELL BY/Data de Validade", verdana5, Brushes.Black, 185, 95);
+            g.DrawString(Convert.ToDateTime(validade).ToString("dd/MM/yy"), verdana5, Brushes.Black, 220, 105);
+            g.DrawString("PROD.DATE/Data de Prod.", verdana5, Brushes.Black, 30, 95);
+            g.DrawString(Convert.ToDateTime(fabricacao).ToString("dd/MM/yy"), verdana5, Brushes.Black, 60, 105);
+            g.DrawString("BATCH/Lote", verdana5, Brushes.Black, 430, 95);
+            g.DrawString(lote, verdana5, Brushes.Black, 445, 105);
+            g.DrawString("Produto", verdana5, Brushes.Black, 220, 65);
+            g.DrawString(produto, verdana5, Brushes.Black, 200, 75);
+            g.DrawString("PROCESSADOR #/Nº Registro Processador", verdana5, Brushes.Black, 370, 65);
+            g.DrawString(registroProcessador, verdana5, Brushes.Black, 435, 75);
+            g.DrawString("SSCC - Código de Série da Unidade Logística", verdana5, Brushes.Black, 195, 125);
+            g.DrawString(sscc, verdana5, Brushes.Black, 250, 135);
             g.DrawString("Packaging Tare / Tara da Embalagem = " + taraEmbalagem + " Kg", verdana8, Brushes.Black, 310, 250);
             g.DrawString("Box Tare / Tara da Caixa = " + taraCaixa + " Kg", verdana8, Brushes.Black, 310, 270);
             g.DrawString("Total Tare / Tara Total = " + (Convert.ToDecimal(taraCaixa) + Convert.ToDecimal(taraEmbalagem)) + " Kg", verdana8, Brushes.Black, 310, 290);
@@ -147,35 +148,36 @@ namespace Traceability_Labels
             Font verdana11 = new Font("Verdana", 11);
             Font verdana13 = new Font("Verdana", 13);
             Font verdana8 = new Font("Verdana", 8);
+            Font verdana5 = new Font("Verdana", 5.5F);
             Pen blackPen = new Pen(Color.Black, 2);
             string totalTare = ((Convert.ToDecimal(taraCaixa) + Convert.ToDecimal(taraEmbalagem) + Convert.ToDecimal(taraStrech) + Convert.ToDecimal(taraCantoneira) + Convert.ToDecimal(taraPalete))).ToString();
 
-            g.DrawRectangle(blackPen, 0, 0, 600, 342);
+            g.DrawRectangle(blackPen, 0, 30, 600, 342);
 
-            g.DrawLine(blackPen, 0, 30, 600, 30);
-            g.DrawLine(blackPen, 0, 70, 600, 70);
-            g.DrawLine(blackPen, 0, 110, 600, 110);
-            g.DrawLine(blackPen, 0, 150, 600, 150);
-            g.DrawLine(blackPen, 160, 110, 160, 30);
-            g.DrawLine(blackPen, 325, 150, 325, 30);
+            g.DrawLine(blackPen, 0, 60, 600, 60);//Horizontal 1
+            g.DrawLine(blackPen, 0, 90, 600, 90);//Horizontal 2
+            g.DrawLine(blackPen, 0, 120, 600, 120);//Horizontal 3
+            g.DrawLine(blackPen, 0, 150, 600, 150);//Horizontal 4
+            g.DrawLine(blackPen, 160, 120, 160, 60);//Vertical 1
+            g.DrawLine(blackPen, 325, 150, 325, 60);//vertical 2
 
-            g.DrawString("OF COMÉRCIO DE PRODUTOS ALIMENTÍCIOS LTDA", verdana8, Brushes.Black, 150, 10);
-            g.DrawString("GTIN", verdana8, Brushes.Black, 50, 35);
-            g.DrawString(gtin, verdana8, Brushes.Black, 20, 50);
-            g.DrawString("SELL BY/Data de Validade", verdana8, Brushes.Black, 165, 75);
-            g.DrawString(Convert.ToDateTime(validade).ToString("dd/MM/yy"), verdana8, Brushes.Black, 215, 90);
-            g.DrawString("PROD.DATE/Data de Prod.", verdana8, Brushes.Black, 5, 75);
-            g.DrawString(Convert.ToDateTime(fabricacao).ToString("dd/MM/yy"), verdana8, Brushes.Black, 50, 90);
-            g.DrawString("BATCH/Lote", verdana8, Brushes.Black, 420, 75);
-            g.DrawString(lote, verdana8, Brushes.Black, 445, 90);
-            g.DrawString("Produto", verdana8, Brushes.Black, 220, 35);
-            g.DrawString(produto, verdana8, Brushes.Black, 180, 50);
-            g.DrawString("PROCESSADOR #/Nº Registro Processador", verdana8, Brushes.Black, 340, 115);
-            g.DrawString(registroProcessador, verdana8, Brushes.Black, 435, 130);
-            g.DrawString("SSCC - Código de Série da Unidade Logística", verdana8, Brushes.Black, 35, 115);
-            g.DrawString(sscc, verdana8, Brushes.Black, 95, 130);
-            g.DrawString("COUNT/Quantidade", verdana8, Brushes.Black, 405, 35);
-            g.DrawString(quantidade, verdana8, Brushes.Black, 450, 50);
+            g.DrawString("OF COMÉRCIO DE PRODUTOS ALIMENTÍCIOS LTDA", verdana8, Brushes.Black, 150, 40);
+            g.DrawString("GTIN", verdana5, Brushes.Black, 75, 65);
+            g.DrawString(gtin, verdana5, Brushes.Black, 50, 75);
+            g.DrawString("SELL BY/Data de Validade", verdana5, Brushes.Black, 185, 95);
+            g.DrawString(Convert.ToDateTime(validade).ToString("dd/MM/yy"), verdana5, Brushes.Black, 220, 105);
+            g.DrawString("PROD.DATE/Data de Prod.", verdana5, Brushes.Black, 30, 95);
+            g.DrawString(Convert.ToDateTime(fabricacao).ToString("dd/MM/yy"), verdana5, Brushes.Black, 60, 105);
+            g.DrawString("BATCH/Lote", verdana5, Brushes.Black, 430, 95);
+            g.DrawString(lote, verdana5, Brushes.Black, 445, 105);
+            g.DrawString("Produto", verdana5, Brushes.Black, 220, 65);
+            g.DrawString(produto, verdana5, Brushes.Black, 200, 75);
+            g.DrawString("PROCESSADOR #/Nº Registro Processador", verdana5, Brushes.Black, 370, 125);
+            g.DrawString(registroProcessador, verdana5, Brushes.Black, 435, 135);
+            g.DrawString("SSCC - Código de Série da Unidade Logística", verdana5, Brushes.Black, 65, 125);
+            g.DrawString(sscc, verdana5, Brushes.Black, 115, 135);
+            g.DrawString("COUNT/Quantidade", verdana5, Brushes.Black, 415, 65);
+            g.DrawString(quantidade, verdana5, Brushes.Black, 450, 75);
 
             g.DrawString("Packaging Tare / Tara da Embalagem = " + taraEmbalagem + " Kg", verdana8, Brushes.Black, 300, 220);
             g.DrawString("Box Tare / Tara da Caixa = " + taraCaixa + " Kg", verdana8, Brushes.Black, 300, 240);
